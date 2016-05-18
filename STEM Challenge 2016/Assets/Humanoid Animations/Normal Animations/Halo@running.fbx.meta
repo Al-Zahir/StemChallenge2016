@@ -1,0 +1,1175 @@
+fileFormatVersion: 2
+guid: 5fd210811b5f5456dbfb7e32cb03eaaf
+timeCreated: 1449200821
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: cheif:Chief_chief_smd_mesh_0
+    100002: cheif:Chief_chief_smd_mesh_1
+    100004: cheif:Chief_chief_smd_mesh_2
+    100006: cheif:Chief_chief_smd_mesh_3
+    100008: cheif:Chief_chief_smd_mesh_4
+    100010: cheif:Chief_chief_smd_mesh_5
+    100012: cheif:Head
+    100014: cheif:HeadTop_End
+    100016: cheif:Hips
+    100018: cheif:LeftArm
+    100020: cheif:LeftFoot
+    100022: cheif:LeftForeArm
+    100024: cheif:LeftHand
+    100026: cheif:LeftHandIndex1
+    100028: cheif:LeftHandIndex2
+    100030: cheif:LeftHandIndex3
+    100032: cheif:LeftHandIndex4
+    100034: cheif:LeftHandMiddle1
+    100036: cheif:LeftHandMiddle2
+    100038: cheif:LeftHandMiddle3
+    100040: cheif:LeftHandMiddle4
+    100042: cheif:LeftHandPinky1
+    100044: cheif:LeftHandPinky2
+    100046: cheif:LeftHandPinky3
+    100048: cheif:LeftHandPinky4
+    100050: cheif:LeftHandRing1
+    100052: cheif:LeftHandRing2
+    100054: cheif:LeftHandRing3
+    100056: cheif:LeftHandRing4
+    100058: cheif:LeftHandThumb1
+    100060: cheif:LeftHandThumb2
+    100062: cheif:LeftHandThumb3
+    100064: cheif:LeftHandThumb4
+    100066: cheif:LeftLeg
+    100068: cheif:LeftShoulder
+    100070: cheif:LeftToe_End
+    100072: cheif:LeftToeBase
+    100074: cheif:LeftUpLeg
+    100076: cheif:Neck
+    100078: cheif:RightArm
+    100080: cheif:RightFoot
+    100082: cheif:RightForeArm
+    100084: cheif:RightHand
+    100086: cheif:RightHandIndex1
+    100088: cheif:RightHandIndex2
+    100090: cheif:RightHandIndex3
+    100092: cheif:RightHandIndex4
+    100094: cheif:RightHandMiddle1
+    100096: cheif:RightHandMiddle2
+    100098: cheif:RightHandMiddle3
+    100100: cheif:RightHandMiddle4
+    100102: cheif:RightHandPinky1
+    100104: cheif:RightHandPinky2
+    100106: cheif:RightHandPinky3
+    100108: cheif:RightHandPinky4
+    100110: cheif:RightHandRing1
+    100112: cheif:RightHandRing2
+    100114: cheif:RightHandRing3
+    100116: cheif:RightHandRing4
+    100118: cheif:RightHandThumb1
+    100120: cheif:RightHandThumb2
+    100122: cheif:RightHandThumb3
+    100124: cheif:RightHandThumb4
+    100126: cheif:RightLeg
+    100128: cheif:RightShoulder
+    100130: cheif:RightToe_End
+    100132: cheif:RightToeBase
+    100134: cheif:RightUpLeg
+    100136: cheif:Spine
+    100138: cheif:Spine1
+    100140: cheif:Spine2
+    100142: //RootNode
+    400000: cheif:Chief_chief_smd_mesh_0
+    400002: cheif:Chief_chief_smd_mesh_1
+    400004: cheif:Chief_chief_smd_mesh_2
+    400006: cheif:Chief_chief_smd_mesh_3
+    400008: cheif:Chief_chief_smd_mesh_4
+    400010: cheif:Chief_chief_smd_mesh_5
+    400012: cheif:Head
+    400014: cheif:HeadTop_End
+    400016: cheif:Hips
+    400018: cheif:LeftArm
+    400020: cheif:LeftFoot
+    400022: cheif:LeftForeArm
+    400024: cheif:LeftHand
+    400026: cheif:LeftHandIndex1
+    400028: cheif:LeftHandIndex2
+    400030: cheif:LeftHandIndex3
+    400032: cheif:LeftHandIndex4
+    400034: cheif:LeftHandMiddle1
+    400036: cheif:LeftHandMiddle2
+    400038: cheif:LeftHandMiddle3
+    400040: cheif:LeftHandMiddle4
+    400042: cheif:LeftHandPinky1
+    400044: cheif:LeftHandPinky2
+    400046: cheif:LeftHandPinky3
+    400048: cheif:LeftHandPinky4
+    400050: cheif:LeftHandRing1
+    400052: cheif:LeftHandRing2
+    400054: cheif:LeftHandRing3
+    400056: cheif:LeftHandRing4
+    400058: cheif:LeftHandThumb1
+    400060: cheif:LeftHandThumb2
+    400062: cheif:LeftHandThumb3
+    400064: cheif:LeftHandThumb4
+    400066: cheif:LeftLeg
+    400068: cheif:LeftShoulder
+    400070: cheif:LeftToe_End
+    400072: cheif:LeftToeBase
+    400074: cheif:LeftUpLeg
+    400076: cheif:Neck
+    400078: cheif:RightArm
+    400080: cheif:RightFoot
+    400082: cheif:RightForeArm
+    400084: cheif:RightHand
+    400086: cheif:RightHandIndex1
+    400088: cheif:RightHandIndex2
+    400090: cheif:RightHandIndex3
+    400092: cheif:RightHandIndex4
+    400094: cheif:RightHandMiddle1
+    400096: cheif:RightHandMiddle2
+    400098: cheif:RightHandMiddle3
+    400100: cheif:RightHandMiddle4
+    400102: cheif:RightHandPinky1
+    400104: cheif:RightHandPinky2
+    400106: cheif:RightHandPinky3
+    400108: cheif:RightHandPinky4
+    400110: cheif:RightHandRing1
+    400112: cheif:RightHandRing2
+    400114: cheif:RightHandRing3
+    400116: cheif:RightHandRing4
+    400118: cheif:RightHandThumb1
+    400120: cheif:RightHandThumb2
+    400122: cheif:RightHandThumb3
+    400124: cheif:RightHandThumb4
+    400126: cheif:RightLeg
+    400128: cheif:RightShoulder
+    400130: cheif:RightToe_End
+    400132: cheif:RightToeBase
+    400134: cheif:RightUpLeg
+    400136: cheif:Spine
+    400138: cheif:Spine1
+    400140: cheif:Spine2
+    400142: //RootNode
+    4300000: cheif:Chief_chief_smd_mesh_0
+    4300002: cheif:Chief_chief_smd_mesh_1
+    4300004: cheif:Chief_chief_smd_mesh_2
+    4300006: cheif:Chief_chief_smd_mesh_3
+    4300008: cheif:Chief_chief_smd_mesh_4
+    4300010: cheif:Chief_chief_smd_mesh_5
+    7400000: running
+    9500000: //RootNode
+    13700000: cheif:Chief_chief_smd_mesh_0
+    13700002: cheif:Chief_chief_smd_mesh_1
+    13700004: cheif:Chief_chief_smd_mesh_2
+    13700006: cheif:Chief_chief_smd_mesh_3
+    13700008: cheif:Chief_chief_smd_mesh_4
+    13700010: cheif:Chief_chief_smd_mesh_5
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "MuscleClip 'Halo@running' conversion warning: Bone length
+      is different in avatar and animation\n\n     'cheif:LeftUpLeg' : position error
+      = 118.235733 mm\n\n     'cheif:LeftLeg' : position error = 388.876312 mm\n\n
+      \    'cheif:LeftFoot' : position error = 354.000824 mm\n\n     'cheif:LeftToeBase'
+      : position error = 184.771118 mm\n\n     'cheif:RightUpLeg' : position error
+      = 117.879135 mm\n\n     'cheif:RightLeg' : position error = 389.036194 mm\n\n
+      \    'cheif:RightFoot' : position error = 354.815033 mm\n\n     'cheif:RightToeBase'
+      : position error = 191.728775 mm\n\nMuscleClip 'Halo@running' conversion warning:
+      'cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2' is between humanoid transforms
+      and has rotation animation. This might lower retargeting quality.\n\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: running
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: -.810000002
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cheif:Chief_chief_smd_mesh_0
+        weight: 0
+      - path: cheif:Chief_chief_smd_mesh_1
+        weight: 0
+      - path: cheif:Chief_chief_smd_mesh_2
+        weight: 0
+      - path: cheif:Chief_chief_smd_mesh_3
+        weight: 0
+      - path: cheif:Chief_chief_smd_mesh_4
+        weight: 0
+      - path: cheif:Chief_chief_smd_mesh_5
+        weight: 0
+      - path: cheif:Hips
+        weight: 1
+      - path: cheif:Hips/cheif:LeftUpLeg
+        weight: 1
+      - path: cheif:Hips/cheif:LeftUpLeg/cheif:LeftLeg
+        weight: 1
+      - path: cheif:Hips/cheif:LeftUpLeg/cheif:LeftLeg/cheif:LeftFoot
+        weight: 1
+      - path: cheif:Hips/cheif:LeftUpLeg/cheif:LeftLeg/cheif:LeftFoot/cheif:LeftToeBase
+        weight: 1
+      - path: cheif:Hips/cheif:LeftUpLeg/cheif:LeftLeg/cheif:LeftFoot/cheif:LeftToeBase/cheif:LeftToe_End
+        weight: 0
+      - path: cheif:Hips/cheif:RightUpLeg
+        weight: 1
+      - path: cheif:Hips/cheif:RightUpLeg/cheif:RightLeg
+        weight: 1
+      - path: cheif:Hips/cheif:RightUpLeg/cheif:RightLeg/cheif:RightFoot
+        weight: 1
+      - path: cheif:Hips/cheif:RightUpLeg/cheif:RightLeg/cheif:RightFoot/cheif:RightToeBase
+        weight: 1
+      - path: cheif:Hips/cheif:RightUpLeg/cheif:RightLeg/cheif:RightFoot/cheif:RightToeBase/cheif:RightToe_End
+        weight: 0
+      - path: cheif:Hips/cheif:Spine
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandIndex1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandIndex1/cheif:LeftHandIndex2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandIndex1/cheif:LeftHandIndex2/cheif:LeftHandIndex3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandIndex1/cheif:LeftHandIndex2/cheif:LeftHandIndex3/cheif:LeftHandIndex4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandMiddle1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandMiddle1/cheif:LeftHandMiddle2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandMiddle1/cheif:LeftHandMiddle2/cheif:LeftHandMiddle3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandMiddle1/cheif:LeftHandMiddle2/cheif:LeftHandMiddle3/cheif:LeftHandMiddle4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandPinky1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandPinky1/cheif:LeftHandPinky2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandPinky1/cheif:LeftHandPinky2/cheif:LeftHandPinky3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandPinky1/cheif:LeftHandPinky2/cheif:LeftHandPinky3/cheif:LeftHandPinky4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandRing1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandRing1/cheif:LeftHandRing2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandRing1/cheif:LeftHandRing2/cheif:LeftHandRing3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandRing1/cheif:LeftHandRing2/cheif:LeftHandRing3/cheif:LeftHandRing4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandThumb1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandThumb1/cheif:LeftHandThumb2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandThumb1/cheif:LeftHandThumb2/cheif:LeftHandThumb3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:LeftShoulder/cheif:LeftArm/cheif:LeftForeArm/cheif:LeftHand/cheif:LeftHandThumb1/cheif:LeftHandThumb2/cheif:LeftHandThumb3/cheif:LeftHandThumb4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:Neck
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:Neck/cheif:Head
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:Neck/cheif:Head/cheif:HeadTop_End
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandIndex1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandIndex1/cheif:RightHandIndex2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandIndex1/cheif:RightHandIndex2/cheif:RightHandIndex3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandIndex1/cheif:RightHandIndex2/cheif:RightHandIndex3/cheif:RightHandIndex4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandMiddle1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandMiddle1/cheif:RightHandMiddle2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandMiddle1/cheif:RightHandMiddle2/cheif:RightHandMiddle3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandMiddle1/cheif:RightHandMiddle2/cheif:RightHandMiddle3/cheif:RightHandMiddle4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandPinky1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandPinky1/cheif:RightHandPinky2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandPinky1/cheif:RightHandPinky2/cheif:RightHandPinky3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandPinky1/cheif:RightHandPinky2/cheif:RightHandPinky3/cheif:RightHandPinky4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandRing1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandRing1/cheif:RightHandRing2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandRing1/cheif:RightHandRing2/cheif:RightHandRing3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandRing1/cheif:RightHandRing2/cheif:RightHandRing3/cheif:RightHandRing4
+        weight: 0
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandThumb1
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandThumb1/cheif:RightHandThumb2
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandThumb1/cheif:RightHandThumb2/cheif:RightHandThumb3
+        weight: 1
+      - path: cheif:Hips/cheif:Spine/cheif:Spine1/cheif:Spine2/cheif:RightShoulder/cheif:RightArm/cheif:RightForeArm/cheif:RightHand/cheif:RightHandThumb1/cheif:RightHandThumb2/cheif:RightHandThumb3/cheif:RightHandThumb4
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human:
+    - boneName: cheif:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cheif:RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Halo(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:Chief_chief_smd_mesh_0
+      position: {x: 0, y: 0, z: -3.19488644e-31}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: .0850000009, y: .0850000009, z: .0850000009}
+      transformModified: 1
+    - name: cheif:Chief_chief_smd_mesh_1
+      position: {x: 0, y: 0, z: -3.19488644e-31}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: .0850000009, y: .0850000009, z: .0850000009}
+      transformModified: 1
+    - name: cheif:Chief_chief_smd_mesh_2
+      position: {x: 0, y: 0, z: -3.19488644e-31}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: .0850000009, y: .0850000009, z: .0850000009}
+      transformModified: 1
+    - name: cheif:Chief_chief_smd_mesh_3
+      position: {x: 0, y: 0, z: -3.19488644e-31}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: .0850000009, y: .0850000009, z: .0850000009}
+      transformModified: 1
+    - name: cheif:Chief_chief_smd_mesh_4
+      position: {x: 0, y: 0, z: -3.19488644e-31}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: .0850000009, y: .0850000009, z: .0850000009}
+      transformModified: 1
+    - name: cheif:Chief_chief_smd_mesh_5
+      position: {x: 0, y: 0, z: -3.19488644e-31}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: .0850000009, y: .0850000009, z: .0850000009}
+      transformModified: 1
+    - name: cheif:Hips
+      position: {x: -.00206537591, y: 1.00091851, z: .000909861526}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:Spine
+      position: {x: -0, y: .0946584567, z: -.012965329}
+      rotation: {x: -.0680096745, y: 4.50593552e-06, z: -4.80704039e-05, w: .997684658}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:Spine1
+      position: {x: -0, y: .111466087, z: -7.31378916e-11}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:Spine2
+      position: {x: -0, y: .12738955, z: 2.79854639e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:Neck
+      position: {x: -0, y: .143313378, z: 3.367213e-08}
+      rotation: {x: .0680088401, y: 2.70711984e-14, z: 2.29746642e-13, w: .997684717}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:Head
+      position: {x: -0, y: .10382311, z: -.00618979521}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:HeadTop_End
+      position: {x: -0, y: .23378025, z: -.0139376661}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightShoulder
+      position: {x: .0658955574, y: .141876891, z: 5.35207109e-05}
+      rotation: {x: .48964721, y: .510942757, z: -.483154953, w: .515504003}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightArm
+      position: {x: -3.46569544e-11, y: .13315621, z: -2.59130939e-10}
+      rotation: {x: .027091898, y: .0564722382, z: -.00397654343, w: .998028636}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightForeArm
+      position: {x: 1.43763376e-10, y: .197212771, z: 6.51174537e-09}
+      rotation: {x: -6.09795521e-08, y: -.000462650904, z: -3.94117507e-07, w: .999999881}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHand
+      position: {x: -5.29386202e-10, y: .312475204, z: -2.05002926e-09}
+      rotation: {x: .0207395367, y: -.0068453378, z: -.0491143093, w: .998554349}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandIndex1
+      position: {x: -.0439801924, y: .0992605463, z: .00163640443}
+      rotation: {x: -.0203787908, y: -.000474141649, z: .0489040948, w: .998595476}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandIndex2
+      position: {x: -1.38251935e-05, y: .0373943746, z: 2.68424949e-10}
+      rotation: {x: -4.71900165e-07, y: -5.83090368e-05, z: .0003611297, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandIndex3
+      position: {x: 1.10994497e-05, y: .0358285271, z: 1.63976499e-10}
+      rotation: {x: -2.94275253e-07, y: -3.22336927e-15, z: -2.98023153e-08, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandIndex4
+      position: {x: 2.72683928e-06, y: .0273087136, z: 2.30766806e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandMiddle1
+      position: {x: -.0110281808, y: .111342184, z: -.00457194168}
+      rotation: {x: -.0203586221, y: -.000878274033, z: .0519604534, w: .998441219}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandMiddle2
+      position: {x: .000196528665, y: .0351369493, z: 1.46654822e-09}
+      rotation: {x: 7.70635552e-07, y: .000305213762, z: -.00269019092, w: .999996364}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandMiddle3
+      position: {x: -1.00485249e-05, y: .032194104, z: -1.0631499e-09}
+      rotation: {x: 2.08092433e-06, y: -.000477441645, z: -.00371938548, w: .999992967}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandMiddle4
+      position: {x: -.000186477715, y: .0253976826, z: -3.83141479e-12}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandRing1
+      position: {x: .0156490877, y: .123616435, z: .0028408037}
+      rotation: {x: -.0204276592, y: .000606831047, z: .0523869209, w: .998417735}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandRing2
+      position: {x: .000199652713, y: .0300223753, z: 8.09894263e-10}
+      rotation: {x: 3.52074267e-07, y: -.000129952008, z: -.00666487217, w: .999977767}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandRing3
+      position: {x: -.000192422565, y: .0268645361, z: 1.47905521e-10}
+      rotation: {x: -2.21217601e-06, y: .000709781714, z: .00351755857, w: .999993563}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandRing4
+      position: {x: -7.22947698e-06, y: .0185521543, z: 1.58971947e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandPinky1
+      position: {x: .0393592715, y: .131069601, z: -.00441566948}
+      rotation: {x: -.0198040679, y: -.0134756956, z: .0549868681, w: .998199701}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandPinky2
+      position: {x: .000242423179, y: .0222170241, z: 1.93969549e-10}
+      rotation: {x: 8.23711787e-07, y: .0001156902, z: -.00693592057, w: .999975979}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandPinky3
+      position: {x: -6.15892786e-05, y: .018384194, z: 1.68941736e-10}
+      rotation: {x: -5.4415068e-06, y: .000678299868, z: -.00567396078, w: .999983668}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandPinky4
+      position: {x: -.000180834235, y: .0132375574, z: -6.24561167e-11}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandThumb1
+      position: {x: -.0278432108, y: .0343154185, z: .0254486315}
+      rotation: {x: .082006909, y: -.0219575036, z: .312334746, w: .946171105}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandThumb2
+      position: {x: -.00662492216, y: .0402539819, z: -2.80401202e-10}
+      rotation: {x: -.000104826395, y: .00100509904, z: .0588494092, w: .998266399}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandThumb3
+      position: {x: -.00185794302, y: .0412867367, z: -1.31012012e-09}
+      rotation: {x: -.000604373752, y: -.00586285535, z: .147274196, w: .989078164}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightHandThumb4
+      position: {x: .00848286599, y: .0331413895, z: -5.98318964e-11}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftShoulder
+      position: {x: -.0658955574, y: .141944185, z: -.000437761628}
+      rotation: {x: .487389296, y: -.51289767, z: .484876215, w: .514084458}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftArm
+      position: {x: 5.91834082e-11, y: .13315621, z: -2.55807681e-10}
+      rotation: {x: .0273951311, y: -.017443506, z: .00135385315, w: .999471545}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftForeArm
+      position: {x: 1.53528773e-10, y: .19742319, z: -3.58218233e-10}
+      rotation: {x: -4.28547828e-08, y: .000168020255, z: -2.33967526e-07, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHand
+      position: {x: 4.20139612e-09, y: .312049836, z: -1.12443599e-09}
+      rotation: {x: .0212533195, y: -.0214435756, z: .0483855084, w: .998372376}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandRing1
+      position: {x: -.015666347, y: .129152641, z: -.00266042515}
+      rotation: {x: -.0222388692, y: .00100461603, z: -.0484681539, w: .998576641}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandRing2
+      position: {x: -3.86089851e-05, y: .0255770367, z: -2.28493294e-10}
+      rotation: {x: 2.15690918e-07, y: .00018234225, z: .00206633005, w: .999997854}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandRing3
+      position: {x: 8.79846266e-05, y: .0263304971, z: 8.20483959e-10}
+      rotation: {x: 1.12738476e-07, y: 5.4081891e-05, z: -.00328055001, w: .999994636}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandRing4
+      position: {x: -4.93750813e-05, y: .0154955192, z: 2.17700719e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandPinky1
+      position: {x: -.0390831605, y: .13139835, z: -.00234844373}
+      rotation: {x: -.0221529882, y: .00294873328, z: -.0516430587, w: .99841553}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandPinky2
+      position: {x: -.000172432614, y: .0221217815, z: 2.51673626e-10}
+      rotation: {x: 9.47029477e-08, y: -2.8243885e-05, z: .00592872966, w: .999982417}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandPinky3
+      position: {x: 8.3822837e-05, y: .0178705491, z: 9.11266673e-10}
+      rotation: {x: -6.96740562e-06, y: -.00120195479, z: .00119831064, w: .999998569}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandPinky4
+      position: {x: 8.86109992e-05, y: .0116970809, z: -2.43882498e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandMiddle1
+      position: {x: .0116133802, y: .120623261, z: -.00539412256}
+      rotation: {x: -.0223218277, y: -.000759825052, z: -.0492358021, w: .998537421}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandMiddle2
+      position: {x: -7.78015892e-05, y: .030317571, z: 2.6935687e-09}
+      rotation: {x: 3.57175054e-08, y: -7.06487117e-05, z: .00180122338, w: .999998391}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandMiddle3
+      position: {x: 3.97090334e-05, y: .028993696, z: -3.73424708e-10}
+      rotation: {x: -3.70167072e-07, y: 1.95568919e-06, z: .000131025838, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandMiddle4
+      position: {x: 3.80926249e-05, y: .0226181988, z: 6.50199783e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandIndex1
+      position: {x: .0431361161, y: .0954659581, z: .00391308963}
+      rotation: {x: -.0223198738, y: -.000645253866, z: -.04718519, w: .998636544}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandIndex2
+      position: {x: 6.20066348e-05, y: .0375301614, z: 5.68008141e-10}
+      rotation: {x: -9.35083264e-08, y: -1.02544182e-05, z: -.00148578, w: .999998927}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandIndex3
+      position: {x: -4.0566345e-05, y: .03522899, z: 2.19044849e-09}
+      rotation: {x: -2.63992177e-07, y: 3.42495186e-05, z: .000317826954, w: .99999994}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandIndex4
+      position: {x: -2.14443189e-05, y: .0300991237, z: 2.35143127e-09}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandThumb1
+      position: {x: .0271396395, y: .0325595289, z: .0255947225}
+      rotation: {x: .0819428042, y: .0113943806, z: -.321697503, w: .943221211}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandThumb2
+      position: {x: .00544824312, y: .0392359309, z: -5.41366917e-11}
+      rotation: {x: -.00022829407, y: -.00245808461, z: -.0454329178, w: .998964369}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandThumb3
+      position: {x: .00193689065, y: .0411344022, z: 1.08839326e-10}
+      rotation: {x: -.000354198623, y: .00433030864, z: -.128463373, w: .991704762}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftHandThumb4
+      position: {x: -.00738513796, y: .0346318372, z: -2.53212951e-10}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftUpLeg
+      position: {x: -.118109748, y: -.0526155382, z: .0126329735}
+      rotation: {x: .000329805742, y: .0139336223, z: .99990046, w: .00220244471}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftLeg
+      position: {x: -1.17936508e-10, y: .427289128, z: -1.70463782e-10}
+      rotation: {x: -.0661424547, y: -.000280385517, z: .00453313999, w: .997799873}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftFoot
+      position: {x: -3.21014632e-10, y: .388968259, z: 3.37579652e-11}
+      rotation: {x: .475989074, y: .0652262568, z: -.0149234971, w: .876902103}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftToeBase
+      position: {x: -4.38629549e-10, y: .203022614, z: 3.54658303e-09}
+      rotation: {x: .33276841, y: .00050515763, z: -.000178250382, w: .943008482}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:LeftToe_End
+      position: {x: 1.44393358e-10, y: .0859074965, z: 2.34366849e-11}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightUpLeg
+      position: {x: .118109748, y: -.0526155382, z: .00761176413}
+      rotation: {x: -.000583453279, y: .0262237582, z: .999653697, w: -.00211622007}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightLeg
+      position: {x: 6.46606879e-10, y: .427464724, z: 3.27528143e-10}
+      rotation: {x: -.0853394791, y: .000352761679, z: -.00459487131, w: .996341288}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightFoot
+      position: {x: -4.11678136e-10, y: .389863282, z: -6.98155145e-10}
+      rotation: {x: .494816631, y: -.0611320212, z: .0145196402, w: .866722882}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightToeBase
+      position: {x: -2.11103668e-09, y: .210667431, z: -9.01017483e-09}
+      rotation: {x: .31909427, y: -.00961251743, z: .00323667726, w: .947668672}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: cheif:RightToe_End
+      position: {x: -6.4181821e-10, y: .0840672702, z: 9.11246079e-12}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2956b23b06edd4b3088abe6145bf8f64,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

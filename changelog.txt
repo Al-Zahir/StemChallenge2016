@@ -1,0 +1,46 @@
+Changelog
+
+Scene changes: 
+	Added many angles to test
+	The T at spawn can be added to test rotations (t.rotation = x and watching it)
+
+PlayerClimbingControl
+	-Made it so left and right determine if allowed to shimmy
+	
+PlayerIK added shimmy transforms
+
+Idea is:
+	Shimmy targets are the same as leftorigin and rightorigin, but are further and are not affected by smoothing. Due to this they can tell you if the player will be shimming off of the platform in the near future and therefore you can stop them. The check using the vector between left and right is not neccessary.
+
+Added climbtimeout in playerclimbingcontrol (prevents player from messing climb up during a jump)
+	-basically disables input mid transitions
+	
+Fixed hand rotation PlayerIK
+
+Fixed error spam by setting left and right rots to Quaternion.identity at the start
+	(Issue was a null quaternion setting the hand IK = internal crash)
+
+
+
+Bugs / Insects
+
+	Climbing at side angle
+
+	Climbing faster using wall climb
+
+	Player Climbing ladder
+
+	Falling to roll - doesn’t move while rolling
+
+	Falling can’t move after getting stuck on side
+
+	Force jump if no jump found when player hits space
+
+	//Fix Idan’s stupid comment on the jump
+
+	AI fix so that they can’t sense running
+
+	AI climb ladders
+
+		
+	

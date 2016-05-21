@@ -138,7 +138,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>/Users/Al-Zahir/Downloads/Stem/STEM Challenge 2016/Assets/UMA/Example/DLL/LitJson.dll</HintPath>
+ <HintPath>/Users/Al-Zahir/Desktop/Private/Program Stuff/Unity Stuff/StemChallenge2016/STEM Challenge 2016/Assets/UMA/Example/DLL/LitJson.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

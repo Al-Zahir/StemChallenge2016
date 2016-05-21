@@ -86,7 +86,7 @@
      <None Include="Assets\AndromedaSystem\Shaders\HologramFullSolid+1.shader" />
      <None Include="Assets\UMA\Example\DLL\DLL Source Code.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>/Users/Al-Zahir/Downloads/Stem/STEM Challenge 2016/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>/Users/Al-Zahir/Desktop/Private/Program Stuff/Unity Stuff/StemChallenge2016/STEM Challenge 2016/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -113,7 +113,7 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>/Users/Al-Zahir/Downloads/Stem/STEM Challenge 2016/Assets/UMA/Example/DLL/LitJson.dll</HintPath>
+ <HintPath>/Users/Al-Zahir/Desktop/Private/Program Stuff/Unity Stuff/StemChallenge2016/STEM Challenge 2016/Assets/UMA/Example/DLL/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.Graphs.dll</HintPath>

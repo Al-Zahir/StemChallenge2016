@@ -70,94 +70,18 @@
      <Compile Include="Assets\Scripts\Player\PlayerIK.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerLastSeen.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\HumanFemaleDNAConverterBehaviour.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\HumanMaleDNAConverterBehaviour.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\HumanoidDNAConverterBehaviour.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\TutorialDNAConverterBehaviour.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\UMADna.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\UMADnaHumanoid.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\UMADnaHumanoid_Generated.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\UMADnaTutorial.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\UMADnaTutorial_Generated.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\DNA\UMADna_Generated.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\Slots\AdditionalSlots\CapsuleCollider\CapsuleColliderSlotScript.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\Slots\AdditionalSlots\Expressions\ExpressionSlotScript.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\Slots\AdditionalSlots\ForearmTwist\ForearmTwistSlotScript.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Humanoid\Slots\AdditionalSlots\Locomotion\LocomotionSlotScript.cs" />
-     <Compile Include="Assets\UMA\Content\UMA\Legacy\Slots\Female\FemaleEyelash\FemaleEyelash_EventScript.cs" />
-     <Compile Include="Assets\UMA\Example\Expressions\Scenes\Scripts\ActiveObjectSwitcher.cs" />
-     <Compile Include="Assets\UMA\Example\Expressions\Scenes\Scripts\EditModeExpressionPreview.cs" />
-     <Compile Include="Assets\UMA\Example\Expressions\Scenes\Scripts\SliderExpressionTest.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\CameraTrack.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\HUDFPS.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\Locomotion.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\OverlayLibrary.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\RaceLibrary.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\SharedColorTable.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\SkeletonTools.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\SlotLibrary.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMACharacterCustomization.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMACrowd.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMACrowdRandomSet.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMACustomization.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMAGenericCrowd.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMAGenericCustomization.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMAPackedRecipeBase.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMARecipeCrowd.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMARecipeMixer.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMARemoveComponents.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMASlotVerifyWizard.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMATestEventsScript.cs" />
-     <Compile Include="Assets\UMA\Example\Scripts\UMATextRecipe.cs" />
-     <Compile Include="Assets\UMA\Example\Shaders\BRDFLookupTexture.cs" />
      <None Include="Assets\AndromedaSystem\Shaders\HologramSemiSolid(BetterPerforming)+1.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDna_Save_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_GetIndex_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_GetNames_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Example\Shaders\UnLogickShaders\Debug_Normals.shader" />
-     <None Include="Assets\UMA\Example\Shaders\UnLogickShaders\Human-Normal-Diffuse-Metallic.shader" />
-     <None Include="Assets\UMA\Example\Expressions\Scenes\Editing Expression Clips.txt" />
-     <None Include="Assets\UMA\Example\Shaders\UnLogickShaders\Human-Normal-Diffuse.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDna_Template.cs.txt" />
-     <None Include="Assets\UMA\_ReleaseNotes.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_Byte_FromDna_Fragment.cs.txt" />
      <None Include="Assets\AndromedaSystem\Shaders\HologramStatic.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_Byte_Fields_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Example\Shaders\TransparentTwoSided.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDna_GetNames_Fragment.cs.txt" />
-     <None Include="Assets\Standard Assets\UMA\Core\Atlas\AtlasShader.shader" />
      <None Include="Assets\AndromedaSystem\Shaders\HologramSemiSolid(BetterPerforming).shader" />
-     <None Include="Assets\UMA\Content\UMA\Humanoid\FBX\Expressions\Blender_Pose_Frames.xml" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDna_GetType_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDna_GetTypes_Fragment.cs.txt" />
-     <None Include="Assets\Standard Assets\UMA\Core\Atlas\AtlasNormalShader.shader" />
      <None Include="Assets\AndromedaSystem\Shaders\Hologram2DTextures.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_Template.cs.txt" />
-     <None Include="Assets\UMA\Example\Shaders\Normal-BumpSpec.shader" />
-     <None Include="Assets\UMA\Example\Shaders\UnLogickShaders\Debug_Tangents.shader" />
      <None Include="Assets\AndromedaSystem\Shaders\HologramFullSolid.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_Byte_ToDna_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDna_Load_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_SetIndex_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_SetValue_Fragment.cs.txt" />
-     <None Include="Assets\UMA\Example\Shaders\Rim.shader" />
-     <None Include="Assets\UMA\Example\Shaders\Normal-BumpSpec_Rim.shader" />
-     <None Include="Assets\UMA\Editor\Templates\UmaDnaChild_GetValue_Fragment.cs.txt" />
      <None Include="Assets\AndromedaSystem\Shaders\HologramFullSolid+1.shader" />
-     <None Include="Assets\UMA\Example\DLL\DLL Source Code.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="LitJson">
- <HintPath>/Users/Al-Zahir/Downloads/Stem/STEM Challenge 2016/Assets/UMA/Example/DLL/LitJson.dll</HintPath>
- </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{5B202AD2-680A-1FF0-BBAF-820422468387}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

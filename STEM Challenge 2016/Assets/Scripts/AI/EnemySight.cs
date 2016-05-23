@@ -10,7 +10,7 @@ public class EnemySight : MonoBehaviour {
 	private NavMeshAgent agent;
 	private SphereCollider col;
 	private LastPlayerSighting lastPlayerSighting;
-	private GameObject player;
+	public GameObject player;
 	private Animator playerAnim;
 	private PlayerHealth playerHealth;
 	private HashIDs hash;
@@ -21,7 +21,7 @@ public class EnemySight : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent> ();
 		col = GetComponent<SphereCollider> ();
 		lastPlayerSighting = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<LastPlayerSighting> ();
-		player = GameObject.FindGameObjectWithTag (Tags.player).gameObject;
+		//player = GameObject.FindGameObjectWithTag ("Player").gameObject;
 		playerAnim = player.GetComponent<Animator> ();
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		hash = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<HashIDs> ();
@@ -74,9 +74,7 @@ public class EnemySight : MonoBehaviour {
 			if(wasInSight && !playerInSight)
 				playerLastSeen.Disappeared();
 
-			if ((playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash == hash.locomotionState 
-			    && playerAnim.GetFloat(hash.speedFloat) > 0.3f 
-			    && playerAnim.GetFloat(hash.sprintTriggerFloat) > 0.3f) || playerAnim.GetBool(hash.attractBool)){
+			if (playerAnim.GetBool(hash.attractBool)){
 
 				if (CalculatePathLength(player.transform.position) <= col.radius)
 					personalLastSighting = player.transform.position;

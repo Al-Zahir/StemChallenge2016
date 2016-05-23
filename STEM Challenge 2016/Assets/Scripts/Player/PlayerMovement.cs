@@ -211,19 +211,23 @@ public class PlayerMovement : MonoBehaviour {
 
 		transform.LookAt (enemy.transform.position);
 
-		enemy.transform.position = transform.position + 1f * transform.forward;
+		enemy.transform.position = transform.position + 0.5f * transform.forward;
 		enemy.transform.LookAt (transform.position + 2f * transform.forward);
 
 		anim.SetBool ("Attack", true);
-		enemy.GetComponent<Animator> ().SetTrigger ("isAttack");
-
-		StartCoroutine ("ResetAttack", enemy);
+		if (anim.GetFloat ("SprintTrigger") > 0.1f) {
+			enemy.GetComponent<Animator> ().SetTrigger ("isAttackRun");
+			StartCoroutine (ResetAttack(enemy, 4.6f));
+		} else {
+			enemy.GetComponent<Animator> ().SetTrigger ("isAttackStand");
+			StartCoroutine (ResetAttack(enemy, 1.5f));
+		}
 
 	}
 
-	IEnumerator ResetAttack(GameObject enemy){
+	IEnumerator ResetAttack(GameObject enemy, float time){
 	
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(time);
 
 		anim.SetBool ("Attack", false);
 

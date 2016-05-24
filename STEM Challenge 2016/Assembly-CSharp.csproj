@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\Other\Tags.cs" />
      <Compile Include="Assets\Scripts\Player\CameraScript.cs" />
      <Compile Include="Assets\Scripts\Player\LastPlayerSighting.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerBattleControl.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerClimbingControl.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerFallingControl.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />

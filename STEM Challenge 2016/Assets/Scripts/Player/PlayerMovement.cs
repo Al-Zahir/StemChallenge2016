@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isDisabledByClimb;
 	public bool isDisabledByAttack;
 	public bool isDisabledByGround;
+	public bool isDisabledByBattle;
 
 	public Camera mainCam;
 
@@ -180,7 +181,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	}*/
 
-	GameObject GetNearestEnemy(){
+	public GameObject GetNearestEnemy(){
 
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag (Tags.enemy);
 
@@ -200,7 +201,10 @@ public class PlayerMovement : MonoBehaviour {
 		
 		}
 
-		return enemies [index];
+		if (index < enemies.Length)
+			return enemies [index];
+		
+		return null;
 	}
 
 	void Attack(GameObject enemy){
@@ -240,7 +244,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool canMove(){
 
-		bool flag = !isDisabledByAttack && !isDisabledByGround && !isDisabledByClimb;
+		bool flag = !isDisabledByAttack && !isDisabledByGround && !isDisabledByClimb && !isDisabledByBattle;
 
 		if(isAbleToMove != flag)
 			rigid.velocity = new Vector3 (0, rigid.velocity.y, 0);

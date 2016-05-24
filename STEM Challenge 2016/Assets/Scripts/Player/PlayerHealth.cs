@@ -18,9 +18,9 @@ public class PlayerHealth : MonoBehaviour {
 	void Awake(){
 
 		anim = GetComponent<Animator> ();
-		hash = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<HashIDs> ();
+		//hash = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<HashIDs> ();
 		playerMovement = GetComponent<PlayerMovement> ();
-		screenFadeInOut = GameObject.FindGameObjectWithTag (Tags.fader).GetComponent<ScreenFadeInOut> ();
+		//screenFadeInOut = GameObject.FindGameObjectWithTag (Tags.fader).GetComponent<ScreenFadeInOut> ();
 		footstepsAudio = GetComponent<AudioSource> ();
 		timer = 0f;
 		playerDead = false;
@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour {
 		//if (anim.GetCurrentAnimatorStateInfo (0).nameHash == hash.dyingState) 
 		//	anim.SetBool (hash.deadBool, false);
 
-		anim.SetFloat (hash.speedFloat, 0.0f);
+		anim.SetFloat ("Speed", 0.0f);
 		playerMovement.enabled = false;
 
 		footstepsAudio.Stop ();

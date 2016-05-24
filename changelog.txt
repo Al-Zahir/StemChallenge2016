@@ -1,16 +1,10 @@
 Change Log
 
-Added new animations
-	Battle
-	Shoulder Throw
+Made new battle script
 
-Started test scene of Battle
+Started basic battle functions for 1 enemy
 
-Make new prefabs of all different characters
-	Climbing Character
-	Falling Character
-	Normal Character
-
+No AI battle (yet)
 
 
 Bugs / Insects

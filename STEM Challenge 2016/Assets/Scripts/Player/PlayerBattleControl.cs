@@ -5,6 +5,7 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	public bool isInBattle;
 	public GameObject attacker;
+	public float maxDistance = 5;
 
 	private Animator anim;
 	private Rigidbody rigid;
@@ -27,19 +28,24 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	void Update(){
 
+		//Remove this later
 		if (Input.GetKeyDown (KeyCode.M)) {
 			if (!isInBattle)
 				Battle (true);
 			else
 				Battle (false);
 		}
+		//End of Removing
 
 		if (isInBattle) {
 
-			if (!attacker || Vector3.Distance (attacker.transform.position, transform.position) > 10) {
+			if (Input.GetKey(KeyCode.LeftShift))
+				Battle (false);
+
+			if (!attacker || Vector3.Distance (attacker.transform.position, transform.position) > maxDistance) {
 				attacker = playerMovement.GetNearestEnemy ();
 
-				if (!attacker || Vector3.Distance(attacker.transform.position, transform.position) > 10) {
+				if (!attacker || Vector3.Distance(attacker.transform.position, transform.position) > maxDistance) {
 					Battle (false);
 					return;
 				}

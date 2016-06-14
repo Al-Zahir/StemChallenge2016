@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: minicargotruck
+  m_Shader: {fileID: 4800000, guid: 730c627007803b94cb6aca8b8844ee97, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 45d47f12bd7cc8446906e7358445ee02, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: 45d47f12bd7cc8446906e7358445ee02, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Specular
+        second:
+          m_Texture: {fileID: 2800000, guid: 99bbf074096684e43a4cbc082bafbdce, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cubemap
+        second:
+          m_Texture: {fileID: 8900000, guid: 3f00d5cf636653841aca7015b5b719ce, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Colormap
+        second:
+          m_Texture: {fileID: 2800000, guid: 43afd03620462874297e90271122915c, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _SpecularForce
+        second: 1.875
+      data:
+        first:
+          name: _Gloss
+        second: .642857194
+      data:
+        first:
+          name: _Reflection1Force
+        second: .339285731
+      data:
+        first:
+          name: _Reflection2Force
+        second: .267857164
+      data:
+        first:
+          name: _BlurredMip
+        second: 0
+      data:
+        first:
+          name: _CubemapMip
+        second: 0
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _CarColor
+        second: {r: 1, g: 1, b: 1, a: 1}

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isDisabledByGround;
 	public bool isDisabledByBattle;
 
+	public bool isRunning;
+
 	public Camera mainCam;
 
 	private Animator anim;
@@ -80,6 +82,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update(){
 
+		isRunning = anim.GetFloat ("SprintTrigger") > 0.1f;
+
 		isAbleToMove = canMove ();
 
 		MakeAngle ();
@@ -111,7 +115,6 @@ public class PlayerMovement : MonoBehaviour {
 			anim.SetFloat ("Speed", 0.0f, speedDampTime, Time.deltaTime);
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 		}
-
 
 		/*if (anim.GetCurrentAnimatorStateInfo (0).fullPathHash == hash.crouch2Sprint) {
 		

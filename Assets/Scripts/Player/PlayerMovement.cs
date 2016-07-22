@@ -91,7 +91,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void MovementManagement(float h, float v, bool sneak){
-
 		if (h != 0 || v != 0) {
 			
 			direction = new Vector3 (h, 0, v).normalized;
@@ -143,6 +142,9 @@ public class PlayerMovement : MonoBehaviour {
 		Quaternion newRotation = Quaternion.Lerp (rigid.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 
 		rigid.MoveRotation (newRotation);*/
+
+        if (isDisabledByClimb)
+            return;
 
 		if (targetDirection != Vector3.zero && anim.GetCurrentAnimatorStateInfo (0).fullPathHash == Animator.StringToHash ("Base Layer.Locomotion"))
 			eulerYTarget = eulerAngles.y + angle;

@@ -1,252 +1,511 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerClimbingControl : MonoBehaviour{
+public class PlayerClimbingControl : MonoBehaviour
+{
 
-	private Animator anim;
-	private PlayerIK playerIK;
-	private PlayerMovement playerMovement;
-	private Rigidbody rigid;
-	private CapsuleCollider col;
-	public bool isClimbing;
+    private Animator anim;
+    private PlayerIK playerIK;
+    private PlayerMovement playerMovement;
+    private Rigidbody rigid;
+    private CapsuleCollider col;
+    public bool debug = true;
+    public bool isClimbing;
 
-	private Vector3 smoothingPos;
-	public float smoothingTime = 1f;
-	private Vector3 smoothingVelocity = Vector3.zero;
+    private Vector3 smoothingPos;
+    public float smoothingTime = 1f;
+    private float originalSmoothingTime;
+    private Vector3 smoothingVelocity = Vector3.zero;
 
-    public bool disableInput = false;
+    public AnimationCurve climbStartY;
+    public AnimationCurve jumpY;
+    public AnimationCurve jumpX;
+    public float jumpTimeout = 2f;
+    private float jumpTimer;
+    private float climbStartTimer;
+    private float climbStartDistance;
+    public float climbIKEnableTime = 0.6f;
+    public float jumpIKDisableTime = 0.14f;
+    public float jumpIKEnableTime = 0.48f;
+    public float climbStartSmoothingTime = 0.01f;
+    public float jumpGridSizeX = 2f;
+    public float jumpGridSizeY = 3f;
+    public float jumpGridStart = 2f;
 
-	void Awake (){
+    private bool disableInputInternal; // Used for assumptions about player state, dangerous if touched outside script
+    public bool disableInputExternal; // Script behaves identical to if player let go of keyboard
 
-		anim = GetComponent<Animator> ();
-		playerIK = GetComponent<PlayerIK> ();
-		playerMovement = GetComponent<PlayerMovement> ();
-		rigid = GetComponent<Rigidbody> ();
-		col = GetComponent<CapsuleCollider> ();
-		isClimbing = false;
+    private RaycastHit hit;
+    private Vector3 lastPos;
+    private int lag = 0;
+    private float lagCtr = 0;
+    private float smoothMult = 1;
 
-	}
+    private float shimmyFailCtr = 0;
+    public float bodyNoiseLoop = 3f;
+    public float bodyNoiseMagnitude = 0.5f;
+    private float bodyNoiseTimer;
 
-	void Update (){
+    public float hangWeight = 0.5f;
 
-		float h = Input.GetAxis ("Horizontal");
-		float v = Input.GetAxis ("Vertical");
-        if (disableInput)
+    private bool jumpRequested;
+    private bool jumping;
+    private float sign;
+    private bool shimmy;
+
+    void Start()
+    {
+        originalSmoothingTime = smoothingTime;
+    }
+
+    void Awake()
+    {
+
+        anim = GetComponent<Animator>();
+        playerIK = GetComponent<PlayerIK>();
+        playerMovement = GetComponent<PlayerMovement>();
+        rigid = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
+        isClimbing = false;
+    }
+
+    void Update()
+    {
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        if (disableInputExternal || disableInputInternal)
         {
-            h = 0; 
+            h = 0;
+            v = 0;
+        }
+        else if (isClimbing && Input.GetKeyDown(KeyCode.Space)) //KeyDown only works in update
+            StartCoroutine(JumpRequest());
+
+        if (shimmy)
+        {
+            playerIK.rightHandPos += playerIK.handDirectionRight * anim.GetFloat("RightHandShimmy");
+            playerIK.leftHandPos += playerIK.handDirectionRight * anim.GetFloat("LeftHandShimmy");
+            playerIK.NoSmoothing();
+            playerIK.overrideIK = true;
+        }
+
+        //If not transitioning, and in the locomotion state, and is climbing, set is climbing to false
+        if (anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
+            && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion")
+            && isClimbing)
+        {
+            isClimbing = false;
+            playerMovement.isDisabledByClimb = false;
+            rigid.isKinematic = false;
+        }
+        //If the player can move, and is not climbing, and not transitioning, and is in the locomtion state, and is moving, start climbing rays
+        if (playerMovement.canMove()
+            && !isClimbing
+            && anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
+            && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion")
+            && v != 0
+            && Mathf.Abs(playerMovement.angle) < 0.1f &&
+            Physics.Raycast(transform.position, transform.forward, 2f))
+        {
+            for (float y = 1; y < 3; y += 0.1f)
+            {
+                DrawRay(transform.position + transform.up * y - transform.forward * 0.1f, transform.forward, Color.green);
+                if (Physics.Raycast(transform.position + transform.up * y - transform.forward * 0.1f, transform.forward, out hit, 1.0f))
+                    if (hit.transform.gameObject.tag == "Can Climb")
+                        StartClimb(hit);
+            }
+        }
+
+        if (isClimbing
+            && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")
+            && anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
+            && v != 0)
+            ClimbUpDown(v);
+    }
+
+    private void UpdateHit()
+    {
+        RaycastHit tempHit;
+        float closestZ = 100000f;
+        for (float y = 0; y < 0.5; y += 0.01f)
+        {
+            Physics.Raycast(transform.position + transform.up * (0.9f + y), transform.forward, out tempHit, 1.0f);
+            Vector3 localHit = transform.InverseTransformPoint(tempHit.point);
+            DrawRay(transform.position + transform.up * (0.9f + y), transform.forward, Color.red);
+            if (localHit.z < closestZ && localHit.z > 0.01f && tempHit.transform != null && tempHit.transform.tag == "Can Climb")
+            {
+                closestZ = localHit.z;
+                hit = tempHit;
+            }
+        }
+    }
+
+    private void UpdateRot()
+    {
+        UpdateHit();
+        DrawRay(hit.point, hit.normal * 0.2f, Color.red);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-hit.normal, Vector3.up), 0.2f);
+        if ((anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")
+            || anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_shimmy")
+            || anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_shimmy_1"))
+            && (anim.GetAnimatorTransitionInfo(0).fullPathHash == 0 || anim.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer.Climbing.braced_hang_idle"))
+            && !disableInputInternal)
+        {
+            smoothingPos = hit.point - transform.up + hit.normal * col.radius;
+            playerIK.hitPoint = hit.point;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        if (disableInputExternal || disableInputInternal)
+        {
+            h = 0;
             v = 0;
         }
 
-		//If not transitioning, and in the locomotion state, and is climbing, set is climbing to false
-		if (anim.GetAnimatorTransitionInfo (0).fullPathHash == 0 
-			&& anim.GetCurrentAnimatorStateInfo (0).fullPathHash == Animator.StringToHash ("Base Layer.Locomotion") 
-			&& isClimbing) {
-			isClimbing = false;
-			playerMovement.isDisabledByClimb = false;
-			rigid.isKinematic = false;
-		}
+        // Had to put these two ifs into fixed as they interfered with moving platforms if updated every frame
+        if (isClimbing)
+            UpdateRot();
 
-		//If the player can move, and is not climbing, and not transitioning, and is in the locomtion state, and is moving, start climbing rays
-		if (playerMovement.canMove()
-			&& !isClimbing 
-			&& anim.GetAnimatorTransitionInfo (0).fullPathHash == 0 
-			&& anim.GetCurrentAnimatorStateInfo (0).fullPathHash == Animator.StringToHash ("Base Layer.Locomotion") 
-		    && v != 0
-			&& Mathf.Abs(playerMovement.angle) < 0.1f && 
-			Physics.Raycast(transform.position, transform.forward, 2f)) {
+        if (isClimbing
+            && v == 0
+            && h != 0
+            && !(anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.idle_to_braced_hang")
+            || anim.GetAnimatorTransitionInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion -> Base Layer.Climbing.idle_to_braced_hang")))
+            ClimbLeftRight(h);
+        else if (anim.GetFloat("ClimbShimmy") != 0)
+            EndShimmy();
 
-			RaycastHit hit;
-			
-			for (float y = 1; y < 3; y += 0.1f) {
-				
-				Debug.DrawRay (transform.position + transform.up * y, transform.forward, Color.green);
-				
-				if (Physics.Raycast (transform.position + transform.up * y, transform.forward, out hit, 1.0f))
-					if (hit.transform.gameObject.tag == "Can Climb")
-						StartClimb(hit);
-				
-			}
+        rigid.angularVelocity = Vector3.zero;
+        Vector3 tempSmoothPos = smoothingPos;
 
-		}
+        // If starting to climb can offset the target position to create a natural jump
+        if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.idle_to_braced_hang") ||
+           anim.GetAnimatorTransitionInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion -> Base Layer.Climbing.idle_to_braced_hang"))
+        {
+            if (climbStartTimer < 0.0001) //Just started
+                climbStartDistance = smoothingPos.y - transform.position.y;
+            climbStartTimer += Time.deltaTime;
+            tempSmoothPos.y += climbStartDistance * (climbStartY.Evaluate(climbStartTimer) - 1); //0 on curve shifts player back to ground
+            smoothingTime = climbStartSmoothingTime;
+        }
+        // Animates the leap left/right by changing smoothing time and the Y position of the player
+        else if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_hop_left") ||
+                 anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_hop_right"))
+        {
+            if (jumpTimer < 0.0001)
+            {
+                playerIK.IKGlobalWait(false, jumpIKDisableTime);
+                playerIK.IKGlobalWait(true, jumpIKEnableTime);
+            }
 
-		if (isClimbing 
-		    && anim.GetCurrentAnimatorStateInfo (0).fullPathHash == Animator.StringToHash ("Base Layer.Climbing.braced_hang_idle") 
-		    && anim.GetAnimatorTransitionInfo (0).fullPathHash == 0 
-		    && v != 0)
-			ClimbUpDown(v);
+            tempSmoothPos.y += jumpY.Evaluate(jumpTimer);
+            smoothingTime = jumpX.Evaluate(jumpTimer);
+            jumpTimer += Time.deltaTime;
+        }
+        else
+        {
+            if (!jumping || !disableInputInternal)
+            {
+                jumping = false;
+                climbStartTimer = 0;
+                jumpTimer = 0;
+                smoothingTime = originalSmoothingTime;
+            }
+        }
 
-		if (isClimbing 
-		    && v == 0
-			&& h != 0)
-			ClimbLeftRight (h);
-		else if(anim.GetFloat("ClimbShimmy") != 0)
-			anim.SetFloat ("ClimbShimmy", 0);
+        // Deal with moving platforms / lag only if not in these states
+        if (!(anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_hop_left") ||
+            anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_hop_right")))
+        {
+            // React to sharp local Z change
+            Vector3 localDelta = transform.InverseTransformVector(hit.point - lastPos);
+            MoreInfo info = hit.transform != null ? hit.transform.GetComponent<MoreInfo>() : null;
+            bool lagging = false;
+            if (info == null)
+                lagging = Mathf.Abs(localDelta.z) > 0.005f;
+            else
+                lagging = info.climbStickZ && Mathf.Abs(localDelta.z) > 0.005f || info.climbStickY && (Mathf.Abs(localDelta.y) > 0.001f && (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")
+                || anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_shimmy")
+                || anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_shimmy_1"))
+                && (anim.GetAnimatorTransitionInfo(0).fullPathHash == 0 || anim.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")));
 
-	}
+            if (lagging)
+                lag++;
+            else
+                lag -= 5;
+            if (lag < 0) lag = 0;
+            if (lag > 4)
+            {
+                smoothMult = 1f / (1f + lag);
+                playerIK.hitPoint = hit.point;
+                playerIK.NoSmoothing();
+                playerIK.overrideIK = true;
+            }
+            else
+            {
+                smoothMult = 1;
+                playerIK.overrideIK = false;
+            }
+        }
 
-	void FixedUpdate (){
+        bodyNoiseTimer += Time.deltaTime;
+        if (bodyNoiseTimer > bodyNoiseLoop)
+            bodyNoiseTimer = 0;
 
-		rigid.angularVelocity = Vector3.zero;
 
-		if (isClimbing)
-			transform.position = Vector3.SmoothDamp (transform.position, smoothingPos, ref smoothingVelocity, smoothingTime);
+        if (lag < 5)
+        {
+            tempSmoothPos += -transform.up * playerIK.hanging * hangWeight;
+            tempSmoothPos += transform.up * bodyNoiseMagnitude * Mathf.Sin(2 * Mathf.PI * bodyNoiseTimer / bodyNoiseLoop);
+            tempSmoothPos += transform.forward * bodyNoiseMagnitude * Mathf.Cos(2 * Mathf.PI * bodyNoiseTimer / bodyNoiseLoop);
+        }
 
-	}
+        if (isClimbing)
+            transform.position = Vector3.SmoothDamp(transform.position, tempSmoothPos, ref smoothingVelocity, smoothingTime * smoothMult);
 
-	void StartClimb(RaycastHit hit){
+        lastPos = hit.point;
+    }
 
-		playerIK.ResetHandSpacing ();
-
-		Vector3 targetLookAt = transform.position - hit.normal;
-		targetLookAt.y = transform.position.y;
-		transform.LookAt (targetLookAt);
-
-		playerMovement.isDisabledByClimb = true;
-		isClimbing = true;
-		
-		anim.SetBool ("Climbing", true);
-		
-		rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
-		
-		rigid.useGravity = true;							
-		rigid.isKinematic = true;
-		
-		playerIK.SetIK (true);
-		
-		Vector3 targetPos = hit.point - transform.up - transform.forward * col.radius;
-		playerIK.hitPoint = hit.point;
-		smoothingPos = targetPos;
-	}
-
-	void ClimbUpDown(float v){
-
-		RaycastHit hit;
-
-		if (v > 0) {
-		
-			for (float y = 2; y < 3; y += 0.1f) {
-				Debug.DrawRay (transform.position + transform.up * y, transform.forward, Color.green);
-				
-				if (Physics.Raycast (transform.position + transform.up * y, transform.forward, out hit, 1.0f)) {
-					
-					if (hit.transform.gameObject.tag == "Can Climb") {
-
-						playerIK.ResetHandSpacing();
-
-						anim.SetTrigger ("ClimbUp");
-						
-						Vector3 targetPos = hit.point - transform.up - transform.forward * col.radius;
-
-						smoothingPos = targetPos;
-						
-						playerIK.hitPoint = hit.point;
-                        StartCoroutine(ClimbTimeout(1));
-						
-						break;
-						
-					}
-					
-				}else
-					EndClimb(v);
-				
-			}
-		
-		} else {
-
-			for (float y = -1; y <= 0; y += 0.1f) {
-				Debug.DrawRay (transform.position + transform.up * y, transform.forward, Color.green);
-				
-				if (Physics.Raycast (transform.position + transform.up * y, transform.forward, out hit, 1.0f)) {
-					
-					if (hit.transform.gameObject.tag == "Can Climb") {
-
-						playerIK.ResetHandSpacing();
-						
-						anim.SetTrigger ("ClimbDown");
-						
-						Vector3 targetPos = hit.point - transform.up - transform.forward * col.radius;
-						
-						smoothingPos = targetPos;
-
+    void ClimbUpDown(float v)
+    {
+        if (v > 0.001f)
+        {
+            int numHit = 0;
+            for (float y = 2; y < 3; y += 0.1f)
+            {
+                DrawRay(transform.position + transform.up * y, transform.forward, Color.green, 5f);
+                if (Physics.Raycast(transform.position + transform.up * y, transform.forward, out hit, 1.5f))
+                {
+                    numHit++;
+                    if (hit.transform.gameObject.tag == "Can Climb")
+                    {
+                        playerIK.ResetHandSpacingWait(0.3f);
+                        anim.SetTrigger("ClimbUp");
+                        lag = 0;
+                        smoothMult = 1;
+                        Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
+                        smoothingPos = targetPos;
                         playerIK.hitPoint = hit.point;
                         StartCoroutine(ClimbTimeout(1));
-						
-						break;
-						
-					}else if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f)){
-						smoothingPos = hit.point;
-						EndClimb(v);
-					}
-					
-				}
-				
-			}
-		
-		}
-
-
-
-	}
-
-	void ClimbLeftRight(float h){
-
-		RaycastHit hit;
-
-		float sign = (h > 0) ? 1f : -1f;
-
-		//if (Physics.Raycast (transform.position + playerIK.handDirectionRight * sign * 2 + transform.up, transform.forward, out hit, 1.0f)) {
-        if (sign < 0 && Physics.Raycast(playerIK.leftShimmy.position, -transform.up * 2, out hit, 2f) || sign > 0 && Physics.Raycast(playerIK.rightShimmy.position, -transform.up * 2, out hit, 2f))
+                        break;
+                    }
+                }
+            }
+            if (numHit == 0)
+                EndClimb(v);
+        }
+        else if (v < -0.001f)
         {
-			if (hit.transform.gameObject.tag == "Can Climb") {
-				anim.SetFloat ("ClimbShimmy", sign);
+            RaycastHit hit;
 
-				playerIK.ResetHandSpacing();
+            bool breakedout = false;
+            for (float y = -1; y <= 0; y += 0.1f)
+            {
+                DrawRay(transform.position + transform.up * y, transform.forward, Color.green);
+                if (Physics.Raycast(transform.position + transform.up * y, transform.forward, out hit, 1.0f))
+                {
+                    if (hit.transform.gameObject.tag == "Can Climb")
+                    {
+                        playerIK.ResetHandSpacingWait(0.3f);
+                        anim.SetTrigger("ClimbDown");
+                        lag = 0;
+                        smoothMult = 1;
+                        Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
+                        smoothingPos = targetPos;
+                        playerIK.hitPoint = hit.point;
+                        StartCoroutine(ClimbTimeout(1));
+                        breakedout = true;
+                        break;
+                    }
+                }
+            }
 
-				playerIK.rightHandPos += playerIK.handDirectionRight * anim.GetFloat("RightHandShimmy");
-				playerIK.leftHandPos += playerIK.handDirectionRight * anim.GetFloat("LeftHandShimmy");
+            if (!breakedout)
+            {
+                if (Physics.Raycast(transform.position, -transform.up, out hit, 2f))
+                    smoothingPos = hit.point;
+                else if (Input.GetKeyDown(KeyCode.Space))
+                    smoothingPos = transform.position - 2 * transform.up;
+                else
+                    return;
 
-				smoothingPos = transform.position + playerIK.handDirectionRight * sign;
-			} else
-				anim.SetFloat ("ClimbShimmy", 0);
-		} else 
-			anim.SetFloat ("ClimbShimmy", 0);
+                EndClimb(v);
+            }
+        }
+    }
 
-	}
+    void ClimbLeftRight(float h)
+    {
+        RaycastHit hit;
+        sign = (h > 0) ? 1f : -1f;
+        hit = sign < 0 ? playerIK.leftShimHit : playerIK.rightShimHit;
+
+        //Jump Detection
+        if (jumpRequested)
+        {
+            jumpRequested = false;
+            float previousZ = -1f;
+            RaycastHit detection;
+            //Loop to draw the debug grid as it will exit raycasting early and not do most of them
+            if (debug)
+                for (float x = jumpGridSizeX; x >= 0; x -= 0.1f, previousZ = -1f)
+                    for (float y = 2 - jumpGridSizeY; y < jumpGridSizeY; y += 0.1f)
+                        DrawRay(transform.position - transform.forward + transform.right * sign * (x + jumpGridStart) + transform.up * y, transform.forward * 2, Color.blue, 5);
+
+            for (float x = jumpGridSizeX; x >= 0; x -= 0.1f, previousZ = -1f)
+                for (float y = 2 - jumpGridSizeY; y < jumpGridSizeY; y += 0.1f)
+                {
+                    if (Physics.Raycast(transform.position - transform.forward + transform.right * sign * (x + jumpGridStart) + transform.up * y, transform.forward, out detection, 2f))
+                    {
+                        float currentZ = transform.InverseTransformPoint(detection.point).z;
+                        if (detection.transform.tag != "Can Climb")
+                        {
+                            previousZ = currentZ;
+                            continue;
+                        }
+
+                        if (previousZ != -1f && currentZ < previousZ) // Implies a player-directed indent to hang on
+                        {
+                            playerIK.ResetHandSpacingWait(0.3f);
+                            anim.SetTrigger(sign > 0 ? "ClimbJumpRight" : "ClimbJumpLeft");
+                            lag = 0;
+                            smoothMult = 1;
+                            Vector3 targetPos = detection.point - transform.up + detection.normal * col.radius;
+                            smoothingPos = targetPos;
+                            smoothingTime = jumpX.Evaluate(0);
+                            jumping = true;
+                            playerIK.hitPoint = detection.point;
+                            disableInputInternal = true;
+                            StartCoroutine(ClimbTimeout(jumpTimeout));
+                            playerIK.ResetHandSpacingWait(jumpTimeout);
+                            return;
+                        }
+
+                        previousZ = currentZ;
+                    }
+                    else
+                        previousZ = 1000f;
+                }
+        }
+
+        if (!disableInputInternal && (sign < 0 && playerIK.leftShimHit.transform != null || sign > 0 && playerIK.rightShimHit.transform != null))
+        {
+            if (hit.transform.gameObject.tag == "Can Climb")
+            {
+                anim.SetFloat("ClimbShimmy", sign);
+
+                playerIK.ResetHandSpacingImmediate();
+                if (playerIK.handDirectionRight == Vector3.zero)
+                {
+                    if (shimmyFailCtr > 1f)
+                    {
+                        EndShimmy();
+                        return;
+                    }
+                    shimmyFailCtr += Time.deltaTime;
+                }
+                else
+                    shimmyFailCtr = 0;
+
+                shimmy = true;
+
+                smoothingPos = this.hit.point - transform.up + this.hit.normal * col.radius + playerIK.handDirectionRight * sign * Mathf.Pow(smoothMult, 0.667f);
+            }
+            else
+                EndShimmy();
+        }
+        else
+            EndShimmy();
+    }
+
+    private void EndShimmy()
+    {
+        anim.SetFloat("ClimbShimmy", 0);
+        shimmyFailCtr = 0;
+        playerIK.overrideIK = false;
+        shimmy = false;
+    }
 
     private IEnumerator ClimbTimeout(float seconds)
     {
-        disableInput = true;
+        disableInputInternal = true;
         yield return new WaitForSeconds(seconds);
-        disableInput = false;
+        disableInputInternal = false;
     }
 
-	void EndClimb(float v){
+    void StartClimb(RaycastHit hit)
+    {
+        if (isClimbing)
+            return;
+        playerIK.ResetHandSpacingImmediate();
 
-		anim.SetFloat ("FinishClimbing", v);
+        playerMovement.isDisabledByClimb = true;
+        transform.rotation = Quaternion.LookRotation(-hit.normal, Vector3.up);
 
-		anim.SetBool ("Climbing", false);
+        isClimbing = true;
 
-		playerIK.ResetHandSpacing ();
+        anim.SetBool("Climbing", true);
 
-		rigid.velocity = Vector3.zero;
-
-		playerIK.SetIK (false);
+        rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 
         rigid.useGravity = true;
+        rigid.isKinematic = true;
 
-		if (v > 0) {
-			
-			RaycastHit hit;
-			
-			for (float y2 = 0; y2 < 3; y2 += 0.1f) {
-				Debug.DrawRay (transform.position + transform.up * y2, transform.forward, Color.green);
-				
-				if (Physics.Raycast (transform.position + transform.up * y2, transform.forward, out hit, 1.0f))
-					smoothingPos = hit.point + transform.forward * col.radius;
-			}
-			
-		}
+        playerIK.IKGlobalWait(true, climbIKEnableTime);
+        playerIK.ClearIK();
+        playerIK.IKFootLate();
 
-	}
+        Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
+        DrawRay(hit.point, hit.normal * 2, Color.cyan, 10f);
+        playerIK.hitPoint = hit.point;
+        smoothingPos = targetPos;
+    }
 
+    void EndClimb(float v)
+    {
+        anim.SetFloat("FinishClimbing", v);
+        anim.SetBool("Climbing", false);
+        playerIK.ResetHandSpacingWait(0.3f);
+        rigid.velocity = Vector3.zero;
+        playerIK.SetIK(false);
+        rigid.useGravity = true;
+
+        if (v > 0)
+        {
+            RaycastHit hit;
+
+            for (float y2 = 0; y2 < 3; y2 += 0.1f)
+            {
+                DrawRay(transform.position + transform.up * y2, transform.forward, Color.green);
+
+                if (Physics.Raycast(transform.position + transform.up * y2, transform.forward, out hit, 1.0f))
+                    smoothingPos = hit.point + transform.forward * col.radius;
+            }
+        }
+    }
+
+    private IEnumerator JumpRequest()
+    {
+        jumpRequested = true;
+        yield return new WaitForSeconds(0.1f);
+        jumpRequested = false;
+    }
+
+    // Used to allow the debug boolean to affect drawing rays
+    private void DrawRay(Vector3 position, Vector3 direction, Color color, float duration)
+    {
+        if (debug)
+            Debug.DrawRay(position, direction, color, duration);
+    }
+
+    private void DrawRay(Vector3 position, Vector3 direction, Color color)
+    {
+        if (debug)
+            Debug.DrawRay(position, direction, color);
+    }
 }

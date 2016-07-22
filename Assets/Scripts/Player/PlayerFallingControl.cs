@@ -7,6 +7,7 @@ public class PlayerFallingControl : MonoBehaviour {
 	private CapsuleCollider col;
 	private Rigidbody rigid;
 	private PlayerMovement playerMovement;
+    public LayerMask playerLayer;
 
 	private float distToGround;
 
@@ -26,6 +27,8 @@ public class PlayerFallingControl : MonoBehaviour {
 	public float jumpTargetOffsetY = 0.4f;
 	public bool drawJumpDebug = true;
 
+    private bool jumpTransitionAllowed = true;
+
 	void Awake(){
 
 		anim = GetComponent<Animator> ();
@@ -41,10 +44,17 @@ public class PlayerFallingControl : MonoBehaviour {
 
 		HandleJumpInput ();
 
-		if (!playerMovement.isDisabledByGround && !isGrounded ())
-			StartFall ();
-		else if (playerMovement.isDisabledByGround && isGrounded ())
-			EndFall ();
+        if (!playerMovement.isDisabledByGround && jumpTransitionAllowed && !IsNotOnEdge())
+        {
+            jumpTransitionAllowed = false;
+            StartFall();
+        }
+        else if (playerMovement.isDisabledByGround && jumpTransitionAllowed && IsNearGround(0.1f))
+        {
+            Debug.Log(anim.GetAnimatorTransitionInfo(0).fullPathHash);
+            jumpTransitionAllowed = false;
+            EndFall();
+        }
 
 	}
 
@@ -124,50 +134,68 @@ public class PlayerFallingControl : MonoBehaviour {
 		Debug.Log ("Z: " + zDisplacement + " Y: " + yDisplacement + " V: " + magnitude + " ø: " + angle);
 
 		rigid.velocity = transform.forward * magnitude * Mathf.Cos(angle) + transform.up * magnitude * Mathf.Sin(angle);
+        StartCoroutine(AllowTransition());
 	}
+
+    private IEnumerator AllowTransition()
+    {
+        yield return new WaitForSeconds(0.1f);
+        jumpTransitionAllowed = true;
+    }
 	
 	public void EndFall(){
 
 		anim.SetBool ("Falling", false);
 
 		float yVel = rigid.velocity.y;
+        Debug.Log(rigid.velocity);
 
 		if (yVel > -9.8f)
 			anim.SetTrigger ("FallingLand");
-		else if (yVel > -19.6f)
+		else if (yVel > -12.6f)
 			anim.SetTrigger ("FallingRoll");
 		else
 			anim.SetTrigger ("FallingHard");
 
 		playerMovement.isDisabledByGround = false;
-			
+        StartCoroutine(AllowTransition());
 	}
 
-	public bool isGrounded() {
-		
+	public bool IsNotOnEdge() {
 		int numberOfHits = 0;
 		
 		Vector3 pos = transform.position + distToGround * Vector3.up;
+        float k = 0.5f;
 		
-		Debug.DrawRay (pos + col.radius * transform.right + (col.radius / 2) * transform.forward, -Vector3.up * (distToGround + 0.01f), Color.red);
-		Debug.DrawRay (pos - col.radius * transform.right + (col.radius / 2) * transform.forward, -Vector3.up * (distToGround + 0.01f), Color.red);
-		Debug.DrawRay (pos + col.radius * transform.forward, -Vector3.up * (distToGround + 0.01f), Color.red);
-		Debug.DrawRay (pos - col.radius * transform.forward, -Vector3.up * (distToGround + 0.01f), Color.red);
+		Debug.DrawRay (pos + col.radius * transform.right + (col.radius / 2) * transform.forward, -Vector3.up * (distToGround + k), Color.red);
+		Debug.DrawRay (pos - col.radius * transform.right + (col.radius / 2) * transform.forward, -Vector3.up * (distToGround + k), Color.red);
+		Debug.DrawRay (pos + col.radius * transform.forward, -Vector3.up * (distToGround + k), Color.red);
+		Debug.DrawRay (pos - col.radius * transform.forward, -Vector3.up * (distToGround + k), Color.red);
 		
-		if (Physics.Raycast (pos + col.radius * transform.right + (col.radius / 1.5f) * transform.forward, -Vector3.up, distToGround + 0.01f))
+		if (Physics.Raycast (pos + col.radius * transform.right + (col.radius / 1.5f) * transform.forward, -Vector3.up, distToGround + k))
 			numberOfHits++;
-		if (Physics.Raycast (pos - col.radius * transform.right + (col.radius / 1.5f) * transform.forward, -Vector3.up, distToGround + 0.01f))
+		if (Physics.Raycast (pos - col.radius * transform.right + (col.radius / 1.5f) * transform.forward, -Vector3.up, distToGround + k))
 			numberOfHits++;
-		if (Physics.Raycast (pos + col.radius * transform.forward, -Vector3.up, distToGround + 0.01f))
+		if (Physics.Raycast (pos + col.radius * transform.forward, -Vector3.up, distToGround + k))
 			numberOfHits++;
-		if (Physics.Raycast (pos - col.radius * transform.forward, -Vector3.up, distToGround + 0.01f))
+		if (Physics.Raycast (pos - col.radius * transform.forward, -Vector3.up, distToGround + k))
 			numberOfHits++;
 		
 		return (numberOfHits > 1);
-		
 	}
 
-	public bool isGrounded(Vector3 direction){
+    public bool IsGrounded()
+    {
+        return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y - 0.1f, col.bounds.center.z), col.radius, ~playerLayer);
+    }
+
+    public bool IsNearGround(float height)
+    {
+        Debug.DrawRay(transform.position + 0.01f * transform.up, Vector3.down * height);
+        return Physics.Raycast(transform.position + 0.01f * transform.up, Vector3.down, height, ~playerLayer);
+    }
+
+	public bool IsNotOnEdge(Vector3 direction){
 
 		Vector3 pos = transform.position + distToGround * Vector3.up;
 

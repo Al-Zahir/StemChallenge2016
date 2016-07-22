@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: afde18e4fa3dd44f788b729513d8f688
-timeCreated: 1440507181
-licenseType: Pro
+guid: 6d84014e4991cce49b346a385ba83dd8
+timeCreated: 1466384087
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -279,7 +279,7 @@ ModelImporter:
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 0
       heightFromFeet: 1
-      mirror: 0
+      mirror: 1
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []

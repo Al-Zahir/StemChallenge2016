@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerHealth : MonoBehaviour {
 
 	public float health = 100f;
+	public float notority = 0f; //how suspicious the player is
 	public float resetAfterDeathTime = 5f;
 	public AudioClip deathClip;
 
@@ -62,7 +63,7 @@ public class PlayerHealth : MonoBehaviour {
 		anim.SetFloat ("Speed", 0.0f);
 		playerMovement.enabled = false;
 
-		footstepsAudio.Stop ();
+//		footstepsAudio.Stop ();
 	}
 
 	void LevelReset(){

@@ -6,6 +6,8 @@ public class EnemyAnimation : MonoBehaviour {
 	public float deadZone = 5f;
 
 	private Transform player;
+	private EnemyAI enemyAI;
+	private EnemyBattle enemyBattle;
 	private EnemySight enemySight;
 	private NavMeshAgent agent;
 	private Animator anim;
@@ -15,6 +17,8 @@ public class EnemyAnimation : MonoBehaviour {
 	void Awake(){
 
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
+		enemyAI = GetComponent<EnemyAI> ();
+		enemyBattle = GetComponent<EnemyBattle> ();
 		enemySight = GetComponent<EnemySight> ();
 		agent = GetComponent<NavMeshAgent> ();
 		anim = GetComponent<Animator> ();
@@ -44,17 +48,13 @@ public class EnemyAnimation : MonoBehaviour {
 
 	void NavAnimSetup(){
 
-		float speed;
+		float speed = agent.desiredVelocity.magnitude;
 		float angle;
 
-		if (enemySight.playerInSight) {
-		
-			speed = 0f;
+		if (enemySight.playerInSight) 
 			angle = FindAngle (transform.forward, player.position - transform.position, transform.up);
-		
-		} else {
-		
-			speed = Vector3.Project(agent.desiredVelocity, transform.forward).magnitude;
+		else {
+			
 			angle = FindAngle(transform.forward, agent.desiredVelocity, transform.up);
 
 			if (Mathf.Abs(angle) < deadZone){
@@ -66,7 +66,7 @@ public class EnemyAnimation : MonoBehaviour {
 		
 		}
 
-		animSetup.Setup (speed * Mathf.Sin(angle * Mathf.Rad2Deg), speed * Mathf.Cos(angle * Mathf.Rad2Deg));
+		animSetup.Setup (speed, angle, (agent.speed == enemyAI.chaseSpeed));
 
 	}
 

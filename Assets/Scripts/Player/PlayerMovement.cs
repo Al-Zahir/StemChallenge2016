@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isDisabledByGround;
 	public bool isDisabledByBattle;
 
+	public bool isRunning;
+
 	public Camera mainCam;
 
 	private Animator anim;
@@ -80,6 +82,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update(){
 
+		isRunning = anim.GetFloat ("SprintTrigger") > 0.1f;
+
 		isAbleToMove = canMove ();
 
 		MakeAngle ();
@@ -91,7 +95,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void MovementManagement(float h, float v, bool sneak){
-
 		if (h != 0 || v != 0) {
 			
 			direction = new Vector3 (h, 0, v).normalized;
@@ -111,7 +114,6 @@ public class PlayerMovement : MonoBehaviour {
 			anim.SetFloat ("Speed", 0.0f, speedDampTime, Time.deltaTime);
 			rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 		}
-
 
 		/*if (anim.GetCurrentAnimatorStateInfo (0).fullPathHash == hash.crouch2Sprint) {
 		
@@ -143,6 +145,9 @@ public class PlayerMovement : MonoBehaviour {
 		Quaternion newRotation = Quaternion.Lerp (rigid.rotation, targetRotation, turnSmoothing * Time.deltaTime);
 
 		rigid.MoveRotation (newRotation);*/
+
+        if (isDisabledByClimb)
+            return;
 
 		if (targetDirection != Vector3.zero && anim.GetCurrentAnimatorStateInfo (0).fullPathHash == Animator.StringToHash ("Base Layer.Locomotion"))
 			eulerYTarget = eulerAngles.y + angle;

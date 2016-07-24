@@ -1,0 +1,20 @@
+Thank you for purchasing Terrain Hole System!
+
+-----Quick Start-----
+
+1. Add the "Terrain Hole System/Textures/Transparent" texture to one of your terrain's first four texture slots.
+2. Paint on your terrain with the transparent texture. The places that you paint will become transparent.
+3. Drag the Terrain Transparency Settings script onto your terrain object. This fixes a coloring issue when zoomed far out, as well as giving you the option to enable/disable "cutout mode".
+4. Drag the Object Fall Through script onto each object that you want to fall through transparent areas.
+
+Hit play, and try falling through the holes you made!
+
+-----Troubleshooting-----
+
+* With shadows enabled, some transparent areas may have darkening artifacts. This seems to be caused by self-shadowing. I've tried to fix this, but so far the only way is just to remove terrain shadows altogether. If you really want to do this, disable the "FirstPass" and "AddPass" shaders, by changing their filename extensions to ".shader_disabled", and enable the "FirstPass_NoShadows" and "AddPass_NoShadows" shaders, by changing their filename extensions to ".shader".
+
+* With "cutout mode" disabled, partially transparent areas will "clip" opaque terrain areas behind it. You can fix this by enabling "cutout mode", or by disabling terrain shadows (as explained above).
+
+* If "cutout mode" is disabled, the game is in play mode, and the camera's Clear Flags is set to Skybox, partially transparent areas will appear to be displayed on a gray background. You can fix this by dragging the Skybox Clear Fix script onto the camera that renders your terrain object.
+
+* Depending on your player's size, you may "get stuck" in the terrain when moving out of a hole back onto the terrain. To fix this you need to change the Snap Up Distance Offset setting to match the distance from the player's feet to the player's pivot point. You may also need to change the Max Snap Up Distance to prevent "snap ups" onto cave ceilings, or the "getting stuck" of players when their heads touch the bottom of a terrain. This number should be equal to the player's height.

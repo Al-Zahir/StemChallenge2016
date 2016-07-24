@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerBattleControl : MonoBehaviour {
 
 	public bool isInBattle;
-	public GameObject attacker;
 	public float maxDistance = 5;
 
 	private Animator anim;
@@ -18,12 +17,33 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	public Transform shieldUnarmedPosition;
 	public Transform shieldArmedPosition;
-	public Transform shield;
+    public Transform shield;
+    public Transform shieldAnimLeft;
+    public Transform shieldAnimRight;
+
+    public float blockingRotTime = 0.01f;
+
+    public string[] swordRootMotionAnimations = {"Base Layer.sword_slash_1"};
+    public int numAttacks = 4;
+
+    public float speedDampTime = 0.1f;
+    private Quaternion swordAnimRot;
+
+    private float swordClickStartTime;
+    private float swordHoldStartTime;
+    private bool swordClick;
+    public float swordClickMax = 0.2f;
+    public float swordHoldMax = 0.5f;
+    private bool lastClickWasDouble = false;
+    private bool lastClickWasHeld = false;
+    private bool stillHolding = false;
+
+    public float shieldSwingPeriod = 1f;
+    public float shieldSwingOffset = 0.2f;
 
 	void Awake(){
 
 		isInBattle = false;
-		attacker = null;
 
 		anim = GetComponent<Animator> ();
 		rigid = GetComponent<Rigidbody> ();
@@ -34,49 +54,77 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	}
 
+    void FixedUpdate()
+    {
+
+    }
+    
 	void Update(){
 
-		//remove later
-		if (Input.GetKeyDown (KeyCode.M))
-			Battle (!isInBattle);
+        bool singleClicked = false;
+        bool doubleClicked = false;
 
-		if (anim.GetAnimatorTransitionInfo (1).fullPathHash == 0
-		    && anim.GetCurrentAnimatorStateInfo (1).fullPathHash == Animator.StringToHash ("Equip Dequip.draw_sword_2"))
+        HandleClicks(ref singleClicked, ref doubleClicked);
+
+        anim.applyRootMotion = mecInAnyAnim(swordRootMotionAnimations, 0);
+
+        if (mecSoonInAnim("Equip Dequip.draw_sword_2", 1))
 			Equip ();
-		else if (anim.GetAnimatorTransitionInfo (1).fullPathHash == 0
-		         && anim.GetCurrentAnimatorStateInfo (1).fullPathHash == Animator.StringToHash ("Equip Dequip.sheath_sword_2"))
+        else if (mecSoonInAnim("Equip Dequip.sheath_sword_2", 1))
 			Dequip ();
-		else if (anim.GetAnimatorTransitionInfo (1).fullPathHash == 0
-		         && (anim.GetCurrentAnimatorStateInfo (1).fullPathHash == Animator.StringToHash ("Equip Dequip.draw_sword_1")
-		         || anim.GetCurrentAnimatorStateInfo (1).fullPathHash == Animator.StringToHash ("Equip Dequip.sheath_sword_1")))
+        else if (!mecInTrans(0) && (mecInAnim("Equip Dequip.draw_sword_1", 1) || mecInAnim("Equip Dequip.sheath_sword_1", 1)))
 			anim.SetLayerWeight (1, 1f);
 
 		if (isInBattle) {
 
-			if (playerMovement.isRunning)
-				Battle (false);
+			//if (playerMovement.isRunning)
+			//	Battle (false);
 
-			if (!attacker)
-				attacker = playerMovement.GetNearestEnemy ();
+            bool goingToSwing = false;
+            bool notInAnyAttack = !mecInAnyAnim(swordRootMotionAnimations, 0) && !mecSoonInAnyAnim(swordRootMotionAnimations, 0);
 
-			if (Input.GetMouseButtonDown (0))
-				anim.SetTrigger ("Attack");
+            if (singleClicked && !anim.GetBool("Blocking") && notInAnyAttack)
+            {
+                int currentAttack;
+                if (anim.GetFloat("SprintTrigger") > 0.05f)
+                    currentAttack = 5;
+                else
+                    currentAttack = Random.Range(0, numAttacks);
+                anim.SetInteger("AttackNumber", currentAttack);
+                anim.SetTrigger("Attack");
+                goingToSwing = true;
+            }
 
-			if (Input.GetKeyDown (KeyCode.Z))
-				anim.SetBool ("Blocking", true);
-			else if (Input.GetKeyUp (KeyCode.Z))
-				anim.SetBool ("Blocking", false);
+            if (Input.GetMouseButton(0) && !mecInTrans(0) && mecInAnyAnim(swordRootMotionAnimations, 0))
+                anim.SetTrigger("ContinueAttack");
+            
+            anim.SetBool("ContinueAttackReadOnly", anim.GetBool("ContinueAttack"));
+
+
+            if (Input.GetMouseButton(1) && !goingToSwing && notInAnyAttack)
+                anim.SetBool("Blocking", true);
+            else
+                anim.SetBool("Blocking", false);
+
+            if (doubleClicked && notInAnyAttack)
+            {
+                anim.SetInteger("AttackNumber", 4);
+                anim.SetTrigger("Attack");
+            }
+
+            if(Input.GetKeyDown(KeyCode.Q) && notInAnyAttack)
+            {
+                anim.SetInteger("AttackNumber", 6);
+                anim.SetTrigger("Attack");
+            }
+
+            if (mecSoonInAnyAnim(swordRootMotionAnimations, 0))
+                swordAnimRot = Quaternion.LookRotation(Vector3.Scale(playerMovement.mainCam.transform.forward, new Vector3(1, 0, 1)), Vector3.up);
+
+            if (mecInAnyAnim(swordRootMotionAnimations, 0))
+                transform.rotation = Quaternion.Slerp(transform.rotation, swordAnimRot, Time.deltaTime / 0.1f);
 
 			if (anim.GetBool ("Blocking")) {
-
-				Vector3 lookAtDirection = transform.forward;
-
-				if (attacker)
-					lookAtDirection = attacker.transform.position;
-				
-				lookAtDirection.y = transform.position.y;
-
-				transform.LookAt (lookAtDirection);
 
 				float h = Input.GetAxis ("Horizontal");
 				float v = Input.GetAxis ("Vertical");
@@ -92,23 +140,47 @@ public class PlayerBattleControl : MonoBehaviour {
 					if (Vector3.Cross (transform.forward, worldDirection).y < 0)
 						angle = -angle;
 
-					anim.SetFloat ("SpeedX", Mathf.Sin (angle * Mathf.Deg2Rad));
-					anim.SetFloat ("SpeedZ", Mathf.Cos (angle * Mathf.Deg2Rad));
+					anim.SetFloat ("SpeedX", Mathf.Sin (angle * Mathf.Deg2Rad), speedDampTime, Time.deltaTime);
+					anim.SetFloat ("SpeedZ", Mathf.Cos (angle * Mathf.Deg2Rad), speedDampTime, Time.deltaTime);
 
 					rigid.velocity = worldDirection;
 				
 				} else if (anim.GetFloat ("SpeedX") != 0 || anim.GetFloat ("SpeedZ") != 0) {
 				
-					anim.SetFloat ("SpeedX", 0);
-					anim.SetFloat ("SpeedZ", 0);
+					anim.SetFloat ("SpeedX", 0, speedDampTime, Time.deltaTime);
+					anim.SetFloat ("SpeedZ", 0, speedDampTime, Time.deltaTime);
 
 					rigid.velocity = new Vector3 (0, 0, 0);
 				
 				}
-			}
+
+                rigid.rotation = Quaternion.LookRotation(Vector3.Scale(playerMovement.mainCam.transform.forward, new Vector3(1, 0, 1)), Vector3.up);
+
+            }
 
 		}
+        else
+        {
+            if (anim.GetFloat("Speed") > 0.5f && anim.GetFloat("SprintTrigger") > 0.5f)
+            {
+                Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 5);
+                float lerpNum = 0.5f + 0.5f * Mathf.Sin(shieldSwingOffset + 2 * Mathf.PI / shieldSwingPeriod * (anim.GetCurrentAnimatorStateInfo(0).normalizedTime % shieldSwingPeriod));
+                shield.position = Vector3.Lerp(shieldAnimLeft.position, shieldAnimRight.position, lerpNum);
+                shield.rotation = Quaternion.Slerp(shieldAnimLeft.rotation, shieldAnimRight.rotation, lerpNum);
+            }
+            else
+            {
+                shield.parent = shieldUnarmedPosition;
+                shield.localPosition = new Vector3(0, 0, 0);
+                shield.localRotation = Quaternion.identity;
+                shield.localScale = Vector3.one;
+            }
+        }
 			
+        if (Input.GetKeyDown(KeyCode.R) || !isInBattle && singleClicked)
+        {
+            Battle(!isInBattle);
+        }
 	}
 
 	public void Battle(bool b){
@@ -132,8 +204,8 @@ public class PlayerBattleControl : MonoBehaviour {
 
 		shield.parent = shieldArmedPosition;
 		shield.localPosition = new Vector3 (0, 0, 0);
-		shield.localRotation = Quaternion.identity;
-
+        shield.localRotation = Quaternion.identity;
+        shield.localScale = Vector3.one;
 	}
 
 	public void Dequip(){
@@ -145,6 +217,87 @@ public class PlayerBattleControl : MonoBehaviour {
 		shield.parent = shieldUnarmedPosition;
 		shield.localPosition = new Vector3 (0, 0, 0);
 		shield.localRotation = Quaternion.identity;
-
+        shield.localScale = Vector3.one;
 	}
+
+    private void HandleClicks(ref bool singleClicked, ref bool doubleClicked)
+    {
+        singleClicked = false;
+        doubleClicked = false;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            swordHoldStartTime = Time.time;
+            stillHolding = true;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+            stillHolding = false;
+
+        if (Input.GetMouseButtonUp(0) && !swordClick || Input.GetMouseButtonDown(0) && swordClick)
+        {
+            if (!swordClick)
+            {
+                if (lastClickWasDouble)
+                    lastClickWasDouble = false;
+                else if (lastClickWasHeld)
+                    lastClickWasHeld = false;
+                else
+                {
+                    swordClick = true;
+                    swordClickStartTime = Time.time;
+                }
+            }
+            else
+            {
+                swordClick = false;
+                doubleClicked = true;
+                lastClickWasDouble = true;
+            }
+        }
+
+        if (swordClick && Time.time - swordClickStartTime > swordClickMax)
+        {
+            swordClick = false;
+            singleClicked = true;
+        }
+
+        if (stillHolding && Time.time - swordHoldStartTime > swordHoldMax)
+        {
+            stillHolding = false;
+            lastClickWasHeld = true;
+            singleClicked = true;
+        }
+    }
+
+    private bool mecInTrans(int layer)
+    {
+        return anim.GetAnimatorTransitionInfo(layer).fullPathHash != 0;
+    }
+
+    private bool mecInAnim(string name, int layer)
+    {
+        return anim.GetCurrentAnimatorStateInfo(layer).fullPathHash == Animator.StringToHash(name);
+    }
+
+    private bool mecInAnyAnim(string[] names, int layer)
+    {
+        foreach (string name in names)
+            if (anim.GetCurrentAnimatorStateInfo(layer).fullPathHash == Animator.StringToHash(name))
+                return true;
+        return false;
+    }
+
+    private bool mecSoonInAnim(string name, int layer)
+    {
+        return anim.GetNextAnimatorStateInfo(layer).fullPathHash == Animator.StringToHash(name);
+    }
+
+    private bool mecSoonInAnyAnim(string[] names, int layer)
+    {
+        foreach (string name in names)
+            if (anim.GetNextAnimatorStateInfo(layer).fullPathHash == Animator.StringToHash(name))
+                return true;
+        return false;
+    }
 }

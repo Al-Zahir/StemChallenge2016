@@ -163,7 +163,6 @@ public class PlayerBattleControl : MonoBehaviour {
         {
             if (anim.GetFloat("Speed") > 0.5f && anim.GetFloat("SprintTrigger") > 0.5f)
             {
-                Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 5);
                 float lerpNum = 0.5f + 0.5f * Mathf.Sin(shieldSwingOffset + 2 * Mathf.PI / shieldSwingPeriod * (anim.GetCurrentAnimatorStateInfo(0).normalizedTime % shieldSwingPeriod));
                 shield.position = Vector3.Lerp(shieldAnimLeft.position, shieldAnimRight.position, lerpNum);
                 shield.rotation = Quaternion.Slerp(shieldAnimLeft.rotation, shieldAnimRight.rotation, lerpNum);

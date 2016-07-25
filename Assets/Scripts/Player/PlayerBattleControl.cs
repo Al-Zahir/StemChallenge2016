@@ -59,8 +59,8 @@ public class PlayerBattleControl : MonoBehaviour {
 
     }
     
-	void Update(){
-
+	void Update()
+    {
         bool singleClicked = false;
         bool doubleClicked = false;
 

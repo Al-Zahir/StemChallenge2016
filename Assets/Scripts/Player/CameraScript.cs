@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour {
     public float thirdPersonClampNegative = -40, 
                  thirdPersonClampPositive = 45,
                  wallHitOffset = 0.3f;
-    public LayerMask playerLayer;
+    public LayerMask playerLayer, terrainLayer;
     public Transform thirdPersonCameraLocation;
     public Transform thirdPersonCameraPivot;
     private Vector3 thirdPersonCameraOriginalLocation;
@@ -47,9 +47,10 @@ public class CameraScript : MonoBehaviour {
                                                                  thirdPersonCameraPivot.localPosition, new Vector3(thirdPersonRotationX, thirdPersonRotationY, 0));
         RaycastHit hit;
         Vector3 direction = targetPosition - thirdPersonCameraPivot.position;
+        bool inNoTerrainZone = player.GetComponent<ObjectFallThrough>() != null && player.GetComponent<ObjectFallThrough>().currentNoTerrainZone != null;
         if (Physics.Raycast(thirdPersonCameraPivot.position,
                             direction.normalized, out hit,
-                            Vector3.Distance(thirdPersonCameraPivot.position, targetPosition), ~playerLayer))
+                            Vector3.Distance(thirdPersonCameraPivot.position, targetPosition), ~(playerLayer | (inNoTerrainZone ? (int)terrainLayer : 0))))
             cameraA.transform.position = hit.point - direction.normalized * wallHitOffset;
         else
             cameraA.transform.position = targetPosition;

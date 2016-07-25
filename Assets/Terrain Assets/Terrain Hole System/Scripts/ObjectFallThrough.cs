@@ -18,6 +18,7 @@ public class ObjectFallThrough : MonoBehaviour
 	public bool m_snapUpOnTerrainContact = true;
 	public float m_snapUpDistanceOffset = 1;
 	public float m_maxSnapUpDistance = 2;
+    public NoTerrainZone currentNoTerrainZone;
 	
 	private List<GameObject> m_terrainObjectList = new List<GameObject>();
 	private List<TerrainData> m_terrainDataList = new List<TerrainData>();
@@ -35,11 +36,36 @@ public class ObjectFallThrough : MonoBehaviour
 		if(m_autoAddTerrainObjects && col.collider is TerrainCollider && !m_terrainObjectList.Contains(col.collider.gameObject))
 			AddTerrainObjectToList(col.collider.gameObject);
 	}
-	void OnCollisionEnter(Collision col) //If using a regular collider
-	{
+
+    void OnCollisionEnter(Collision col) //If using a regular collider
+    {
         if (m_autoAddTerrainObjects && col.collider is TerrainCollider && !m_terrainObjectList.Contains(col.collider.gameObject))
             AddTerrainObjectToList(col.collider.gameObject);
-	}
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        currentNoTerrainZone = col.GetComponent<NoTerrainZone>();
+        if (currentNoTerrainZone != null)
+        {
+            GameObject[] terrains = currentNoTerrainZone.interaction;
+            foreach (GameObject terrain in terrains)
+                UpdateCollision(true, terrain);
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        currentNoTerrainZone = col.GetComponent<NoTerrainZone>();
+        if (currentNoTerrainZone != null)
+        {
+            GameObject[] terrains = currentNoTerrainZone.interaction;
+            foreach (GameObject terrain in terrains)
+                UpdateCollision(false, terrain);
+        }
+
+        currentNoTerrainZone = null;
+    }
 	
 	void AddTerrainObjectToList(GameObject terObj)
 	{
@@ -81,37 +107,43 @@ public class ObjectFallThrough : MonoBehaviour
 			if(fallThrough != fallenThrough) //If fall-through status is about to change
 			{
                 m_fallenThroughList[i] = fallThrough;
-				if(m_fallThroughColliders == FallThroughColliders.InThisObject)
-				{				
-					foreach(Collider tCol in terrainObject.GetComponents<Collider>())
-					{
-						foreach(Collider col in GetComponentsInChildren<Collider>())
-							Physics.IgnoreCollision(tCol, col, fallThrough);
-						foreach(Collider col in m_extraFallThroughColliders)
-							Physics.IgnoreCollision(tCol, col, fallThrough);
-					}
-				}
-				else if(m_fallThroughColliders == FallThroughColliders.InThisObjectAndChildren)
-                {
-					foreach(Collider tCol in terrainObject.GetComponents<Collider>())
-					{
-                        foreach (Collider col in GetComponentsInChildren<Collider>())
-                            Physics.IgnoreCollision(tCol, col, fallThrough);
-						foreach(Collider col in m_extraFallThroughColliders)
-							Physics.IgnoreCollision(tCol, col, fallThrough);
-					}
-				}
-				else //The user is setting all object-to-fall-through colliders manually
-				{
-					foreach(Collider tCol in terrainObject.GetComponents<Collider>())
-					{
-						foreach(Collider col in m_extraFallThroughColliders)
-							Physics.IgnoreCollision(tCol, col, fallThrough);
-					}
-				}			
+                UpdateCollision(fallThrough, terrainObject);			
 			}
 		}
 	}
+
+    private void UpdateCollision(bool fallThrough, GameObject terrainObject)
+    {
+        if (m_fallThroughColliders == FallThroughColliders.InThisObject)
+        {
+            foreach (Collider tCol in terrainObject.GetComponents<Collider>())
+            {
+                foreach (Collider col in GetComponentsInChildren<Collider>())
+                    Physics.IgnoreCollision(tCol, col, fallThrough);
+                foreach (Collider col in m_extraFallThroughColliders)
+                    Physics.IgnoreCollision(tCol, col, fallThrough);
+            }
+        }
+        else if (m_fallThroughColliders == FallThroughColliders.InThisObjectAndChildren)
+        {
+            foreach (Collider tCol in terrainObject.GetComponents<Collider>())
+            {
+                foreach (Collider col in GetComponentsInChildren<Collider>())
+                    Physics.IgnoreCollision(tCol, col, fallThrough);
+                foreach (Collider col in m_extraFallThroughColliders)
+                    Physics.IgnoreCollision(tCol, col, fallThrough);
+            }
+        }
+        else //The user is setting all object-to-fall-through colliders manually
+        {
+            foreach (Collider tCol in terrainObject.GetComponents<Collider>())
+            {
+                foreach (Collider col in m_extraFallThroughColliders)
+                    Physics.IgnoreCollision(tCol, col, fallThrough);
+            }
+        }
+    }
+
 	private float GetOpacityAt(Vector3 position, TerrainData terrainData, float[,,] terrainAlphamaps, TerrainTransparencySettings terrainTransparencySettings)
 	{
 		for (int splatCount = 0; splatCount < terrainData.alphamapLayers; splatCount++)

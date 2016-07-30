@@ -7,10 +7,12 @@ public class PlayerClimbingControl : MonoBehaviour
     private Animator anim;
     private PlayerIK playerIK;
     private PlayerMovement playerMovement;
+    private PlayerBattleControl playerBattleControl;
     private Rigidbody rigid;
     private CapsuleCollider col;
     public bool debug = true;
     public bool isClimbing;
+    private bool startingClimb = false;
 
     private Vector3 smoothingPos;
     public float smoothingTime = 1f;
@@ -64,6 +66,7 @@ public class PlayerClimbingControl : MonoBehaviour
         anim = GetComponent<Animator>();
         playerIK = GetComponent<PlayerIK>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerBattleControl = GetComponent<PlayerBattleControl>();
         rigid = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         isClimbing = false;
@@ -74,6 +77,8 @@ public class PlayerClimbingControl : MonoBehaviour
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
+        bool inFall = anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_idle");
+
         if (disableInputExternal || disableInputInternal)
         {
             h = 0;
@@ -92,28 +97,32 @@ public class PlayerClimbingControl : MonoBehaviour
 
         //If not transitioning, and in the locomotion state, and is climbing, set is climbing to false
         if (anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
-            && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion")
-            && isClimbing)
+            && (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion") ||
+            anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_idle") ||
+            anim.GetNextAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_idle"))
+            && isClimbing && !startingClimb)
         {
             isClimbing = false;
             playerMovement.isDisabledByClimb = false;
             rigid.isKinematic = false;
         }
+
         //If the player can move, and is not climbing, and not transitioning, and is in the locomtion state, and is moving, start climbing rays
-        if (playerMovement.canMove()
+        if ((playerMovement.canMove()
             && !isClimbing
-            && anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
             && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion")
             && v != 0
-            && Mathf.Abs(playerMovement.angle) < 0.1f &&
-            Physics.Raycast(transform.position, transform.forward, 2f))
+            && Mathf.Abs(playerMovement.angle) < 0.1f
+            || inFall)
+            && anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
+            && Physics.Raycast(transform.position, transform.forward, 2f))
         {
             for (float y = 1; y < 3; y += 0.1f)
             {
                 DrawRay(transform.position + transform.up * y - transform.forward * 0.1f, transform.forward, Color.green);
                 if (Physics.Raycast(transform.position + transform.up * y - transform.forward * 0.1f, transform.forward, out hit, 1.0f))
                     if (hit.transform.gameObject.tag == "Can Climb")
-                        StartClimb(hit);
+                        StartCoroutine(StartClimb(hit, inFall));
             }
         }
 
@@ -438,32 +447,52 @@ public class PlayerClimbingControl : MonoBehaviour
         disableInputInternal = false;
     }
 
-    void StartClimb(RaycastHit hit)
+    private IEnumerator StartClimb(RaycastHit hit, bool inFall)
     {
-        if (isClimbing)
-            return;
-        playerIK.ResetHandSpacingImmediate();
+        if (!isClimbing)
+        {
+            if (playerMovement.isDisabledByGround)
+                yield break;
 
-        playerMovement.isDisabledByClimb = true;
-        transform.rotation = Quaternion.LookRotation(-hit.normal, Vector3.up);
+            isClimbing = true;
+            startingClimb = true;
+            playerIK.ResetHandSpacingImmediate();
 
-        isClimbing = true;
+            playerMovement.isDisabledByClimb = true;
+            smoothingPos = transform.position;
+            if (playerBattleControl.isInBattle)
+            {
+                if (inFall)
+                {
+                    playerBattleControl.Dequip();
+                }
+                else
+                {
+                    playerBattleControl.GracefulDequip();
+                    while (playerBattleControl.isTransitioning)
+                        yield return new WaitForSeconds(0.1f);
+                }
+            }
 
-        anim.SetBool("Climbing", true);
+            transform.rotation = Quaternion.LookRotation(-hit.normal, Vector3.up);
 
-        rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+            anim.SetBool("Climbing", true);
 
-        rigid.useGravity = true;
-        rigid.isKinematic = true;
+            rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
 
-        playerIK.IKGlobalWait(true, climbIKEnableTime);
-        playerIK.ClearIK();
-        playerIK.IKFootLate();
+            rigid.useGravity = true;
+            rigid.isKinematic = true;
 
-        Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
-        DrawRay(hit.point, hit.normal * 2, Color.cyan, 10f);
-        playerIK.hitPoint = hit.point;
-        smoothingPos = targetPos;
+            playerIK.IKGlobalWait(true, climbIKEnableTime);
+            playerIK.ClearIK();
+            playerIK.IKFootLate();
+
+            Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
+            DrawRay(hit.point, hit.normal * 2, Color.cyan, 10f);
+            playerIK.hitPoint = hit.point;
+            smoothingPos = targetPos;
+            startingClimb = false;
+        }
     }
 
     void EndClimb(float v)
@@ -475,6 +504,7 @@ public class PlayerClimbingControl : MonoBehaviour
         playerIK.SetIK(false);
         rigid.useGravity = true;
 
+        bool foundHit = false;
         if (v > 0)
         {
             RaycastHit hit;
@@ -484,9 +514,17 @@ public class PlayerClimbingControl : MonoBehaviour
                 DrawRay(transform.position + transform.up * y2, transform.forward, Color.green);
 
                 if (Physics.Raycast(transform.position + transform.up * y2, transform.forward, out hit, 1.0f))
+                {
                     smoothingPos = hit.point + transform.forward * col.radius;
+                    foundHit = true;
+                }
             }
+            
+            if(foundHit)
+                return;
         }
+
+        GetComponent<PlayerFallingControl>().StartFall();
     }
 
     private IEnumerator JumpRequest()

@@ -32,10 +32,12 @@ public class PlayerFallingControl : MonoBehaviour {
     private Vector3 accidentVelocity = Vector3.zero;
     private Vector3 lastPos;
     private int failPosCheckCtr;
+    private bool canCheckFail = false;
 
     private Vector3[] lastVelocities = new Vector3[5];
     private int lastVelocityIndex = -1;
     private bool enabledRootMotion;
+    public float failCheckDistance = 0.01f;
 
 	void Awake(){
 
@@ -50,7 +52,6 @@ public class PlayerFallingControl : MonoBehaviour {
 
     void FixedUpdate()
     {
-        lastPos = transform.position;
         if (lastVelocityIndex == -1)
         { 
             for (int i = 0; i < lastVelocities.Length; i++)
@@ -63,6 +64,11 @@ public class PlayerFallingControl : MonoBehaviour {
         lastVelocityIndex++;
         if (lastVelocityIndex >= lastVelocities.Length)
             lastVelocityIndex = 0;
+
+        if (playerMovement.isDisabledByGround && jumpTransitionAllowed && Vector3.Magnitude(transform.position - lastPos) < failCheckDistance * Time.deltaTime && canCheckFail)
+            failPosCheckCtr++;
+
+        lastPos = transform.position;
     }
 
 	void Update(){
@@ -81,11 +87,10 @@ public class PlayerFallingControl : MonoBehaviour {
         }
         else if (playerMovement.isDisabledByGround && jumpTransitionAllowed && (IsNearGround(0.1f) || failPosCheckCtr > 20))
         {
-            jumpTransitionAllowed = false;
+            jumpTransitionAllowed = false; 
+            //Debug.Log(failPosCheckCtr);
             EndFall();
         }
-        else if (playerMovement.isDisabledByGround && jumpTransitionAllowed && Vector3.Magnitude(transform.position - lastPos) < 0.01f)
-            failPosCheckCtr++;
 
         if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_to_roll") ||
             anim.GetNextAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_to_roll"))
@@ -167,6 +172,8 @@ public class PlayerFallingControl : MonoBehaviour {
             StartCoroutine(AllowTransition());
             StartCoroutine(FixAccidentVel());
         }
+
+        StartCoroutine(FixFail());
 	}
 
 	void OnJumpStart() {
@@ -208,6 +215,13 @@ public class PlayerFallingControl : MonoBehaviour {
         yield return new WaitForFixedUpdate();
         rigid.velocity = accidentVelocity;
     }
+
+    private IEnumerator FixFail()
+    {
+        canCheckFail = false;
+        yield return new WaitForSeconds(1f);
+        canCheckFail = true;
+    }
 	
 	public void EndFall(){
 
@@ -217,7 +231,7 @@ public class PlayerFallingControl : MonoBehaviour {
         foreach (Vector3 velocity in lastVelocities)
             if (Mathf.Abs(velocity.y) > Mathf.Abs(yVel))
                 yVel = velocity.y;
-        Debug.Log(yVel);
+        //Debug.Log(yVel);
 		//float yVel = rigid.velocity.y;
 
 		if (yVel > -9.8f)

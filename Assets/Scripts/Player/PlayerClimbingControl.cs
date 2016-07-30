@@ -108,12 +108,12 @@ public class PlayerClimbingControl : MonoBehaviour
         }
 
         //If the player can move, and is not climbing, and not transitioning, and is in the locomtion state, and is moving, start climbing rays
-        if ((playerMovement.canMove()
-            && !isClimbing
-            && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion")
+        if (!isClimbing
             && v != 0
+            && (playerMovement.canMove()
+            && anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion")
             && Mathf.Abs(playerMovement.angle) < 0.1f
-            || inFall)
+            || inFall && v > 0)
             && anim.GetAnimatorTransitionInfo(0).fullPathHash == 0
             && Physics.Raycast(transform.position, transform.forward, 2f))
         {
@@ -451,14 +451,13 @@ public class PlayerClimbingControl : MonoBehaviour
     {
         if (!isClimbing)
         {
-            if (playerMovement.isDisabledByGround)
-                yield break;
-
             isClimbing = true;
             startingClimb = true;
             playerIK.ResetHandSpacingImmediate();
 
             playerMovement.isDisabledByClimb = true;
+            playerMovement.isDisabledByGround = false;
+            anim.SetBool("Falling", false);
             smoothingPos = transform.position;
             if (playerBattleControl.isInBattle)
             {
@@ -501,7 +500,7 @@ public class PlayerClimbingControl : MonoBehaviour
         anim.SetBool("Climbing", false);
         playerIK.ResetHandSpacingWait(0.3f);
         rigid.velocity = Vector3.zero;
-        playerIK.SetIK(false);
+        playerIK.IKGlobalWait(false, climbIKEnableTime);
         rigid.useGravity = true;
 
         bool foundHit = false;
@@ -519,7 +518,8 @@ public class PlayerClimbingControl : MonoBehaviour
                     foundHit = true;
                 }
             }
-            
+
+            StartCoroutine(ClimbTimeout(1));
             if(foundHit)
                 return;
         }

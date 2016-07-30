@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 07a20397401e64abcb11d14285d94865
-timeCreated: 1469302140
+guid: 8812f545653a04807a713d274b90ef3e
+timeCreated: 1469472918
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -137,7 +137,7 @@ ModelImporter:
     400126: Spine
     400128: Spine1
     400130: Spine2
-    7400000: aim_walk_right
+    7400000: standing_walk_back
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -164,10 +164,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: aim_walk_right
+      name: standing_walk_back
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 44
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

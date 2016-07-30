@@ -6,11 +6,17 @@ public class Arrow : MonoBehaviour {
 	private Rigidbody rigidbody;
 	public float initialVelocity = 100;
 	public float distance = 50;
+	private Quaternion[] lastRot = new Quaternion[2];
+	private int updateCtr = -1;
 
-	// Use this for initialization
-	void Start () {
+	void Awake(){
 
 		rigidbody = transform.GetComponent<Rigidbody> ();
+
+	}
+	//im tlalkoling lok reastart the call here
+	void Fire () {
+
 		float angle = (Mathf.Asin (distance * -Physics.gravity.y / Mathf.Pow (initialVelocity, 2)) * Mathf.Rad2Deg) / 2.0f;
 
 
@@ -18,7 +24,22 @@ public class Arrow : MonoBehaviour {
 		Debug.Log (rigidbody.velocity);
 	
 	}
-	
+
+	void FixedUpdate()
+	{
+		if (updateCtr == -1) {
+			for (int i = 0; i < lastRot.Length; i++)
+				lastRot [i] = transform.rotation;
+			updateCtr = 0;
+		}
+		else
+			lastRot[updateCtr] = transform.rotation;
+		
+		updateCtr++;
+		if (updateCtr >= lastRot.Length)
+			updateCtr = 0;
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -30,10 +51,16 @@ public class Arrow : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider col){
+	void OnCollisionEnter(Collision col){
 
-		rigidbody.velocity = Vector3.zero;
-		Destroy (rigidbody);
-	
+		if (rigidbody) {
+			rigidbody.velocity = Vector3.zero;
+			Destroy (GetComponent<DontGoThroughThings>());
+			Destroy (rigidbody);
+			transform.parent = col.transform;
+			transform.rotation = lastRot[(updateCtr - 1 + lastRot.Length) % lastRot.Length];
+			//transform.rotation = Quaternion.FromToRotation (Vector3.up, col.contacts [0].normal);
+		}
+
 	}
 }

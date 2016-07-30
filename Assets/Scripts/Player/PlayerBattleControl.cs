@@ -41,6 +41,9 @@ public class PlayerBattleControl : MonoBehaviour {
     public float shieldSwingPeriod = 1f;
     public float shieldSwingOffset = 0.2f;
 
+    // Allows other scripts to sheath the sword
+    public bool isTransitioning = false;
+
 	void Awake(){
 
 		isInBattle = false;
@@ -53,14 +56,32 @@ public class PlayerBattleControl : MonoBehaviour {
 		playerMovement.isDisabledByBattle = isInBattle;
 
 	}
-
-    void FixedUpdate()
-    {
-
-    }
     
 	void Update()
     {
+        if (!mecInTrans(1) && mecInAnim("Equip Dequip.sword_base", 1))
+            isTransitioning = false;
+
+        if (playerMovement.isDisabledByClimb && !isTransitioning)
+        {
+            if (isInBattle || sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition)
+            {
+                isInBattle = false;
+                Dequip();
+            }
+
+            return;
+        }
+
+        if (playerMovement.isDisabledByGround)
+        {
+            if (!isInBattle && (sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition))
+                Dequip();
+            else if (isInBattle && (sword.parent != swordArmedPosition || shield.parent != shieldArmedPosition))
+                Equip();
+            return;
+        }
+
         bool singleClicked = false;
         bool doubleClicked = false;
 
@@ -74,6 +95,9 @@ public class PlayerBattleControl : MonoBehaviour {
 			Dequip ();
         else if (!mecInTrans(0) && (mecInAnim("Equip Dequip.draw_sword_1", 1) || mecInAnim("Equip Dequip.sheath_sword_1", 1)))
 			anim.SetLayerWeight (1, 1f);
+
+        if (isTransitioning)
+            return;
 
 		if (isInBattle) {
 
@@ -194,6 +218,12 @@ public class PlayerBattleControl : MonoBehaviour {
 			anim.SetTrigger ("Dequip");
 
 	}
+
+    public void GracefulDequip() 
+    {
+        isTransitioning = true;
+        Battle(false);
+    }
 
 	public void Equip(){
 

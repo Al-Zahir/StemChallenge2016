@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isDisabledByGround;
 	public bool isDisabledByBattle;
 	public bool isDisabledByArchery;
+	public bool isDisabledByPushing;
 
 	public bool isRunning;
 
@@ -250,7 +251,12 @@ public class PlayerMovement : MonoBehaviour {
 
 	public bool canMove(){
 
-		bool flag = !isDisabledByAttack && !isDisabledByGround && !isDisabledByClimb && !isDisabledByBattle && !isDisabledByArchery;
+		bool flag = !isDisabledByAttack && 
+					!isDisabledByGround && 
+					!isDisabledByClimb && 
+					!isDisabledByBattle && 
+					!isDisabledByArchery && 
+					!isDisabledByPushing;
 
 		if(isAbleToMove != flag)
 			rigid.velocity = new Vector3 (0, rigid.velocity.y, 0);

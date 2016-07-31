@@ -206,7 +206,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 		anim.SetTrigger ("FireBow");
 
 		if (isAiming) {
-
+			
 			Destroy (holdingArrow);
 
 			GameObject a = (GameObject)Instantiate (arrow, 

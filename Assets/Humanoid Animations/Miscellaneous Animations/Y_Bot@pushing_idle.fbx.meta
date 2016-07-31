@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: abd35144fc9ea4a718b5c1701c2e1628
-timeCreated: 1469850784
+guid: 7159e86a0a4004bb7b4519a55a32efaa
+timeCreated: 1469930609
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -141,7 +141,7 @@ ModelImporter:
     400130: mixamorig:Spine1
     400132: mixamorig:Spine2
     400134: //RootNode
-    7400000: push_stop
+    7400000: pushing_idle
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -168,21 +168,21 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: push_stop
+      name: pushing_idle
       takeName: mixamo.com
-      firstFrame: 40
-      lastFrame: 78
+      firstFrame: 55
+      lastFrame: 56
       wrapMode: 0
-      orientationOffsetY: 3.17
+      orientationOffsetY: 5.04
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0

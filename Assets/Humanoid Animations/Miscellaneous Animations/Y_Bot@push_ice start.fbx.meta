@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: abd35144fc9ea4a718b5c1701c2e1628
-timeCreated: 1469850784
+guid: 9d0db2a56ed00485183128dc8864f616
+timeCreated: 1469930163
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -141,7 +141,7 @@ ModelImporter:
     400130: mixamorig:Spine1
     400132: mixamorig:Spine2
     400134: //RootNode
-    7400000: push_stop
+    7400000: push_ice start
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -168,12 +168,12 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: push_stop
+      name: push_ice start
       takeName: mixamo.com
-      firstFrame: 40
-      lastFrame: 78
+      firstFrame: 0
+      lastFrame: 63
       wrapMode: 0
-      orientationOffsetY: 3.17
+      orientationOffsetY: -26.93
       level: 0
       cycleOffset: 0
       loop: 0

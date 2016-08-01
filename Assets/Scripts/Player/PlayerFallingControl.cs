@@ -28,15 +28,14 @@ public class PlayerFallingControl : MonoBehaviour {
 	public bool drawJumpDebug = true;
 
     private bool jumpTransitionAllowed = true;
-    private bool cameFromFallingOffOnAccident = false;
-    private Vector3 accidentVelocity = Vector3.zero;
+    public bool cameFromFallingOffOnAccident = false;
+    public Vector3 accidentVelocity = Vector3.zero;
     private Vector3 lastPos;
     private int failPosCheckCtr;
     private bool canCheckFail = false;
 
     private Vector3[] lastVelocities = new Vector3[5];
     private int lastVelocityIndex = -1;
-    private bool enabledRootMotion;
     public float failCheckDistance = 0.01f;
 
 	void Awake(){
@@ -72,13 +71,15 @@ public class PlayerFallingControl : MonoBehaviour {
     }
 
 	void Update(){
+        playerMovement.rootMotionFall = Mecanim.inAnim(anim, "Base Layer.Falling.falling_to_roll", 0) ||
+                                        Mecanim.soonInAnim(anim, "Base Layer.Falling.falling_to_roll", 0);
 
         if (playerMovement.isDisabledByBattle || playerMovement.isDisabledByClimb)
             return;
 
 		HandleJumpInput ();
 
-        if (!playerMovement.isDisabledByGround && jumpTransitionAllowed && (!IsGrounded() || (Input.GetKeyDown(KeyCode.Space) && IsGrounded())))
+        if (!playerMovement.isDisabledByGround && jumpTransitionAllowed && (!IsGrounded() || (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && !playerMovement.isHoldingBow)))
         {
             jumpTransitionAllowed = false;
             cameFromFallingOffOnAccident = !(Input.GetKeyDown(KeyCode.Space) && IsGrounded());
@@ -90,20 +91,6 @@ public class PlayerFallingControl : MonoBehaviour {
             jumpTransitionAllowed = false; 
             //Debug.Log(failPosCheckCtr);
             EndFall();
-        }
-
-        if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_to_roll") ||
-            anim.GetNextAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Falling.falling_to_roll"))
-        {
-            anim.applyRootMotion = true;
-            enabledRootMotion = true;
-        }
-
-        if (enabledRootMotion && anim.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer.Falling.falling_to_roll") &&
-            anim.GetAnimatorTransitionInfo(0).fullPathHash == 0)
-        {
-            anim.applyRootMotion = false;
-            enabledRootMotion = false;
         }
 
 	}
@@ -155,6 +142,7 @@ public class PlayerFallingControl : MonoBehaviour {
 			jumpTarget = frontData[hitSuccessIndex];
             anim.SetBool("FallingAccident", cameFromFallingOffOnAccident);
             anim.SetBool("Falling", true);
+            anim.SetTrigger("FallingTrigger");
             failPosCheckCtr = 0;
 		}
         else
@@ -164,6 +152,7 @@ public class PlayerFallingControl : MonoBehaviour {
             jumpTarget.point = transform.position + transform.forward * 2f;
             anim.SetBool("FallingAccident", cameFromFallingOffOnAccident);
             anim.SetBool("Falling", true);
+            anim.SetTrigger("FallingTrigger");
             failPosCheckCtr = 0;
         }
 
@@ -197,6 +186,9 @@ public class PlayerFallingControl : MonoBehaviour {
 		}*/
 
 		//Debug.Log ("Z: " + zDisplacement + " Y: " + yDisplacement + " V: " + magnitude + " ø: " + angle);
+
+        if (Vector3.Magnitude(targetDisplacement) > 100f)
+            cameFromFallingOffOnAccident = true;
 
         if (!cameFromFallingOffOnAccident)
 		    rigid.velocity = transform.forward * magnitude * Mathf.Cos(angle) + transform.up * magnitude * Mathf.Sin(angle);

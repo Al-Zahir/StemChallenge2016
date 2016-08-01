@@ -21,6 +21,8 @@ public class CameraScript : MonoBehaviour {
 	private Quaternion spineRotation;
 	private Transform spine;
 
+    public float aimingRadius = 1.5f;
+
 	//Cursor Stuff
 	public Texture2D cursor;
 	private Texture2D fill;
@@ -46,6 +48,7 @@ public class CameraScript : MonoBehaviour {
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
         thirdPersonCameraOriginalLocation = thirdPersonCameraLocation.localPosition;
+        mouseOffset = Vector2.zero;
 
 		spine = player.FindChild ("mixamorig:Hips").FindChild("mixamorig:Spine");
 	}
@@ -71,19 +74,7 @@ public class CameraScript : MonoBehaviour {
 
 			thirdPersonRotationY += h;
 			thirdPersonRotationX = Mathf.Clamp (thirdPersonRotationX - v, thirdPersonClampNegative, thirdPersonClampPositive);
-			Vector3 targetPosition = player.transform.position + ControllerTools.RotatePointAroundPivot (thirdPersonCameraOriginalLocation,
-				                         thirdPersonCameraPivot.localPosition, new Vector3 (thirdPersonRotationX, thirdPersonRotationY, 0));
-			RaycastHit hit;
-            Vector3 direction = targetPosition - thirdPersonCameraPivot.position;
-            bool inNoTerrainZone = player.GetComponent<ObjectFallThrough>() != null && player.GetComponent<ObjectFallThrough>().currentNoTerrainZone != null;
-			if (Physics.Raycast (thirdPersonCameraPivot.position,
-				    direction.normalized, out hit,
-				    Vector3.Distance (thirdPersonCameraPivot.position, targetPosition),~(playerLayer | (inNoTerrainZone ? (int)terrainLayer : 0))))
-				cameraA.transform.position = hit.point - direction.normalized * wallHitOffset;
-			else
-				cameraA.transform.position = targetPosition;
-			if (debug)
-				Debug.DrawRay (thirdPersonCameraPivot.position, direction, Color.red);
+            cameraA.transform.position = WallHitPosition();
 			cameraA.transform.LookAt (thirdPersonCameraPivot);
 		} else if (isAiming && !isTransitioning) {
 		
@@ -102,10 +93,6 @@ public class CameraScript : MonoBehaviour {
          */
 	}
 
-
-
-
-
 	public void OnGUI(){
 
 		if (isAiming && !isTransitioning) {
@@ -120,9 +107,9 @@ public class CameraScript : MonoBehaviour {
 				fill.SetPixels (cursor.GetPixels ());
 
 				Animator anim = player.GetComponent<Animator> ();
-				if (!Mecanim.inTrans (anim, 1) && Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 1)) {
+				if (!Mecanim.inTrans (anim, 1) && Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 2)) {
 			
-					float percentageComplete = anim.GetCurrentAnimatorStateInfo (1).normalizedTime;
+					float percentageComplete = anim.GetCurrentAnimatorStateInfo (2).normalizedTime;
 					float innerRadius = 217f * fill.width / 512, outerRadius = 236f * fill.height / 512;
 					float center = 256f * ((fill.width + fill.height) / 2) / 512;
 
@@ -177,28 +164,47 @@ public class CameraScript : MonoBehaviour {
          * The current settings work fine and experienced players should be able to adjust their aim while it's transitioning.
         */
 		isTransitioning = true;
-		// Angles carry through viewpoints
-		Quaternion targetRot = isAiming ? (cameraAimPosition.rotation * Quaternion.AngleAxis(thirdPersonRotationX / 1.3f, Vector3.right)) : Quaternion.LookRotation(thirdPersonCameraYLocation.position - cameraA.transform.position);
 		Quaternion initialRot = cameraA.transform.rotation;
 		Vector3 initialPos = cameraA.transform.position;
 		// Crosshair changes scale depending on zoom
-		float targetScale = isAiming ? (crosshairScale / crosshairAimMultiplier) : (crosshairScale * crosshairAimMultiplier);
+		//float targetScale = isAiming ? (crosshairScale / crosshairAimMultiplier) : (crosshairScale * crosshairAimMultiplier);
 		float timePassed = 0;
 
-		thirdPersonRotationX = isAiming ? 0 : Vector3.Angle(cameraA.transform.forward, Vector3.Scale(cameraA.transform.forward, new Vector3(1, 0, 1)));
-		if (!isAiming && cameraA.transform.forward.y > 0) thirdPersonRotationX *= -1;
-		if (!isAiming) thirdPersonRotationX *= 1.3f;
+        float angle = Vector3.Angle(cameraA.transform.forward, Vector3.Scale(cameraA.transform.forward, new Vector3(1, 0, 1)));
+        Vector3 cross = Vector3.Cross(cameraA.transform.InverseTransformVector(cameraA.transform.forward),
+            cameraA.transform.InverseTransformVector(Vector3.Scale(cameraA.transform.forward, new Vector3(1, 0, 1))));
+        if(cross.x > 0) angle = -angle;
+        thirdPersonRotationX = isAiming ? 0 : angle;
+        thirdPersonRotationX = Mathf.Clamp(thirdPersonRotationX, thirdPersonClampNegative, thirdPersonClampPositive);
+        if (isAiming)
+            player.rotation = Quaternion.Euler(player.eulerAngles.x, thirdPersonRotationY, player.eulerAngles.z);
 		thirdPersonRotationY = transform.rotation.eulerAngles.y;
-		Vector2 targetMouse = isAiming ? Vector2.zero : crossHairTransition;
-		Vector2 initialMouse = mouseOffset;
+		//Vector2 targetMouse = isAiming ? Vector2.zero : crossHairTransition;
+        //Vector2 initialMouse = mouseOffset;
+        // Angles carry through viewpoints
+
+        Vector3 targetThirdCamPosition = WallHitPosition(); 
+        Debug.DrawLine(thirdPersonCameraPivot.position, targetThirdCamPosition, Color.green, 10f);
+        Quaternion targetRot;
+
+        if (!isAiming)
+            targetRot = Quaternion.LookRotation(thirdPersonCameraYLocation.position - cameraA.transform.position);
+        else
+        {
+            targetRot = cameraAimPosition.rotation * Quaternion.AngleAxis(thirdPersonRotationX / 1f, Vector3.right);
+            cameraA.transform.parent = player.transform;
+        }
+
+        Vector3 targetFirstCamPosition = player.TransformPoint(player.InverseTransformPoint(firstPersonCameraPivotLocation.position) +
+             RotatePointAroundPivot(Vector3.back * aimingRadius, Vector3.zero, new Vector3(cameraA.transform.localEulerAngles.x, 0, 0)));
 
 		while (timePassed / transitionTime < 1)
 		{
 			// Use SmoothStep to make it slow down at start and end of target, similar to SmoothDamp but will converge.
-			cameraA.transform.position = Vector3.Lerp(initialPos, isAiming ? cameraAimPosition.position : thirdPersonCameraLocation.position, Mathf.SmoothStep(0, 1, timePassed / transitionTime));
+            cameraA.transform.position = Vector3.Lerp(initialPos, isAiming ? targetFirstCamPosition : targetThirdCamPosition, Mathf.SmoothStep(0, 1, timePassed / transitionTime));
 			cameraA.transform.rotation = Quaternion.Slerp(initialRot, targetRot, timePassed / transitionTime);
-			crosshairScale = Mathf.Lerp(crosshairScale, targetScale, timePassed / transitionTime);
-			mouseOffset = Vector3.Lerp(initialMouse, targetMouse, timePassed / transitionTime);
+			//crosshairScale = Mathf.Lerp(crosshairScale, targetScale, timePassed / transitionTime);
+			//mouseOffset = Vector3.Lerp(initialMouse, targetMouse, timePassed / transitionTime);
 			// Allow rotation while transitioning. Considers different rotation speeds based on current aim / not aim.
 			if (isAiming)
 			{
@@ -207,15 +213,17 @@ public class CameraScript : MonoBehaviour {
 				transform.rotation *= Quaternion.AngleAxis(h, Vector3.up);
 				targetRot *= Quaternion.AngleAxis(h, Vector3.up);
 				targetRot *= Quaternion.AngleAxis(v, Vector3.left);
-				targetRot = Quaternion.Euler(targetRot.eulerAngles.x, targetRot.eulerAngles.y, 0);
+                targetRot = Quaternion.Euler(targetRot.eulerAngles.x, targetRot.eulerAngles.y, 0); 
+                targetFirstCamPosition = player.TransformPoint(player.InverseTransformPoint(firstPersonCameraPivotLocation.position) +
+                    RotatePointAroundPivot(Vector3.back * aimingRadius, Vector3.zero, new Vector3(cameraA.transform.localEulerAngles.x, 0, 0)));
 			}
 			else
 			{
 				float h = cameraSpeed * Input.GetAxis ("Mouse X");
 				float v = cameraSpeed * Input.GetAxis ("Mouse Y");
-				thirdPersonRotationX -= v;
-				thirdPersonRotationY += h;
-				transform.rotation *= Quaternion.AngleAxis(h, Vector3.up);
+                thirdPersonRotationX = Mathf.Clamp(thirdPersonRotationX - v, thirdPersonClampNegative, thirdPersonClampPositive);
+                thirdPersonRotationY += h;
+                targetThirdCamPosition = WallHitPosition();
 				targetRot = Quaternion.LookRotation(thirdPersonCameraYLocation.position - cameraA.transform.position);
 			}
 
@@ -230,8 +238,8 @@ public class CameraScript : MonoBehaviour {
 	// Split third person camera wall hit detection for usage from multiple areas.
 	private Vector3 WallHitPosition()
 	{
-		Vector3 targetPosition = RotatePointAroundPivot(transform.position + thirdPersonCameraLocation.position, thirdPersonCameraYLocation.position,
-			new Vector3(thirdPersonRotationX, thirdPersonRotationY, 0));
+        Vector3 targetPosition = player.transform.position + ControllerTools.RotatePointAroundPivot(thirdPersonCameraOriginalLocation,
+                                          thirdPersonCameraPivot.localPosition, new Vector3(thirdPersonRotationX, thirdPersonRotationY, 0));
 		RaycastHit hit;
 		Vector3 direction = targetPosition - thirdPersonCameraYLocation.position;
         bool inNoTerrainZone = player.GetComponent<ObjectFallThrough>() != null && player.GetComponent<ObjectFallThrough>().currentNoTerrainZone != null;
@@ -240,7 +248,9 @@ public class CameraScript : MonoBehaviour {
             Vector3.Distance(thirdPersonCameraPivot.position, targetPosition), ~(playerLayer | (inNoTerrainZone ? (int)terrainLayer : 0))))
 			return hit.point - direction.normalized * wallHitOffset;
 		else
-			return targetPosition;
+            return targetPosition;
+        if (debug)
+            Debug.DrawRay(thirdPersonCameraPivot.position, direction, Color.red);
 	}
 
 	// Returns a vector3 of rotation around a point, used for checking if camera is hitting a wall

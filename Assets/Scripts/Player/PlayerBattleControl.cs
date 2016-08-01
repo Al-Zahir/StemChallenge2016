@@ -62,7 +62,9 @@ public class PlayerBattleControl : MonoBehaviour {
         if (!mecInTrans(1) && mecInAnim("Equip Dequip.sword_base", 1))
             isTransitioning = false;
 
-        if (playerMovement.isDisabledByClimb && !isTransitioning)
+        playerMovement.rootMotionBattle = mecInAnyAnim(swordRootMotionAnimations, 0);
+
+        if ((playerMovement.isDisabledByClimb || playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) && !isTransitioning)
         {
             if (isInBattle || sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition)
             {
@@ -86,8 +88,6 @@ public class PlayerBattleControl : MonoBehaviour {
         bool doubleClicked = false;
 
         HandleClicks(ref singleClicked, ref doubleClicked);
-
-        anim.applyRootMotion = mecInAnyAnim(swordRootMotionAnimations, 0);
 
         if (mecSoonInAnim("Equip Dequip.draw_sword_2", 1))
 			Equip ();
@@ -156,7 +156,8 @@ public class PlayerBattleControl : MonoBehaviour {
 				if (h != 0 || v != 0) {
 
 					Vector3 worldDirection = playerMovement.mainCam.transform.TransformDirection (new Vector3 (h, 0, v).normalized);
-					worldDirection.Scale (new Vector3 (1, 0, 1));
+                    worldDirection.Scale(new Vector3(1, 0, 1));
+                    worldDirection.Normalize();
 
 					float angle = 0;
 					angle = Vector3.Angle (transform.forward, worldDirection);

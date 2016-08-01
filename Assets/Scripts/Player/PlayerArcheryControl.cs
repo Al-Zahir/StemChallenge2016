@@ -29,6 +29,8 @@ public class PlayerArcheryControl : MonoBehaviour {
 	private Transform rightArm;
 	private Transform leftArm;
 
+    private bool canFire = true;
+
 	void Awake(){
 
 		isHoldingBow = false;
@@ -50,9 +52,19 @@ public class PlayerArcheryControl : MonoBehaviour {
 	void Update(){
 
 		anim.SetBool ("FireBowReadOnly", anim.GetBool("FireBow"));
-	
+
+        anim.SetBool("LeftMouseDown", Input.GetKey(KeyCode.Z));
+
+        if (playerMovement.isDisabledByGround)
+        {
+            Dequip(); 
+            Aim(false);
+            anim.ResetTrigger("DequipBow");
+            return;
+        }
+
 		if (Input.GetKeyDown (KeyCode.F) && !Mecanim.inTrans(anim, 0) && 
-			(Mecanim.inAnim(anim, "Base Layer.Locomotion", 0) || Mecanim.inAnim(anim, "Base Layer.Archery Locomotion", 0))) {
+			(Mecanim.inAnim(anim, "Base Layer.Locomotion", 0))) {
 
 			if (!isHoldingBow)
 				Equip ();
@@ -62,24 +74,26 @@ public class PlayerArcheryControl : MonoBehaviour {
 		}
 	
 		if (isHoldingBow) {
-		
-			UpdateMovement ();
+
+            if (isAiming)
+                UpdateAimingMovement();
 				
 			if (Input.GetMouseButton (1) && (!isAiming || !holdingArrow))
 				Aim (true);
 			else if (!Input.GetMouseButton (1) && (isAiming || holdingArrow))
 				Aim (false);
 
-			if (Input.GetKeyDown (KeyCode.Z))
+			if (Input.GetKey(KeyCode.Z) && !Mecanim.inTrans(anim, 2) && Mecanim.inAnim(anim, "Draw Recoil.New State 0", 2) &&
+                !Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2) && !Mecanim.soonInAnim(anim, "Draw Recoil.aim_overdraw", 2))
 				MorePower ();
 
-			if (Input.GetKeyUp (KeyCode.Z))
+            if (canFire && Input.GetKeyUp(KeyCode.Z) && (Mecanim.inAnim(anim, "Draw Recoil.New State", 2) || Mecanim.inAnim(anim, "Draw Recoil.New State 0", 2) || Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2)))
 				Fire ();
 
-			if (Mecanim.inAnim (anim, "Archey Aiming Locomtion", 0) || Mecanim.inAnim (anim, "Draw Recoil.New State 0", 1) ||
-				Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 1))
+			if (Mecanim.inAnim (anim, "Draw Recoil.New State 0", 2) ||
+                Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2) && !Mecanim.inTrans(anim, 0))
 				bowString.position = rightArm.position;
-			else if (bowString && bowString.localPosition != bowStringStartPos)
+            else if (bowString && bowString.localPosition != bowStringStartPos)
 				bowString.localPosition = bowStringStartPos;
 
 			if (isAiming && holdingArrow) {
@@ -93,17 +107,20 @@ public class PlayerArcheryControl : MonoBehaviour {
 			
 		}
 
-		if (!Mecanim.inTrans (anim, 1) && Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 1)) {
+        if (!Mecanim.inTrans(anim, 2) && Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2))
+        {
 
-			float percentageComplete = anim.GetCurrentAnimatorStateInfo (1).normalizedTime;
+            float percentageComplete = anim.GetCurrentAnimatorStateInfo(2).normalizedTime;
 
-			vel = (maxVel - minVel) * percentageComplete + minVel;
+            vel = (maxVel - minVel) * percentageComplete + minVel;
 
-		}
+        }
+        else
+            vel = minVel;
 
 	}
 
-	void UpdateMovement(){
+	void UpdateAimingMovement(){
 
 		float h = Input.GetAxis ("Horizontal");
 		float v = Input.GetAxis ("Vertical");
@@ -112,6 +129,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 			Vector3 worldDirection = playerMovement.mainCam.transform.TransformDirection (new Vector3 (h, 0, v).normalized);
 			worldDirection.Scale (new Vector3 (1, 0, 1));
+            worldDirection.Normalize();
 
 			float angle = 0;
 			angle = Vector3.Angle (transform.forward, worldDirection);
@@ -137,11 +155,18 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 	}
 
-	void Equip(){
+    private IEnumerator TimeoutFire()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(0.5f);
+        canFire = true;
+    }
+
+	public void Equip(){
 
 		isHoldingBow = true;
 		anim.SetTrigger ("EquipBow");
-		playerMovement.isDisabledByArchery = true;
+		playerMovement.isHoldingBow = true;
 
 		holdingBow = (GameObject)Instantiate (bow, leftArm.position, leftArm.rotation);
 		holdingBow.transform.parent = leftArm;
@@ -152,11 +177,11 @@ public class PlayerArcheryControl : MonoBehaviour {
 	
 	}
 
-	void Dequip(){
+	public void Dequip(){
 
 		isHoldingBow = false;
 		anim.SetTrigger ("DequipBow");
-		playerMovement.isDisabledByArchery = false;
+        playerMovement.isHoldingBow = false; 
 
 		if (holdingBow)
 			Destroy (holdingBow);
@@ -168,14 +193,17 @@ public class PlayerArcheryControl : MonoBehaviour {
 		bool before = isAiming;
 		isAiming = a;
 		anim.SetBool ("isAimingBow", a);
+        playerMovement.isDisabledByArchery = isAiming;
 		cameraScript.isAiming = a;
 
 		if(before != isAiming)
 			cameraScript.StartCoroutine ("TransitionCamera");
 
+
 		if (isAiming) {
-		
+
 			holdingArrow = (GameObject)Instantiate (arrow, holdingBow.transform.position, holdingBow.transform.rotation);
+            holdingArrow.GetComponent<Collider>().isTrigger = true;
 			holdingArrow.transform.parent = rightArm;
 			holdingArrow.transform.localPosition = Vector3.zero;
 			//holdingArrow.transform.Translate (-holdingArrow.transform.forward * holdingArrow.transform.lossyScale.y / 2);
@@ -207,16 +235,20 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 		if (isAiming) {
 
-			Destroy (holdingArrow);
-
-			GameObject a = (GameObject)Instantiate (arrow, 
-				playerMovement.mainCam.transform.position, 
-				Quaternion.Euler (playerMovement.mainCam.transform.forward));// * Quaternion.Euler (playerMovement.mainCam.transform.right * 90));
+            Destroy(holdingArrow);
+            if (!(!Mecanim.inTrans(anim, 2) && Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2)))
+                vel = minVel;
+                
+			GameObject a = (GameObject)Instantiate (arrow,
+                playerMovement.mainCam.transform.position + playerMovement.mainCam.transform.forward * 1f,
+                Quaternion.LookRotation(playerMovement.mainCam.transform.forward * vel) * Quaternion.Euler(90, 0, 0));// * Quaternion.Euler (playerMovement.mainCam.transform.right * 90));
 			a.GetComponent<Rigidbody>().isKinematic = false;
 			a.GetComponent<Arrow> ().enabled = true;
 			a.GetComponent<Rigidbody> ().velocity = playerMovement.mainCam.transform.forward * vel;
 		
 		}
+
+        StartCoroutine(TimeoutFire());
 
 	}
 

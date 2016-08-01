@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isDisabledByBattle;
 	public bool isDisabledByArchery;
 
+    public bool isHoldingBow;
+
 	public bool isRunning;
 
 	public Camera mainCam;
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float eulerYVelocity;
 	public Vector3 direction;
 	public float angle;
+    public bool rootMotionBattle, rootMotionFall, rootMotionClimb;
 
 	void Awake(){
 
@@ -89,6 +92,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		MakeAngle ();
 
+        anim.applyRootMotion = rootMotionBattle || rootMotionClimb || rootMotionFall;
+
 		//bool whistle = (Input.GetKeyDown (KeyCode.X) && anim.GetBool(hash.sneakBool));
 
 		//AudioManagement (whistle);
@@ -104,7 +109,7 @@ public class PlayerMovement : MonoBehaviour {
 			
 			rigid.velocity = transform.forward * 1.58f + transform.up * rigid.velocity.y;
 
-			if (Input.GetKey (KeyCode.LeftShift)) {
+			if (Input.GetKey (KeyCode.LeftShift) && !isHoldingBow) {
 				anim.SetFloat ("SprintTrigger", 1.0f, speedDampTime, Time.deltaTime);
 
 				rigid.velocity = transform.forward * 4.765f + transform.up * rigid.velocity.y;
@@ -161,7 +166,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		Vector3 worldDirection = mainCam.transform.TransformDirection (direction);
 
-		worldDirection.Scale (new Vector3 (1, 0, 1));
+        worldDirection.Scale(new Vector3(1, 0, 1));
 		angle = 0;
 		angle = Vector3.Angle (transform.forward, worldDirection);
 

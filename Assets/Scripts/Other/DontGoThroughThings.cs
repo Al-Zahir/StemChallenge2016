@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class DontGoThroughThings : MonoBehaviour
 {
@@ -45,12 +46,15 @@ public class DontGoThroughThings : MonoBehaviour
 				if (!hitInfo.collider)
 					return;
 
-				if (hitInfo.collider.isTrigger) 
-					hitInfo.collider.SendMessage("OnTriggerEnter", myCollider);
+                try
+                {
+                    if (hitInfo.collider.isTrigger)
+                        hitInfo.collider.SendMessage("OnTriggerEnter", myCollider, SendMessageOptions.DontRequireReceiver);
 
-				if (!hitInfo.collider.isTrigger)
-					myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent; 
-
+                    if (!hitInfo.collider.isTrigger)
+                        myRigidbody.position = hitInfo.point - (movementThisStep / movementMagnitude) * partialExtent;
+                }
+                catch (Exception ex) { }
 			}
 		} 
 

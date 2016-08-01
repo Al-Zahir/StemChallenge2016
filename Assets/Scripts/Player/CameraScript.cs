@@ -108,9 +108,8 @@ public class CameraScript : MonoBehaviour {
 
 				Animator anim = player.GetComponent<Animator> ();
 				if (!Mecanim.inTrans (anim, 1) && Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 2)) {
-			
 					float percentageComplete = anim.GetCurrentAnimatorStateInfo (2).normalizedTime;
-					float innerRadius = 217f * fill.width / 512, outerRadius = 236f * fill.height / 512;
+					float innerRadius = 187f * fill.width / 512, outerRadius = 236f * fill.height / 512;
 					float center = 256f * ((fill.width + fill.height) / 2) / 512;
 
 					for (int y = 0; y < fill.height; y++) {

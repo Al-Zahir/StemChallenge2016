@@ -65,24 +65,29 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 		if (isPushing && allowBlockMove) {
 		
 			if (Mecanim.inAnim (anim, "Base Layer.Pushing.Pushing Locomotion", 0)) {
-				float h = Input.GetAxis ("Horizontal");
-				float v = Input.GetAxis ("Vertical");
 
-				Vector3 direction = new Vector3 (h, 0, v).normalized;
+                RaycastHit hit;
+                float h = Input.GetAxis("Horizontal");
+                float v = Input.GetAxis("Vertical");
 
-				Vector3 worldDirection = playerMovement.mainCam.transform.TransformDirection (direction);
+                Vector3 direction = new Vector3(h, 0, v).normalized;
+
+                Vector3 worldDirection = playerMovement.mainCam.transform.TransformDirection(direction);
 
 
-				if ((h != 0 || v != 0) && transform.InverseTransformDirection(worldDirection).z > 0) {
-				
-					anim.SetFloat ("Speed", 1.0f, speedDampTime, Time.deltaTime);
+                if ((h != 0 || v != 0) && transform.InverseTransformDirection(worldDirection).z > 0 && !Physics.Raycast(block.position - block.up * ((block.lossyScale.y / 2) - 0.1f), transform.forward, out hit, (block.lossyScale.y / 2)))
+                {
 
-					rigid.velocity = transform.forward * 1.5f + transform.up * rigid.velocity.y;
+                    anim.SetFloat("Speed", 1.0f, speedDampTime, Time.deltaTime);
 
-				} else {
-					anim.SetFloat ("Speed", 0.0f, speedDampTime, Time.deltaTime);
-					rigid.velocity = new Vector3 (0, rigid.velocity.y, 0);
-				}
+                    rigid.velocity = transform.forward * 1.5f + transform.up * rigid.velocity.y;
+
+                }
+                else
+                {
+                    anim.SetFloat("Speed", 0.0f, speedDampTime, Time.deltaTime);
+                    rigid.velocity = new Vector3(0, rigid.velocity.y, 0);
+                }
 					
 			}
 
@@ -101,7 +106,7 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 		allowBlockMove = false;
 		block = hit.transform;
 		offset = new Vector3 (0, 0, (block.lossyScale.z / 2) + 0.15f);
-		Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>());
+		//Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>());
 		isPushing = true;
 
 		playerMovement.isDisabledByPushing = isPushing;
@@ -141,6 +146,9 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 			
 		}
 
+        if (!block)
+            yield break;
+
 		Vector3 blockPos = block.position;
 		blockPos.y = transform.position.y;
 		transform.LookAt (blockPos);
@@ -152,7 +160,7 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 	void StopPushing(){
 	
 		isPushing = false;
-		Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>(), false);
+		//Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>(), false);
 
 		block.GetComponent<Rigidbody> ().isKinematic = true;
 		block = null;

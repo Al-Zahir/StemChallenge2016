@@ -9,6 +9,7 @@ public class Arrow : MonoBehaviour {
 	private Quaternion[] lastRot = new Quaternion[2];
 	private int updateCtr = -1;
     private bool dead;
+    public float arrowLifeSpan = 60;
 
 	void Awake(){
 
@@ -47,13 +48,19 @@ public class Arrow : MonoBehaviour {
 	void Update () {
 
 		if (rigidbody != null && rigidbody.velocity != Vector3.zero && !dead)
-			transform.rotation = Quaternion.LookRotation (rigidbody.velocity) * Quaternion.Euler (90, 0, 0);
-	
+            transform.rotation = Quaternion.LookRotation(rigidbody.velocity) * Quaternion.Euler(90, 0, 0);
 	}
 
 	void OnCollisionEnter(Collision col){
 
 		if (rigidbody && !dead) {
+            if(col.gameObject.layer == 11 || col.transform.tag == "PushingBlock")
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Destroy(gameObject, arrowLifeSpan);
 			Destroy (GetComponent<DontGoThroughThings>());
 			Destroy (rigidbody);
             dead = true;

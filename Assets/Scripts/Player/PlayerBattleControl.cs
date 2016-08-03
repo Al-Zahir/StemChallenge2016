@@ -70,9 +70,9 @@ public class PlayerBattleControl : MonoBehaviour {
         {
             if (isInBattle || sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition)
             {
-				playerWeaponSelector.ChangeSelected ((playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) ? 2 : 1);
-                //isInBattle = false;
-                //Dequip();
+				//playerWeaponSelector.ChangeSelected ((playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) ? 2 : 1);
+                isInBattle = false;
+                Dequip();
             }
 
             return;
@@ -81,9 +81,9 @@ public class PlayerBattleControl : MonoBehaviour {
         if (playerMovement.isDisabledByGround)
         {
 			if (!isInBattle && (sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition))
-				playerWeaponSelector.ChangeSelected (1);//Dequip();
+				Dequip();
             else if (isInBattle && (sword.parent != swordArmedPosition || shield.parent != shieldArmedPosition))
-				playerWeaponSelector.ChangeSelected (2);//Equip();
+				Equip();
             return;
         }
 
@@ -218,17 +218,17 @@ public class PlayerBattleControl : MonoBehaviour {
 			}
 
 		} else if (isInBattle) {
-
-			if (playerWeaponSelector.slotNumber == 1 && playerMovement.isAbleToMove) {
-				isTransitioning = true;
-				Battle (false);
-			}else {
-
-				isInBattle = false;
-				Dequip ();
-				anim.ResetTrigger ("Dequip");
-
-			}
+            if (playerMovement.isAbleToMove && playerWeaponSelector.slotNumber == 1)
+            {
+                isTransitioning = true;
+                Battle(false);
+            }
+            else
+            {
+                isInBattle = false;
+                Dequip();
+                anim.ResetTrigger("Dequip");
+            }
 		}
 
 	}
@@ -269,7 +269,6 @@ public class PlayerBattleControl : MonoBehaviour {
 	public void Dequip(){
 
 		isInBattle = false;
-
 		sword.parent = swordUnarmedPosition;
 		sword.localPosition = new Vector3 (0, 0, 0);
 		sword.localRotation = Quaternion.identity;

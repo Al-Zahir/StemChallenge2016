@@ -57,12 +57,12 @@ public class PlayerArcheryControl : MonoBehaviour {
 
         anim.SetBool("LeftMouseDown", Input.GetKey(KeyCode.Z));
 
-        if (playerMovement.isDisabledByGround)
+        if (playerMovement.isDisabledByGround && playerWeaponSelector.slotNumber == 3)
         {
 			playerWeaponSelector.ChangeSelected (1);
-            /*Dequip(); 
+            Dequip(); 
             Aim(false);
-            anim.ResetTrigger("DequipBow");*/
+            anim.ResetTrigger("DequipBow");
             return;
         }
 
@@ -129,9 +129,23 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 		} else if (holdingBow) {
 		
-			if (playerWeaponSelector.slotNumber == 1 && playerMovement.isAbleToMove)
-				Dequip ();
-			else {
+			if (playerWeaponSelector.slotNumber == 1){
+
+                if (playerMovement.isAbleToMove)
+                {
+
+                    Dequip();
+
+                }
+                else {
+
+                    Dequip();
+                    Aim(false);
+                    anim.ResetTrigger("DequipBow");
+
+                }
+
+            }else {
 				isHoldingBow = false;
 				playerMovement.isHoldingBow = false; 
 				anim.ResetTrigger ("DequipBow");

@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour {
 	public float turnSmoothing = 15f;
 	public float speedDampTime = 0.1f;
 
-	public bool isDisabledByClimb;
-	public bool isDisabledByAttack;
-	public bool isDisabledByGround;
-	public bool isDisabledByBattle;
-	public bool isDisabledByArchery;
-	public bool isDisabledByPushing;
+	public bool isDisabledByClimb; //true while climbing
+	public bool isDisabledByAttack; //true while finishing move on enemy
+	public bool isDisabledByGround; //true while falling
+	public bool isDisabledByBattle; //never true
+	public bool isDisabledByArchery; //true while aiming
+	public bool isDisabledByPushing; //true while pushing
 
     public bool isHoldingBow;
 
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 	private Rigidbody rigid;
 	private AudioSource footstepsAudio;
 
-	private bool isAbleToMove;
+	public bool isAbleToMove;
 
 	public Vector3 eulerAngles;
 	public float eulerYTarget;
@@ -102,6 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void MovementManagement(float h, float v, bool sneak){
+		
 		if (h != 0 || v != 0) {
 			
 			direction = new Vector3 (h, 0, v).normalized;

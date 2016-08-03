@@ -9,6 +9,7 @@ public class PlayerBattleControl : MonoBehaviour {
 	private Animator anim;
 	private Rigidbody rigid;
 	private PlayerMovement playerMovement;
+	private PlayerWeaponSelector playerWeaponSelector;
 	private PlayerHealth playerHealth;
 
 	public Transform swordUnarmedPosition;
@@ -51,6 +52,7 @@ public class PlayerBattleControl : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		rigid = GetComponent<Rigidbody> ();
 		playerMovement = GetComponent<PlayerMovement> ();
+		playerWeaponSelector = GetComponent<PlayerWeaponSelector> ();
 		playerHealth = GetComponent<PlayerHealth> ();
 
 		playerMovement.isDisabledByBattle = isInBattle;
@@ -68,8 +70,9 @@ public class PlayerBattleControl : MonoBehaviour {
         {
             if (isInBattle || sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition)
             {
-                isInBattle = false;
-                Dequip();
+				playerWeaponSelector.ChangeSelected ((playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) ? 2 : 1);
+                //isInBattle = false;
+                //Dequip();
             }
 
             return;
@@ -77,10 +80,10 @@ public class PlayerBattleControl : MonoBehaviour {
 
         if (playerMovement.isDisabledByGround)
         {
-            if (!isInBattle && (sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition))
-                Dequip();
+			if (!isInBattle && (sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition))
+				playerWeaponSelector.ChangeSelected (1);//Dequip();
             else if (isInBattle && (sword.parent != swordArmedPosition || shield.parent != shieldArmedPosition))
-                Equip();
+				playerWeaponSelector.ChangeSelected (2);//Equip();
             return;
         }
 
@@ -201,10 +204,33 @@ public class PlayerBattleControl : MonoBehaviour {
             }
         }
 			
-        if (Input.GetKeyDown(KeyCode.R) || !isInBattle && singleClicked)
+        /*if (Input.GetKeyDown(KeyCode.R) || !isInBattle && singleClicked)
         {
             Battle(!isInBattle);
-        }
+        }*/
+
+
+		if (playerWeaponSelector.slotNumber == 2) {
+
+			if (!isInBattle) {
+				isTransitioning = true;
+				Battle (true);
+			}
+
+		} else if (isInBattle) {
+
+			if (playerWeaponSelector.slotNumber == 1 && playerMovement.isAbleToMove) {
+				isTransitioning = true;
+				Battle (false);
+			}else {
+
+				isInBattle = false;
+				Dequip ();
+				anim.ResetTrigger ("Dequip");
+
+			}
+		}
+
 	}
 
 	public void Battle(bool b){
@@ -228,6 +254,8 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	public void Equip(){
 
+		isInBattle = true;
+
 		sword.parent = swordArmedPosition;
 		sword.localPosition = new Vector3 (0, 0, 0);
 		sword.localRotation = Quaternion.identity;
@@ -239,6 +267,8 @@ public class PlayerBattleControl : MonoBehaviour {
 	}
 
 	public void Dequip(){
+
+		isInBattle = false;
 
 		sword.parent = swordUnarmedPosition;
 		sword.localPosition = new Vector3 (0, 0, 0);

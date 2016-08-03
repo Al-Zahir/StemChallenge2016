@@ -5,6 +5,7 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 
 	private Animator anim;
 	private PlayerMovement playerMovement;
+	private PlayerWeaponSelector playerWeaponSelector;
 	private Rigidbody rigid;
 
 	public float speedDampTime = 0.1f;
@@ -24,6 +25,7 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 
 		anim = GetComponent<Animator> ();
 		playerMovement = GetComponent<PlayerMovement> ();
+		playerWeaponSelector = GetComponent<PlayerWeaponSelector> ();
 		rigid = GetComponent<Rigidbody> ();
 
 		isPushing = false;
@@ -37,7 +39,7 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 
 	void Update(){
 
-		if (Input.GetMouseButtonDown (0) && !isPushing) {
+		if (Input.GetMouseButtonDown (0) && !isPushing && playerWeaponSelector.slotNumber == 1) {
 		
 			RaycastHit hit;
 
@@ -45,7 +47,11 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 			
 				if (hit.transform.tag == "PushingBlock") {
 
-					StartCoroutine (StartPushing(hit));
+					StartCoroutine (StartPushing (hit));
+				
+				} else if (hit.transform.tag == "IceBlock") {
+				
+					StartCoroutine (PushIce (hit));
 				
 				}
 			
@@ -53,10 +59,10 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 
 		}
 
-		if (isPushing && !Input.GetMouseButton (0))
+		if (isPushing && (!Input.GetMouseButton (0) || playerWeaponSelector.slotNumber != 1))
 			StopPushing ();
 
-		if (isPushing) {
+		if (isPushing && allowBlockMove) {
 		
 			if (Mecanim.inAnim (anim, "Base Layer.Pushing.Pushing Locomotion", 0)) {
 				float h = Input.GetAxis ("Horizontal");
@@ -135,6 +141,11 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 			
 		}
 
+		Vector3 blockPos = block.position;
+		blockPos.y = transform.position.y;
+		transform.LookAt (blockPos);
+
+		block.GetComponent<Rigidbody> ().isKinematic = false; 
 		allowBlockMove = true;
 	}
 
@@ -143,9 +154,63 @@ public class PlayerBlockPushingControl : MonoBehaviour {
 		isPushing = false;
 		Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>(), false);
 
+		block.GetComponent<Rigidbody> ().isKinematic = true;
 		block = null;
 		playerMovement.isDisabledByPushing = isPushing;
 		anim.SetBool ("isPushing", false);
+
+	}
+
+	IEnumerator PushIce(RaycastHit hit){
+
+		block = hit.transform;
+		offset = new Vector3 (0, 0, (block.lossyScale.z / 2) + 0.15f);
+		Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>());
+
+		anim.SetTrigger ("PushIce");
+
+		transform.rotation = Quaternion.LookRotation (-hit.normal);
+
+		Vector3 side1, side2;
+
+		float angle = Vector3.Angle (hit.normal, block.forward);
+
+		if (angle < 1 || angle > 179) {
+
+			side1 = block.position - block.forward * (block.lossyScale.z + handOffset);
+			side2 = block.position + block.forward * (block.lossyScale.z + handOffset);
+
+
+		} else {
+
+			//assuming cubes
+			side1 = block.position - block.right * (block.lossyScale.z + handOffset);
+			side2 = block.position + block.right * (block.lossyScale.z + handOffset);
+
+		}
+
+
+		float distance1 = Vector3.Distance (transform.position, side1);
+		float distance2 = Vector3.Distance (transform.position, side2);
+
+		Vector3 refVelPlayer = Vector3.zero;
+
+		Vector3 targetPos = (distance1 > distance2) ? side2 : side1;
+		targetPos.y = transform.position.y;
+
+		Vector3 blockPos = block.position;
+		blockPos.y = transform.position.y;
+		transform.LookAt (blockPos);
+
+		IceBlock ib = block.GetComponent<IceBlock> ();
+		ib.Push ((blockPos - targetPos).normalized);
+
+		while (Vector3.Distance (transform.position, targetPos) > 0.01f && !ib.allowPlayerMove) {
+			transform.position = Vector3.SmoothDamp (transform.position, targetPos, ref refVelPlayer, speedDampTime);
+			yield return new WaitForEndOfFrame ();
+		}
+
+		Physics.IgnoreCollision (transform.GetComponent<Collider>(), block.transform.GetComponent<Collider>(), false);
 
 	}
 

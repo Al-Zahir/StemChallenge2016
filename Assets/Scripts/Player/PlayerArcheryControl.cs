@@ -6,6 +6,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 	private Animator anim;
 	private Rigidbody rigid;
 	private PlayerMovement playerMovement;
+	private PlayerWeaponSelector playerWeaponSelector;
 	private PlayerHealth playerHealth;
 	private CameraScript cameraScript;
 
@@ -39,6 +40,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		rigid = GetComponent<Rigidbody> ();
 		playerMovement = GetComponent<PlayerMovement> ();
+		playerWeaponSelector = GetComponent<PlayerWeaponSelector> ();
 		playerHealth = GetComponent<PlayerHealth> ();
 		cameraScript = playerMovement.mainCam.GetComponent<CameraScript> ();
 
@@ -57,13 +59,14 @@ public class PlayerArcheryControl : MonoBehaviour {
 
         if (playerMovement.isDisabledByGround)
         {
-            Dequip(); 
+			playerWeaponSelector.ChangeSelected (1);
+            /*Dequip(); 
             Aim(false);
-            anim.ResetTrigger("DequipBow");
+            anim.ResetTrigger("DequipBow");*/
             return;
         }
 
-		if (Input.GetKeyDown (KeyCode.F) && !Mecanim.inTrans(anim, 0) && 
+		/*if (Input.GetKeyDown (KeyCode.F) && !Mecanim.inTrans(anim, 0) && 
 			(Mecanim.inAnim(anim, "Base Layer.Locomotion", 0))) {
 
 			if (!isHoldingBow)
@@ -71,7 +74,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 			else
 				Dequip ();
 		
-		}
+		}*/
 	
 		if (isHoldingBow) {
 
@@ -117,6 +120,28 @@ public class PlayerArcheryControl : MonoBehaviour {
         }
         else
             vel = minVel;
+
+
+		if (playerWeaponSelector.slotNumber == 3) {
+
+			if (!isHoldingBow)
+				Equip ();
+
+		} else if (holdingBow) {
+		
+			if (playerWeaponSelector.slotNumber == 1 && playerMovement.isAbleToMove)
+				Dequip ();
+			else {
+				isHoldingBow = false;
+				playerMovement.isHoldingBow = false; 
+				anim.ResetTrigger ("DequipBow");
+				Destroy (holdingBow);
+
+				if (holdingArrow)
+					Aim (false);
+			}
+		
+		}
 
 	}
 
@@ -179,6 +204,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 	public void Dequip(){
 
+		Aim (false);
 		isHoldingBow = false;
 		anim.SetTrigger ("DequipBow");
         playerMovement.isHoldingBow = false; 

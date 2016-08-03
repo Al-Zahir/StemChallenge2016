@@ -9,6 +9,7 @@ public class PlayerClimbingControl : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerBattleControl playerBattleControl;
     private PlayerArcheryControl playerArcheryControl;
+	private PlayerWeaponSelector playerWeaponSelector;
     private Rigidbody rigid;
     private CapsuleCollider col;
     public bool debug = true;
@@ -72,6 +73,7 @@ public class PlayerClimbingControl : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerBattleControl = GetComponent<PlayerBattleControl>();
         playerArcheryControl = GetComponent<PlayerArcheryControl>();
+		playerWeaponSelector = GetComponent<PlayerWeaponSelector> ();
         rigid = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
         isClimbing = false;
@@ -511,7 +513,9 @@ public class PlayerClimbingControl : MonoBehaviour
                         yield return new WaitForSeconds(0.1f);
                 }
             }*/
-            playerBattleControl.Dequip();
+            
+			playerWeaponSelector.ChangeSelected (1);
+			playerBattleControl.Dequip();
             playerArcheryControl.Dequip();
             anim.ResetTrigger("DequipBow");
 

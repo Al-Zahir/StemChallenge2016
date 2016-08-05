@@ -12,12 +12,24 @@ public class WolfBase : MonoBehaviour
     private Vector3 normalVel, dampedNormal;
 
     public bool linkAnimAndAgentSpeed = true;
-    public float velAnimScalar = 2;
+    public float velRun = 6, velWalk = 2;
+
+    public bool bite = false;
+    public float biteTime = 0.5f;
+    public Transform mouth;
+    public Transform mouthOpenRotation;
+    private Quaternion mouthCloseRotation;
+    private Quaternion mouthTargetRotation;
+    private float biteStartTime;
+
+    private Vector3 lastDirection;
 
     void Start()
     {
+        lastDirection = Vector3.Scale(transform.forward, new Vector3(1, 0, 1));
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        mouthCloseRotation = mouth.localRotation;
     }
 
     void Update()
@@ -26,17 +38,26 @@ public class WolfBase : MonoBehaviour
 
         if (linkAnimAndAgentSpeed)
         {
-            float vel = agent.desiredVelocity.magnitude;
-            if (vel <= 1)
+            float speed = agent.desiredVelocity.magnitude;
+            if (speed <= velWalk)
             {
-                SetAnimSpeed(vel);
+                SetAnimSpeed(speed / velWalk);
                 SetAnimSprint(0);
             }
             else
             {
                 SetAnimSpeed(1);
-                SetAnimSprint(vel - 1);
+                SetAnimSprint((speed - velWalk) / (velRun - velWalk));
             }
+        }
+    }
+
+    void LateUpdate()
+    {
+        if(bite)
+        {
+            float percent = Mathf.PingPong((Time.time - biteStartTime) / biteTime, 1);
+            mouth.localRotation = Quaternion.Slerp(mouthCloseRotation, mouthOpenRotation.localRotation, percent);
         }
     }
 
@@ -60,16 +81,20 @@ public class WolfBase : MonoBehaviour
         dampedNormal = Vector3.SmoothDamp(dampedNormal, averageNormal, ref normalVel, rotSpeed);
 
         Vector3 direction = Vector3.Scale(agent.velocity, new Vector3(1, 0, 1));
+        if (direction.magnitude < 0.001f)
+            direction = lastDirection;
+        else
+            lastDirection = direction;
         Vector3 adjDirection = Vector3.ProjectOnPlane(direction, dampedNormal);
         DrawRay(transform.position, dampedNormal, Color.blue);
 
-        if (Vector3.Magnitude(direction) > 0.001f)
-            transform.rotation = Quaternion.LookRotation(adjDirection, dampedNormal);
+        transform.rotation = Quaternion.LookRotation(adjDirection, dampedNormal);
     }
 
     public void SetAgentSpeed(float speed)
     {
         agent.speed = speed;
+        Debug.Log(speed);
     }
 
     public void SetAnimSpeed(float speed)
@@ -87,12 +112,18 @@ public class WolfBase : MonoBehaviour
         StartCoroutine(CancelActionRoutine());
     }
 
+    public void SetBite(bool bite)
+    {
+        this.bite = bite;
+        biteStartTime = Time.time;
+    }
+
     private IEnumerator CancelActionRoutine()
     {
         anim.SetBool("cancelAction", true);
         anim.SetBool("isDrinking", false);
 
-        while(!Mecanim.inAnim(anim, "Wolf Locomotion", 0))
+        while(!Mecanim.inAnim(anim, "Base Layer.Wolf Locomotion", 0))
             yield return new WaitForSeconds(0.05f);
         anim.SetBool("cancelAction", false);
     }

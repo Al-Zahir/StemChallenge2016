@@ -9,6 +9,8 @@ public class IceBlock : MonoBehaviour {
 
 	public bool allowPlayerMove;
 
+    public LayerMask iceLayer;
+
 	void Awake(){
 
 		rigid = GetComponent<Rigidbody> ();
@@ -23,7 +25,7 @@ public class IceBlock : MonoBehaviour {
 		if (isMoving) {
 		
 			RaycastHit hit;
-			if (Physics.Raycast (transform.position - transform.up * ((transform.lossyScale.y / 2) - 0.1f), direction, out hit, (transform.lossyScale.y / 2))) {
+			if (Physics.Raycast (transform.position - transform.up * ((transform.lossyScale.y / 2) - 0.1f), direction, out hit, (transform.lossyScale.y / 2), iceLayer)) {
 			
 				isMoving = false;
 				rigid.isKinematic = true;
@@ -34,7 +36,7 @@ public class IceBlock : MonoBehaviour {
 			
 			}
 
-			Debug.DrawRay (transform.position - transform.up * ((transform.lossyScale.y / 2) - 0.1f), direction * ((transform.lossyScale.y / 2)), Color.blue);
+			Debug.DrawRay (transform.position - transform.up * ((transform.lossyScale.y / 2) - 0.1f), direction * ((transform.lossyScale.y / 2)), Color.blue, 6f);
 		
 		}
 

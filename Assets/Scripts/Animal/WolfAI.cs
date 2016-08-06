@@ -25,6 +25,13 @@ public class WolfAI : MonoBehaviour {
     private Transform playerTransform;
     private bool playerInCone;
 
+    public float escapeRadius = 20;
+
+    private bool startedRunningAway = false;
+
+    private bool spottedPlayerDelayed = false;
+    private float timeLostPlayer;
+
 	// Use this for initialization
 	void Start () {
 
@@ -36,7 +43,7 @@ public class WolfAI : MonoBehaviour {
 		isWalkingToWater = false;
 
 		spottedPlayer = false;
-		scareFactor = Random.Range (1, 11);
+        scareFactor = Random.Range(1, 11);
 
         waterLevel = Random.Range(50f, 100f);
 	}
@@ -46,6 +53,21 @@ public class WolfAI : MonoBehaviour {
         if (playerInCone)
         {
             spottedPlayer = CanSee(playerTransform);
+        }
+
+        if (spottedPlayer)
+        {
+            spottedPlayerDelayed = true;
+            timeLostPlayer = -1;
+        }
+        else if (spottedPlayerDelayed && timeLostPlayer == -1)
+        {
+            timeLostPlayer = Time.time;
+        }
+        else if (Time.time > timeLostPlayer + 5 && timeLostPlayer != -1)
+        {
+            spottedPlayerDelayed = false;
+            timeLostPlayer = -1;
         }
     }
 
@@ -60,6 +82,19 @@ public class WolfAI : MonoBehaviour {
     {
         busySurvival = false;
 
+        if (startedRunningAway)
+        {
+            if (control.AtDestination())
+            {
+                busySurvival = false;
+                startedRunningAway = false;
+            }
+            else
+            {
+                busySurvival = true;
+            }
+        }
+        
         if (anim.GetBool("isDrinking") || Mecanim.inAnyAnim(anim, drinkingAnims, 0))
         {
             busySurvival = true;
@@ -76,7 +111,7 @@ public class WolfAI : MonoBehaviour {
         if (waterLevel < waterCriticalLevel)
         {
             busySurvival = true;
-            if (!spottedPlayer && !isWalkingToWater)
+            if (!isWalkingToWater)
                 WalkToWater();
             else if (control.AtDestination() && isWalkingToWater)
             {
@@ -84,6 +119,60 @@ public class WolfAI : MonoBehaviour {
                 control.SetAgentSpeed(0);
             }
         }
+        else if (scareFactor > 5 && (!startedRunningAway && spottedPlayerDelayed))
+        {
+            RaycastHit[] hits;
+            bool hitWater = true;
+            bool hitAnything = false;
+            int numTried = 0;
+            Vector3 targetPos = (transform.position - playerTransform.position).normalized * escapeRadius;
+            targetPos.y = transform.position.y;
+            //Debug.DrawRay(targetPos, Vector3.down * 100, Color.red, 10f);
+
+            while (numTried < 20 && (!hitAnything || hitWater))
+            {
+                // Nothing in front, start to change direction
+                float randAngle = Random.Range(0, 360);
+                targetPos = transform.TransformVector(Vector3.RotateTowards(transform.InverseTransformVector(targetPos), -transform.InverseTransformVector(targetPos), randAngle, 0));
+                //Debug.DrawRay(targetPos + Vector3.up * 100f, Vector3.down * 100, Color.red, 10f);
+                targetPos.y = transform.position.y;
+                hits = Physics.RaycastAll(targetPos + Vector3.up * 100f, Vector3.down, 1000f);
+                hitAnything = hits.Length > 0;
+                hitWater = false;
+                foreach (RaycastHit hit in hits)
+                    if (hit.transform.tag == "Water")
+                    {
+                        hitWater = true;
+                        break;
+                    }
+
+                numTried++;
+            }
+
+            if (numTried < 20)
+            {
+                startedRunningAway = true;
+                control.SetDestination(targetPos, true);
+                control.SetAgentSpeed(control.velRun);
+            }
+        }
+        else if (scareFactor <= 5 && spottedPlayerDelayed)
+        {
+            busySurvival = true;
+            control.SetDestination(playerTransform.position, true);
+            control.SetAgentSpeed(control.velRun);
+            if (Vector3.Distance(transform.position, playerTransform.position) < 2f)
+            {
+                control.SetAgentSpeed(0);
+            }
+            control.SetBite(true);
+        }
+
+        if (!spottedPlayerDelayed)
+        {
+            control.SetBite(false);
+        }
+        //Debug.DrawRay(agent.destination + Vector3.up * 100f, Vector3.down * 100, Color.red, 10f);
     }
 
     void UpdateLeisure()
@@ -176,6 +265,7 @@ public class WolfAI : MonoBehaviour {
 		
 	void WalkToWater(){
 		Vector3 position = Vector3.zero;
+        startedRunningAway = false;
 
         GameObject closestWater = FindCloseWater();
         if (closestWater == null)

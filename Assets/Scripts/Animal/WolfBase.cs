@@ -94,7 +94,6 @@ public class WolfBase : MonoBehaviour
     public void SetAgentSpeed(float speed)
     {
         agent.speed = speed;
-        Debug.Log(speed);
     }
 
     public void SetAnimSpeed(float speed)
@@ -114,8 +113,9 @@ public class WolfBase : MonoBehaviour
 
     public void SetBite(bool bite)
     {
+        if(this.bite != bite)
+            biteStartTime = Time.time;
         this.bite = bite;
-        biteStartTime = Time.time;
     }
 
     private IEnumerator CancelActionRoutine()

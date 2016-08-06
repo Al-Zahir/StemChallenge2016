@@ -137,7 +137,7 @@ ModelImporter:
     400126: Spine
     400128: Spine1
     400130: Spine2
-    7400000: standing_aim_overdraw
+    7400000: aim_overdraw
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -164,22 +164,22 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: standing_aim_overdraw
+      name: aim_overdraw
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 113
       wrapMode: 0
-      orientationOffsetY: -90
+      orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

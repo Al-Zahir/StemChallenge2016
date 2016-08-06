@@ -149,14 +149,21 @@ ModelImporter:
     4300002: Wolf_obj_fur
     7400000: run2|00
     7400002: run2|000
-    7400004: run2|Wolf_creep_cycle
+    7400004: Wolf_Creep
     7400006: run2|Wolf_Idle_
-    7400008: run2|Wolf_Run_Cycle_
+    7400008: Wolf_Run
     7400010: run2|Wolf_seat_
-    7400012: run2|Wolf_Walk_cycle_
+    7400012: Wolf_Walk
     7400014: Wolf_obj_body|00
     7400016: Wolf_obj_fur|00
+    7400018: Wolf_Drink_Start
+    7400020: Wolf_Drink_Idle
+    7400022: Wold_Drink_End
+    7400024: Wolf_Stand_Idle
+    7400026: Wolf_Stand_Look_Around
+    7400028: Wolf_Creep_Idle
     9500000: //RootNode
+    11100000: //RootNode
     13700000: Wolf_obj_body
     13700002: Wolf_obj_fur
   materials:
@@ -173,13 +180,2533 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: run2|00
+      takeName: run2|00
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run2|000
+      takeName: run2|000
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Creep
+      takeName: run2|Wolf_creep_cycle
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run2|Wolf_Idle_
+      takeName: run2|Wolf_Idle_
+      firstFrame: 0
+      lastFrame: 990
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Run
+      takeName: run2|Wolf_Run_Cycle_
+      firstFrame: 1.1
+      lastFrame: 16.8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run2|Wolf_seat_
+      takeName: run2|Wolf_seat_
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Walk
+      takeName: run2|Wolf_Walk_cycle_
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_obj_body|00
+      takeName: Wolf_obj_body|00
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_obj_fur|00
+      takeName: Wolf_obj_fur|00
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Drink_Start
+      takeName: run2|Wolf_Idle_
+      firstFrame: 65
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Drink_Idle
+      takeName: run2|Wolf_Idle_
+      firstFrame: 130
+      lastFrame: 170
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wold_Drink_End
+      takeName: run2|Wolf_Idle_
+      firstFrame: 170
+      lastFrame: 225
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Stand_Idle
+      takeName: run2|Wolf_Idle_
+      firstFrame: 0
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Stand_Look_Around
+      takeName: run2|Wolf_Idle_
+      firstFrame: 225
+      lastFrame: 435
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wolf_Creep_Idle
+      takeName: run2|Wolf_creep_cycle
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: run2
+        weight: 1
+      - path: run2/Becken
+        weight: 1
+      - path: run2/Becken/Bauch
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_L/Oberarm_L/Unterarm_L/Vorderpfote_L/Vorderpfote_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Bauch.003/Schalterplatte_R/Oberarm_R/Unterarm_R/Vorderpfote_R/Vorderpfote_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_L/aug_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_L/aug_lied_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_O_R/aug_lied_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_L/aug_lied_U_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/aug_lied_U_R/aug_lied_U_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Aug_R/Aug_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_L/Braun_O_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Braun_O_R/Braun_O_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Mauloben/Mauloben_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_L/MundW_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/MundW_R/MundW_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_L/Ohr_L_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Ohr_R/Ohr_R_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Hals_fett/Hals_fett_end
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten
+        weight: 1
+      - path: run2/Becken/Bauch/Bauch.001/Brust/Hals/Kopf.002/Kopf/Unterkiefer/Maulunten/Maulunten_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L
+        weight: 1
+      - path: run2/Becken/Oberschenkel_L/Unterschenkel_L/Pfote1_L/Pfote2_L/Pfote2_L_end
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R
+        weight: 1
+      - path: run2/Becken/Oberschenkel_R/Unterschenkel_R/Pfote1_R/Pfote2_R/Pfote2_R_end
+        weight: 1
+      - path: run2/Becken/Schwanz
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003
+        weight: 1
+      - path: run2/Becken/Schwanz/Schwanz.001/Schwanz.002/Schwanz.003/Schwanz.003_end
+        weight: 1
+      - path: run2/root
+        weight: 1
+      - path: run2/root/root_end
+        weight: 1
+      - path: Wolf_obj_body
+        weight: 1
+      - path: Wolf_obj_fur
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -187,7 +2714,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
-    swapUVChannels: 0
+    swapUVChannels: 1
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1

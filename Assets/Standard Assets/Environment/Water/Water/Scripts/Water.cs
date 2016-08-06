@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Water
         public float clipPlaneOffset = 0.07f;
         public LayerMask reflectLayers = -1;
         public LayerMask refractLayers = -1;
-
+        public bool disableReflection = false;
 
         private Dictionary<Camera, Camera> m_ReflectionCameras = new Dictionary<Camera, Camera>(); // Camera -> Camera table
         private Dictionary<Camera, Camera> m_RefractionCameras = new Dictionary<Camera, Camera>(); // Camera -> Camera table
@@ -82,7 +82,7 @@ namespace UnityStandardAssets.Water
             UpdateCameraModes(cam, refractionCamera);
 
             // Render reflection if needed
-            if (mode >= WaterMode.Reflective)
+            if (mode >= WaterMode.Reflective && !disableReflection)
             {
                 // Reflect camera around reflection plane
                 float d = -Vector3.Dot(normal, pos) - clipPlaneOffset;
@@ -110,6 +110,10 @@ namespace UnityStandardAssets.Water
                 reflectionCamera.transform.position = oldpos;
                 GL.invertCulling = oldCulling;
                 GetComponent<Renderer>().sharedMaterial.SetTexture("_ReflectionTex", m_ReflectionTexture);
+            }
+            else
+            {
+                GetComponent<Renderer>().sharedMaterial.SetTexture("_ReflectionTex", null);
             }
 
             // Render refraction

@@ -9,6 +9,7 @@ public class PlayerBattleControl : MonoBehaviour {
 	private Animator anim;
 	private Rigidbody rigid;
 	private PlayerMovement playerMovement;
+	private PlayerWeaponSelector playerWeaponSelector;
 	private PlayerHealth playerHealth;
 
 	public Transform swordUnarmedPosition;
@@ -41,6 +42,9 @@ public class PlayerBattleControl : MonoBehaviour {
     public float shieldSwingPeriod = 1f;
     public float shieldSwingOffset = 0.2f;
 
+    // Allows other scripts to sheath the sword
+    public bool isTransitioning = false;
+
 	void Awake(){
 
 		isInBattle = false;
@@ -48,25 +52,45 @@ public class PlayerBattleControl : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		rigid = GetComponent<Rigidbody> ();
 		playerMovement = GetComponent<PlayerMovement> ();
+		playerWeaponSelector = GetComponent<PlayerWeaponSelector> ();
 		playerHealth = GetComponent<PlayerHealth> ();
 
 		playerMovement.isDisabledByBattle = isInBattle;
 
 	}
-
-    void FixedUpdate()
-    {
-
-    }
     
-	void Update(){
+	void Update()
+    {
+        if (!mecInTrans(1) && mecInAnim("Equip Dequip.sword_base", 1))
+            isTransitioning = false;
+
+        playerMovement.rootMotionBattle = mecInAnyAnim(swordRootMotionAnimations, 0);
+
+        if ((playerMovement.isDisabledByClimb || playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) && !isTransitioning)
+        {
+            if (isInBattle || sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition)
+            {
+				//playerWeaponSelector.ChangeSelected ((playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) ? 2 : 1);
+                isInBattle = false;
+                Dequip();
+            }
+
+            return;
+        }
+
+        if (playerMovement.isDisabledByGround)
+        {
+			if (!isInBattle && (sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition))
+				Dequip();
+            else if (isInBattle && (sword.parent != swordArmedPosition || shield.parent != shieldArmedPosition))
+				Equip();
+            return;
+        }
 
         bool singleClicked = false;
         bool doubleClicked = false;
 
         HandleClicks(ref singleClicked, ref doubleClicked);
-
-        anim.applyRootMotion = mecInAnyAnim(swordRootMotionAnimations, 0);
 
         if (mecSoonInAnim("Equip Dequip.draw_sword_2", 1))
 			Equip ();
@@ -74,6 +98,9 @@ public class PlayerBattleControl : MonoBehaviour {
 			Dequip ();
         else if (!mecInTrans(0) && (mecInAnim("Equip Dequip.draw_sword_1", 1) || mecInAnim("Equip Dequip.sheath_sword_1", 1)))
 			anim.SetLayerWeight (1, 1f);
+
+        if (isTransitioning)
+            return;
 
 		if (isInBattle) {
 
@@ -132,7 +159,8 @@ public class PlayerBattleControl : MonoBehaviour {
 				if (h != 0 || v != 0) {
 
 					Vector3 worldDirection = playerMovement.mainCam.transform.TransformDirection (new Vector3 (h, 0, v).normalized);
-					worldDirection.Scale (new Vector3 (1, 0, 1));
+                    worldDirection.Scale(new Vector3(1, 0, 1));
+                    worldDirection.Normalize();
 
 					float angle = 0;
 					angle = Vector3.Angle (transform.forward, worldDirection);
@@ -176,10 +204,33 @@ public class PlayerBattleControl : MonoBehaviour {
             }
         }
 			
-        if (Input.GetKeyDown(KeyCode.R) || !isInBattle && singleClicked)
+        /*if (Input.GetKeyDown(KeyCode.R) || !isInBattle && singleClicked)
         {
             Battle(!isInBattle);
-        }
+        }*/
+
+
+		if (playerWeaponSelector.slotNumber == 2) {
+
+			if (!isInBattle) {
+				isTransitioning = true;
+				Battle (true);
+			}
+
+		} else if (isInBattle) {
+            if (playerMovement.isAbleToMove && playerWeaponSelector.slotNumber == 1)
+            {
+                isTransitioning = true;
+                Battle(false);
+            }
+            else
+            {
+                isInBattle = false;
+                Dequip();
+                anim.ResetTrigger("Dequip");
+            }
+		}
+
 	}
 
 	public void Battle(bool b){
@@ -195,7 +246,15 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	}
 
+    public void GracefulDequip() 
+    {
+        isTransitioning = true;
+        Battle(false);
+    }
+
 	public void Equip(){
+
+		isInBattle = true;
 
 		sword.parent = swordArmedPosition;
 		sword.localPosition = new Vector3 (0, 0, 0);
@@ -209,6 +268,7 @@ public class PlayerBattleControl : MonoBehaviour {
 
 	public void Dequip(){
 
+		isInBattle = false;
 		sword.parent = swordUnarmedPosition;
 		sword.localPosition = new Vector3 (0, 0, 0);
 		sword.localRotation = Quaternion.identity;

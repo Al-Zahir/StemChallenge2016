@@ -28,7 +28,7 @@ Shader "Hidden/TerrainEngine/Splatmap/Standard-AddPass" {
 		}
 
 		CGPROGRAM
-		#pragma surface surf Standard decal:add vertex:SplatmapVert finalcolor:SplatmapFinalColor finalgbuffer:SplatmapFinalGBuffer fullforwardshadows addshadow alpha
+		#pragma surface surf Standard decal:add vertex:SplatmapVert finalcolor:SplatmapFinalColor finalgbuffer:SplatmapFinalGBuffer fullforwardshadows addshadow alpha 
 		#pragma multi_compile_fog
 		#pragma target 3.0
 		// needs more than 8 texcoords

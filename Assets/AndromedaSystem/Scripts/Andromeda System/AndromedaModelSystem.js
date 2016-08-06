@@ -28,7 +28,7 @@ function Start(){
 function Update(){
 
 	//transform.Rotate(transform.right * rotateSpeed);
-    transform.Rotate(Vector3.up * rotateSpeed, Space.World);
+    transform.Rotate(transform.up * rotateSpeed, Space.World);
     
     //transform.rotation.eulerAngles.x = 0;
    	//transform.rotation.eulerAngles.z = 0;

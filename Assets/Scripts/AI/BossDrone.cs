@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BossDrone : MonoBehaviour {
 
     public bool debug = false;
+    public bool active = false;
     public Transform player;
     //private NavMeshAgent agent;
     private Vector3 lastDir = Vector3.forward;
@@ -60,7 +61,7 @@ public class BossDrone : MonoBehaviour {
     {
         while(!dead)
         {
-            if (grounded)
+            if (grounded || !active)
             {
                 yield return new WaitForSeconds(timeBetweenSpawns);
                 continue;
@@ -122,7 +123,7 @@ public class BossDrone : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (dead) return;
+        if (dead || !active) return;
 
         Vector3 noYPos = transform.position;
         noYPos.y = player.transform.position.y;

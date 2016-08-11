@@ -40,6 +40,10 @@ public class ShockDrone : MonoBehaviour
 
     private bool dead;
 
+    public bool overrideSeePlayer = false;
+
+    public float shieldAngle = 30;
+
     // Use this for initialization
     void Start()
     {
@@ -60,10 +64,10 @@ public class ShockDrone : MonoBehaviour
     {
         if (dead) return;
 
-        if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer)
+        if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer && !overrideSeePlayer)
             transform.rotation = startRot;
 
-        if ((!chasePlayer || Mathf.Abs(transform.position.y - player.position.y) > 6) && !backingUp)
+        if ((!chasePlayer || Mathf.Abs(transform.position.y - player.position.y) > 6) && !backingUp && !overrideSeePlayer)
         {
             agent.SetDestination(startPos);
             agent.speed = moveSpeed;
@@ -158,7 +162,8 @@ public class ShockDrone : MonoBehaviour
             noYPos.y = player.transform.position.y;
             if (shockers[0].emission.enabled && Vector3.Distance(noYPos, player.position) < closestDistance)
             {
-                if (Mecanim.inAnyAnim(player.GetComponent<Animator>(), blockingAnims, 1))
+                float angle = Vector3.Angle(-transform.forward, player.forward);
+                if (Mecanim.inAnyAnim(player.GetComponent<Animator>(), blockingAnims, 1) && angle < shieldAngle)
                     StartCoroutine(FallBack());
                 else
                     player.GetComponent<PlayerHealth>().TakeDamage(zapDamage);

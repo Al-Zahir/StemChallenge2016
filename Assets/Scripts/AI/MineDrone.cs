@@ -33,6 +33,8 @@ public class MineDrone : MonoBehaviour
     public float removeTime = 10f;
     private bool dead;
 
+    public bool overrideSeePlayer = false;
+
     // Use this for initialization
     void Start()
     {
@@ -51,10 +53,10 @@ public class MineDrone : MonoBehaviour
     void Update()
     {
         if (dead) return;
-        if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer)
+        if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer && !overrideSeePlayer)
             transform.rotation = startRot;
 
-        if (!chasePlayer || Mathf.Abs(transform.position.y - player.position.y) > 6)
+        if ((!chasePlayer || Mathf.Abs(transform.position.y - player.position.y) > 6) && !overrideSeePlayer)
         {
             agent.SetDestination(startPos);
             agent.speed = moveSpeed;

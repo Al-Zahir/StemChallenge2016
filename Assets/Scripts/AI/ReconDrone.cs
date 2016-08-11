@@ -23,6 +23,7 @@ public class ReconDrone : MonoBehaviour {
     public float removeTime = 10f;
 
     private bool dead;
+    public bool overrideSeePlayer;
 
 	// Use this for initialization
 	void Start () {
@@ -91,10 +92,10 @@ public class ReconDrone : MonoBehaviour {
     {
         if (dead) return;
 
-        if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !noticedPlayer && !hitNoticedPlayer)
+        if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !noticedPlayer && !hitNoticedPlayer && !overrideSeePlayer)
             transform.rotation = startRot;
 
-        if (!noticedPlayer && !hitNoticedPlayer || Mathf.Abs(transform.position.y - player.position.y) > 10)
+        if (!noticedPlayer && !hitNoticedPlayer || Mathf.Abs(transform.position.y - player.position.y) > 10 && !overrideSeePlayer)
         {
             agent.destination = startPos - Vector3.up * 2;
             agent.speed = moveSpeed;
@@ -104,7 +105,7 @@ public class ReconDrone : MonoBehaviour {
 
         Vector3 adjAgentPos = transform.position;
         adjAgentPos.y = startPos.y;
-        if (Vector3.Distance(adjAgentPos, startPos) > patrolRadius && hitNoticedPlayer)
+        if (Vector3.Distance(adjAgentPos, startPos) > patrolRadius && hitNoticedPlayer && !overrideSeePlayer)
         {
             StartCoroutine(EndChase());
             return;

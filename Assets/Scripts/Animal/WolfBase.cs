@@ -23,6 +23,7 @@ public class WolfBase : MonoBehaviour
     private float biteStartTime;
 
     private Vector3 lastDirection;
+    public Vector3 lookAtPos;
 
     void Start()
     {
@@ -85,6 +86,10 @@ public class WolfBase : MonoBehaviour
             direction = lastDirection;
         else
             lastDirection = direction;
+
+        if (lookAtPos != Vector3.zero)
+            direction = Vector3.Scale(lookAtPos - transform.position, new Vector3(1, 0, 1));
+
         Vector3 adjDirection = Vector3.ProjectOnPlane(direction, dampedNormal);
         DrawRay(transform.position, dampedNormal, Color.blue);
 

@@ -23,47 +23,60 @@ public class DroneHealth : MonoBehaviour {
             player = GameObject.Find("Player").transform;
     }
 
-    void OnHit(object[] info)
+    public void OnHit(object[] info)
     {
         if (player == null)
             return;
 
-        string source = (string)info[0];
-        Collider other = (Collider)info[1];
-        
-        bool criticalHit = criticalHits != null && source != null && Array.IndexOf(criticalHits, source) != -1;
+        bool criticalHit = false;
+        BossDrone bossDrone = GetComponent<BossDrone>();
 
-        // Arrows create multiple hit requests, if any are critical ignore the hitDelay
-        if (!(other.transform.name.ToLower().Contains("arrow") && other.transform.GetComponent<Arrow>().enabled && criticalHit))
+        if (info != null)
         {
-            // If its not a hurtObject or last hit too few secs ago, ignore
-            if (Array.IndexOf(hurtObjectNames, other.transform.name) == -1 || Time.time < lastHitTime + hitDelay)
+            string source = (string)info[0];
+            Collider other = (Collider)info[1];
+
+            criticalHit = criticalHits != null && source != null && Array.IndexOf(criticalHits, source) != -1;
+
+            if (bossDrone != null && (!bossDrone.eyeOpen && !bossDrone.grounded || bossDrone.eyeOpen && !criticalHit || bossDrone.grounded && criticalHit))
                 return;
 
-            // If sword hits and player wasnt swinging, ignore
-            if (playerMustSwing && other.transform.name.ToLower().Contains("sword") &&
-                !Mecanim.inAnyAnim(player.GetComponent<Animator>(), player.GetComponent<PlayerBattleControl>().swordRootMotionAnimations, 0))
-                return;
+            // Arrows create multiple hit requests, if any are critical ignore the hitDelay
+            if (!(other.transform.name.ToLower().Contains("arrow") && other.transform.GetComponent<Arrow>().enabled && criticalHit))
+            {
+                // If its not a hurtObject or last hit too few secs ago, ignore
+                if (Array.IndexOf(hurtObjectNames, other.transform.name) == -1 || Time.time < lastHitTime + hitDelay)
+                    return;
 
-            // If its a fake arrow thats on the bow before being shot
-            if (other.transform.name.ToLower().Contains("arrow") && !other.transform.GetComponent<Arrow>().enabled)
-                return;
+                // If sword hits and player wasnt swinging, ignore
+                if (playerMustSwing && other.transform.name.ToLower().Contains("sword") &&
+                    !Mecanim.inAnyAnim(player.GetComponent<Animator>(), player.GetComponent<PlayerBattleControl>().swordRootMotionAnimations, 0))
+                    return;
+
+                // If its a fake arrow thats on the bow before being shot
+                if (other.transform.name.ToLower().Contains("arrow") && !other.transform.GetComponent<Arrow>().enabled)
+                    return;
+            }
+
+            lastHitTime = Time.time;
+
+            if (other.transform.name.ToLower().Contains("sword"))
+                player.SendMessage("HitEnemySword", SendMessageOptions.DontRequireReceiver); 
         }
 
-        lastHitTime = Time.time;
-
-        SendMessage("HitByPlayer");
-
+        SendMessage("HitByPlayer", SendMessageOptions.DontRequireReceiver);
         health -= criticalHit ? criticalHitLoss : hitLoss;
 
         if(health <= 0)
         {
+            if (bossDrone != null || GetComponent<WolfAI>() != null)
+                criticalHit = true;
             GetComponent<Explode>().explode(0, criticalHit, criticalHit, criticalHit);
             Destroy(this);
         }
     }
 
-    void OnHit2(object[] info)
+    public void OnHit2(object[] info)
     {
         object[] info2 = new object[2];
         info2[0] = info[0];

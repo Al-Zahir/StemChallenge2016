@@ -22,9 +22,17 @@ public class Explode : MonoBehaviour {
 	public void explode(float timeToFallApart, bool changeColor, bool showExplosion, bool blue)
     {
         if (explosion != null && !blue)
+        {
             explosion.SetActive(showExplosion);
+            explosion.transform.parent = null;
+            Destroy(explosion, 10);
+        }
         else if (explosionBlue != null && blue)
+        {
             explosionBlue.SetActive(showExplosion);
+            explosionBlue.transform.parent = null;
+            Destroy(explosionBlue, 10);
+        }
 
         StartCoroutine(FallApart(timeToFallApart, changeColor));
         SendMessage("Explosion", SendMessageOptions.DontRequireReceiver);
@@ -36,7 +44,7 @@ public class Explode : MonoBehaviour {
 
         if(timeToFallApart != 0)
             yield return new WaitForSeconds(timeToFallApart);
-        
+
         foreach (MeshRenderer m in GetComponentsInChildren<MeshRenderer>())
             HandleExplosion(m);
 

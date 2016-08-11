@@ -42,6 +42,9 @@ public class WolfAI : MonoBehaviour {
     public float biteDistance = 2;
     public float biteDamage = 30;
 
+    public float noPlayerDeathTime = 100;
+    private float lastPlayerTime;
+
 	// Use this for initialization
 	void Start () {
 
@@ -58,6 +61,8 @@ public class WolfAI : MonoBehaviour {
         waterLevel = Random.Range(50f, 100f);
 
         StartCoroutine(AttackPlayer());
+
+        lastPlayerTime = Time.time;
 	}
 
     private IEnumerator AttackPlayer()
@@ -101,6 +106,11 @@ public class WolfAI : MonoBehaviour {
             spottedPlayerDelayed = false;
             timeLostPlayer = -1;
         }
+
+        if (spottedPlayerDelayed)
+            lastPlayerTime = Time.time;
+        else if (Time.time > lastPlayerTime + noPlayerDeathTime)
+            waterLevel = -1;
     }
 
 	// Update is called once per frame

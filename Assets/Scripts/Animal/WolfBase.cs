@@ -137,7 +137,8 @@ public class WolfBase : MonoBehaviour
     {
         if (overrideCurrent || AtDestination())
         {
-            agent.SetDestination(target);
+            if(agent.isActiveAndEnabled)
+                agent.SetDestination(target);
             return true;
         }
 
@@ -146,7 +147,7 @@ public class WolfBase : MonoBehaviour
 
     public bool AtDestination()
     {
-        return !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
+        return agent.isActiveAndEnabled && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
     }
 
     private void DrawRay(Vector3 position, Vector3 direction, Color color)

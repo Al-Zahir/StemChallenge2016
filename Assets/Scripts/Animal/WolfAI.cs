@@ -20,6 +20,8 @@ public class WolfAI : MonoBehaviour {
     private bool leisureInitialized = false;
 
     public string[] drinkingAnims;
+    public string[] blockingAnims;
+    public float shieldAngle = 30;
 
     public bool busySurvival;
     private Transform playerTransform;
@@ -31,6 +33,17 @@ public class WolfAI : MonoBehaviour {
 
     private bool spottedPlayerDelayed = false;
     private float timeLostPlayer;
+
+    public float removeTime = 0;
+
+    private bool dead;
+
+    private float waterStartTime;
+    public float biteDistance = 2;
+    public float biteDamage = 30;
+
+    public float noPlayerDeathTime = 100;
+    private float lastPlayerTime;
 
 	// Use this for initialization
 	void Start () {
@@ -46,7 +59,31 @@ public class WolfAI : MonoBehaviour {
         scareFactor = Random.Range(1, 11);
 
         waterLevel = Random.Range(50f, 100f);
+
+        StartCoroutine(AttackPlayer());
+
+        lastPlayerTime = Time.time;
 	}
+
+    private IEnumerator AttackPlayer()
+    {
+        while(!dead)
+        {
+            if (playerTransform != null && spottedPlayer && scareFactor <= 5)
+            {
+                Vector3 noYPos = transform.position;
+                noYPos.y = playerTransform.position.y;
+                if (Vector3.Distance(noYPos, playerTransform.position) < biteDistance && Mathf.Abs(transform.position.y - playerTransform.position.y) < 3)
+                {
+                    float angle = Vector3.Angle(-transform.forward, playerTransform.forward);
+                    if (!Mecanim.inAnyAnim(playerTransform.GetComponent<Animator>(), blockingAnims, 1) || angle > shieldAngle)
+                        playerTransform.GetComponent<PlayerHealth>().TakeDamage(biteDamage);
+                }
+            }
+
+            yield return new WaitForSeconds(1);
+        }
+    }
 	
     void FixedUpdate()
     {
@@ -69,11 +106,19 @@ public class WolfAI : MonoBehaviour {
             spottedPlayerDelayed = false;
             timeLostPlayer = -1;
         }
+
+        if (spottedPlayerDelayed)
+            lastPlayerTime = Time.time;
+        else if (Time.time > lastPlayerTime + noPlayerDeathTime)
+            waterLevel = -1;
     }
 
 	// Update is called once per frame
 	void Update () 
     {
+        if (dead)
+            return;
+
         UpdateSurvival();
         UpdateLeisure();
 	}
@@ -81,6 +126,13 @@ public class WolfAI : MonoBehaviour {
     void UpdateSurvival()
     {
         busySurvival = false;
+
+        if (waterLevel < 0 && !dead)
+        {
+            dead = true;
+            GetComponent<DroneHealth>().health = 0;
+            GetComponent<DroneHealth>().OnHit(null);
+        }
 
         if (startedRunningAway)
         {
@@ -94,6 +146,8 @@ public class WolfAI : MonoBehaviour {
                 busySurvival = true;
             }
         }
+
+        control.lookAtPos = Vector3.zero;
         
         if (anim.GetBool("isDrinking") || Mecanim.inAnyAnim(anim, drinkingAnims, 0))
         {
@@ -104,6 +158,7 @@ public class WolfAI : MonoBehaviour {
                 control.CancelAction();
                 isWalkingToWater = false;
             }
+            return;
         }
         else
             waterLevel -= waterLevelDrainRate * Time.deltaTime;
@@ -113,7 +168,7 @@ public class WolfAI : MonoBehaviour {
             busySurvival = true;
             if (!isWalkingToWater)
                 WalkToWater();
-            else if (control.AtDestination() && isWalkingToWater)
+            else if (control.AtDestination() && isWalkingToWater && Time.time > waterStartTime + 0.2f)
             {
                 anim.SetBool("isDrinking", true);
                 control.SetAgentSpeed(0);
@@ -132,7 +187,7 @@ public class WolfAI : MonoBehaviour {
             while (numTried < 20 && (!hitAnything || hitWater))
             {
                 // Nothing in front, start to change direction
-                float randAngle = Random.Range(0, 360);
+                float randAngle = Random.Range(0, 2 * Mathf.PI);
                 targetPos = transform.TransformVector(Vector3.RotateTowards(transform.InverseTransformVector(targetPos), -transform.InverseTransformVector(targetPos), randAngle, 0));
                 //Debug.DrawRay(targetPos + Vector3.up * 100f, Vector3.down * 100, Color.red, 10f);
                 targetPos.y = transform.position.y;
@@ -166,6 +221,7 @@ public class WolfAI : MonoBehaviour {
                 control.SetAgentSpeed(0);
             }
             control.SetBite(true);
+            control.lookAtPos = playerTransform.position;
         }
 
         if (!spottedPlayerDelayed)
@@ -206,7 +262,7 @@ public class WolfAI : MonoBehaviour {
         if(leisureActionID == 1)
         {
             RaycastHit forwardHit, destHit;
-            Vector3 targetPos = new Vector3(0, 0, 3);
+            Vector3 targetPos = new Vector3(0, 0, 2);
 
             int numTried = 0;
             bool hitForward = Physics.Raycast(transform.TransformPoint(targetPos) + 5f * Vector3.up, Vector3.down, out forwardHit, 12f);
@@ -220,10 +276,11 @@ public class WolfAI : MonoBehaviour {
 
             if (!hitDest || Vector3.Distance(destHit.point, transform.position) < 1f)
             {
-                while (numTried < 20 && (!hitForward || forwardHit.transform != null && forwardHit.transform.tag == "Water"))
+                hitForward = false;
+                while (numTried < 20 && (forwardHit.transform != null && forwardHit.transform.tag == "Water" || !hitForward))
                 {
                     // Nothing in front, start to change direction
-                    float randAngle = Random.Range(0, 360);
+                    float randAngle = Random.Range(0, 2 * Mathf.PI);
                     targetPos = Vector3.RotateTowards(targetPos, -targetPos, randAngle, 0);
                     hitForward = Physics.Raycast(transform.TransformPoint(targetPos) + 5f * Vector3.up, Vector3.down, out forwardHit, 12f);
                     numTried++;
@@ -264,23 +321,20 @@ public class WolfAI : MonoBehaviour {
     }
 		
 	void WalkToWater(){
-		Vector3 position = Vector3.zero;
         startedRunningAway = false;
 
         GameObject closestWater = FindCloseWater();
         if (closestWater == null)
             return;
 
-        Vector3 waterEdge = closestWater.transform.position;
+        Vector3 waterEdge = transform.position;
+        Vector3 inc = (closestWater.transform.position - transform.position).normalized * 0.5f;
+        inc.y = 0;
 
 		RaycastHit hit;
-		while (Physics.Raycast (waterEdge + Vector3.up, Vector3.down, out hit, 2) && hit.transform.tag == "Water") {
-
-			position = transform.position;
-			position.y = waterEdge.y;
-
-			waterEdge += (position - waterEdge).normalized * 0.1f;
-		
+		while (Physics.Raycast (waterEdge + 100*Vector3.up, Vector3.down, out hit, 1000) && hit.transform.tag != "Water") {
+            waterEdge += inc;
+            DrawRay(waterEdge + 100*Vector3.up, 1000*Vector3.down, Color.red, 5f);
 		}
 
 		//waterEdge += (position - waterEdge).normalized * agent.radius / 2;
@@ -292,7 +346,7 @@ public class WolfAI : MonoBehaviour {
         isWalkingToWater = true;
         control.SetAgentSpeed(control.velRun);
         control.SetDestination(waterEdge, true);
-
+        waterStartTime = Time.time;
 	}
 
 	GameObject FindCloseWater(){
@@ -328,10 +382,25 @@ public class WolfAI : MonoBehaviour {
             && Vector3.Angle(transform.forward, t.position - transform.position) < 80;
     }
 
+    void Explosion()
+    {
+        dead = true;
+        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(gameObject, removeTime);
+        Destroy(control);
+        Destroy(this);
+    }
+
     private void DrawRay(Vector3 position, Vector3 direction, Color color)
     {
         if (debug)
             Debug.DrawRay(position, direction, color);
+    }
+
+    private void DrawRay(Vector3 position, Vector3 direction, Color color, float duration)
+    {
+        if (debug)
+            Debug.DrawRay(position, direction, color, duration);
     }
 
 }

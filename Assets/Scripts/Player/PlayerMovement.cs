@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.C))
 			anim.SetBool(hash.sneakBool, !sneak);*/
-
+        /*
 		if (Input.GetKeyDown (KeyCode.Space)) {
 		
 			GameObject enemy = GetNearestEnemy();
@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			}
 		
-		}
+		}*/
 	}
 
 	void Rotating(Vector3 targetDirection){

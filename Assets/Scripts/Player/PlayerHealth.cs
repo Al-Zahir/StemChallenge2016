@@ -1,83 +1,93 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : MonoBehaviour
+{
 
-	public float health = 100f;
-	public float notority = 0f; //how suspicious the player is
-	public float resetAfterDeathTime = 5f;
-	public AudioClip deathClip;
+    public float health = 100f;
+    public float notority = 0f; //how suspicious the player is
+    public float resetAfterDeathTime = 5f;
+    public AudioClip deathClip;
 
-	private Animator anim;
-	private HashIDs hash;
-	private PlayerMovement playerMovement;
-	private ScreenFadeInOut screenFadeInOut;
-	private AudioSource footstepsAudio;
-	private float timer;
-	private bool playerDead;
+    private Animator anim;
+    private PlayerMovement playerMovement;
+    public ScreenColor sceneColorManager, hitColorManager, healthColorManager;
+    private AudioSource footstepsAudio;
+    private bool playerDead;
+    private Color hitColor, healthColor;
+    public float hitLength = 0.2f;
+    public float healthRegenRate = 5f;
 
-	void Awake(){
+    public Transform playerSpawn;
 
-		anim = GetComponent<Animator> ();
-		//hash = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<HashIDs> ();
-		playerMovement = GetComponent<PlayerMovement> ();
-		//screenFadeInOut = GameObject.FindGameObjectWithTag (Tags.fader).GetComponent<ScreenFadeInOut> ();
-		footstepsAudio = GetComponent<AudioSource> ();
-		timer = 0f;
-		playerDead = false;
+    private IEnumerator currentLoseHealth;
 
-	}
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+        footstepsAudio = GetComponent<AudioSource>();
+        playerDead = false;
+        hitColor = hitColorManager.GetComponent<Image>().color;
+        healthColor = healthColorManager.GetComponent<Image>().color;
+    }
 
-	void Update(){
+    void Update()
+    {
+        if (health <= 0 && !playerDead)
+            StartCoroutine(DeathSequence());
+        else if(health < 100)
+        {
+            health += healthRegenRate * Time.deltaTime;
+            UpdateHealth(false);
+        }
+    }
 
-		if (health <= 0f) {
-		
-			if (!playerDead)
-				PlayerDying();
-			else{
+    private IEnumerator DeathSequence()
+    {
+        playerDead = true;
+        anim.SetFloat("Speed", 0.0f);
+        playerMovement.enabled = false;
+        anim.SetTrigger("Death");
+        sceneColorManager.SetColor(Color.black);
+        yield return new WaitForSeconds(resetAfterDeathTime);
+        playerMovement.transform.position = playerSpawn.position;
+        health = 100;
+        UpdateHealth(false);
+        sceneColorManager.SetColor(Color.clear);
+        playerMovement.enabled = true;
+        playerDead = false;
+    }
 
-				PlayerDead();
-				LevelReset();
+    private void UpdateHealth(bool isSmooth)
+    {
+        if (!isSmooth)
+            healthColorManager.GetComponent<Image>().color = new Color(healthColor.r, healthColor.g, healthColor.b, (100f - health) / 110);
 
-			}
+        healthColorManager.SetColor(new Color(healthColor.r, healthColor.g, healthColor.b, (100f - health) / 110), 1);
+    }
 
-		}
+    public void TakeDamage(float amount)
+    {
+        //Debug.Log(amount);
+        health -= amount;
+        UpdateHealth(true);
 
-	}
+        if (currentLoseHealth != null)
+            StopCoroutine(currentLoseHealth);
 
-	void PlayerDying(){
+        currentLoseHealth = LoseHealth();
+        StartCoroutine(currentLoseHealth);
+    }
 
-		playerDead = true;
+    private IEnumerator LoseHealth()
+    {
+        hitColorManager.SetColor(hitColor, hitLength);
+        yield return new WaitForSeconds(hitLength);
+        hitColorManager.SetColor(Color.clear, hitLength);
+        yield return new WaitForSeconds(hitLength);
 
-		//anim.SetBool (hash.deadBool, playerDead);
-
-		AudioSource.PlayClipAtPoint (deathClip, transform.position);
-
-	}
-
-	void PlayerDead(){
-
-		//if (anim.GetCurrentAnimatorStateInfo (0).nameHash == hash.dyingState) 
-		//	anim.SetBool (hash.deadBool, false);
-
-		anim.SetFloat ("Speed", 0.0f);
-		playerMovement.enabled = false;
-
-//		footstepsAudio.Stop ();
-	}
-
-	void LevelReset(){
-
-		timer += Time.deltaTime;
-
-		if (timer >= resetAfterDeathTime) 
-			screenFadeInOut.EndScene ();
-	}
-
-	public void TakeDamage(float amount){
-
-		health -= amount;
-
-	}
-
+        currentLoseHealth = null;
+    }
 }

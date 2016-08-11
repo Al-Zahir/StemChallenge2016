@@ -23,6 +23,7 @@ public class WolfBase : MonoBehaviour
     private float biteStartTime;
 
     private Vector3 lastDirection;
+    public Vector3 lookAtPos;
 
     void Start()
     {
@@ -85,6 +86,10 @@ public class WolfBase : MonoBehaviour
             direction = lastDirection;
         else
             lastDirection = direction;
+
+        if (lookAtPos != Vector3.zero)
+            direction = Vector3.Scale(lookAtPos - transform.position, new Vector3(1, 0, 1));
+
         Vector3 adjDirection = Vector3.ProjectOnPlane(direction, dampedNormal);
         DrawRay(transform.position, dampedNormal, Color.blue);
 
@@ -132,7 +137,8 @@ public class WolfBase : MonoBehaviour
     {
         if (overrideCurrent || AtDestination())
         {
-            agent.SetDestination(target);
+            if(agent.isActiveAndEnabled)
+                agent.SetDestination(target);
             return true;
         }
 
@@ -141,7 +147,7 @@ public class WolfBase : MonoBehaviour
 
     public bool AtDestination()
     {
-        return !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
+        return agent.isActiveAndEnabled && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
     }
 
     private void DrawRay(Vector3 position, Vector3 direction, Color color)

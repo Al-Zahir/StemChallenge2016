@@ -24,21 +24,30 @@ public class FuelCellTaker : MonoBehaviour {
             Destroy(t.gameObject);
 
         for(int i = 0; i < numCells; i++)
-            Instantiate(fuelCell, displayStarts[i / (rows * cols)].TransformPoint(new Vector3(offsetX * (i % (rows * cols) % cols), offsetY * (i % (rows * cols) / cols), 0)), displayStarts[i / (rows * cols)].rotation);
+            ((GameObject)Instantiate(fuelCell, 
+                displayStarts[i / (rows * cols)].TransformPoint(new Vector3(offsetX * (i % (rows * cols) % cols), 
+                offsetY * (i % (rows * cols) / cols), 0)), displayStarts[i / (rows * cols)].rotation)).transform.parent = transform;
     }
 
     void OnTriggerEnter(Collider col)
     {
         if (col.tag == "PlayerBody")
         {
+            int original = numCells;
             numCells += gameController.numCellsOnPlayer;
             if (numCells > 8)
                 numCells = 8;
 
             if (numCells == 8)
+            {
                 door.allowOpen = true;
+                StartCoroutine(door.OpenClose(true));
+                gameController.numCellsOnPlayer -= 8 - original;
+                gameController.UpdateFuelText();
+            }
+            else
+                gameController.EmptyFuel();
 
-            gameController.EmptyFuel();
             UpdateView();
         }
     }

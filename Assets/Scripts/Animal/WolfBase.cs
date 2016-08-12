@@ -98,16 +98,19 @@ public class WolfBase : MonoBehaviour
 
     public void SetAgentSpeed(float speed)
     {
+        if (agent == null) return;
         agent.speed = speed;
     }
 
     public void SetAnimSpeed(float speed)
     {
+        if (anim == null) return;
         anim.SetFloat("Speed", speed);
     }
 
     public void SetAnimSprint(float sprint)
     {
+        if (anim == null) return;
         anim.SetFloat("SprintTrigger", sprint);
     }
 
@@ -125,6 +128,9 @@ public class WolfBase : MonoBehaviour
 
     private IEnumerator CancelActionRoutine()
     {
+        if (anim == null)
+            yield break;
+
         anim.SetBool("cancelAction", true);
         anim.SetBool("isDrinking", false);
 
@@ -135,6 +141,8 @@ public class WolfBase : MonoBehaviour
 
     public bool SetDestination(Vector3 target, bool overrideCurrent)
     {
+        if (agent == null) return false;
+
         if (overrideCurrent || AtDestination())
         {
             if(agent.isActiveAndEnabled)
@@ -147,6 +155,7 @@ public class WolfBase : MonoBehaviour
 
     public bool AtDestination()
     {
+        if (agent == null) return false;
         return agent.isActiveAndEnabled && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance;
     }
 

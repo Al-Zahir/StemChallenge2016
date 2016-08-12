@@ -10,26 +10,47 @@ public class GameController : MonoBehaviour {
     private float originalRotSpeed;
     public int numCellsOnPlayer = 0;
     public Text fuelText;
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
         originalRotSpeed = dayNight.increment;
-	}
-	
-    void FixedUpdate()
-    {
-        playerRespawn.position = inStart ? startRespawn.position : gameRespawn.position;
-        dayNight.increment = inStart ? 0 : originalRotSpeed;
-    }
-
-	// Update is called once per frame
-	void Update () {
-	
+        if (inStart)
+        {
+            GetComponent<WolfSpawner>().enabled = false;
+            dayNight.increment = 0;
+            playerRespawn.position = startRespawn.position;
+        }
+        else
+        {
+            GetComponent<WolfSpawner>().enabled = true;
+            dayNight.increment = originalRotSpeed;
+            playerRespawn.position = gameRespawn.position;
+        }
+        player = GameObject.Find("Player");
 	}
 
     public void FinishedStartTemple()
     {
         inStart = false;
+        GetComponent<WolfSpawner>().enabled = true;
+        dayNight.increment = originalRotSpeed;
+        playerRespawn.position = gameRespawn.position;
+        StartCoroutine(Fly());
+    }
+
+    private IEnumerator Fly()
+    {
+        Camera.main.GetComponent<CameraScript>().enabled = false;
+        Transform first = Camera.main.GetComponent<SplineController>().SplineRoot.transform.Find("0");
+        first.position = Camera.main.transform.position;
+        first.rotation = Camera.main.transform.rotation;
+        Camera.main.GetComponent<SplineController>().enabled = true;
+        Camera.main.GetComponent<SplineInterpolator>().enabled = true;
+        yield return new WaitForSeconds(52);
+        Camera.main.GetComponent<CameraScript>().enabled = true;
+        Camera.main.GetComponent<SplineController>().enabled = false;
+        Camera.main.GetComponent<SplineInterpolator>().enabled = false;
     }
 
     public void AddFuel()

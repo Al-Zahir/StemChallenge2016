@@ -36,7 +36,7 @@
 		//Cull Off //Comment out this line to only show the front face of terrain surfaces
 
 		CGPROGRAM
-		#pragma surface surf Standard vertex:SplatmapVert finalcolor:SplatmapFinalColor finalgbuffer:SplatmapFinalGBuffer alphatest:_CutoutModeHideAlpha2 fullforwardshadows addshadow  
+		#pragma surface surf Standard vertex:SplatmapVert finalcolor:SplatmapFinalColor finalgbuffer:SplatmapFinalGBuffer alphatest:_CutoutModeHideAlpha2 fullforwardshadows addshadow
 		#pragma multi_compile_fog
 		#pragma target 3.0
 		// needs more than 8 texcoords

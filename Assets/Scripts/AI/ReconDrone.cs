@@ -29,6 +29,7 @@ public class ReconDrone : MonoBehaviour {
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
         startPos = transform.position;
+        startRot = transform.rotation;
 
         if (player == null)
             player = GameObject.Find("Player").transform;

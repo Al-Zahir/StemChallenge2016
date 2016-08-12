@@ -267,7 +267,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 		if(!isAiming){
 
-			StartCoroutine ("QuickShot");
+			//StartCoroutine ("QuickShot");
 
 		}
 

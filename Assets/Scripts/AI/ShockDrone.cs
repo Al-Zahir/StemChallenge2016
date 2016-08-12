@@ -44,6 +44,8 @@ public class ShockDrone : MonoBehaviour
 
     public float shieldAngle = 30;
 
+    public bool brainDead = false;
+
     // Use this for initialization
     void Start()
     {
@@ -62,7 +64,7 @@ public class ShockDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead) return;
+        if (dead || brainDead) return;
 
         if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer && !overrideSeePlayer)
             transform.rotation = startRot;
@@ -122,7 +124,7 @@ public class ShockDrone : MonoBehaviour
 
     private IEnumerator FindPlayer()
     {
-        while (!dead)
+        while (!dead && !brainDead)
         {
             Vector3 adjPlayer = player.position;
             adjPlayer.y = transform.position.y;
@@ -156,7 +158,7 @@ public class ShockDrone : MonoBehaviour
 
     private IEnumerator ZapPlayer()
     {
-        while(!dead)
+        while(!dead && !brainDead)
         {
             Vector3 noYPos = shockers[0].transform.position;
             noYPos.y = player.transform.position.y;
@@ -175,8 +177,11 @@ public class ShockDrone : MonoBehaviour
 
     void HitByPlayer()
     {
-        chasePlayer = true;
-        StartCoroutine(FallBack());
+        if (!brainDead)
+        {
+            chasePlayer = true;
+            StartCoroutine(FallBack());
+        }
     }
 
     void FoundPlayer()

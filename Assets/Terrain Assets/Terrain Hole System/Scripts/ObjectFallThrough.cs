@@ -45,9 +45,10 @@ public class ObjectFallThrough : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        currentNoTerrainZone = col.GetComponent<NoTerrainZone>();
-        if (currentNoTerrainZone != null)
+        NoTerrainZone colTerrainZone = col.GetComponent<NoTerrainZone>();
+        if (colTerrainZone != null)
         {
+            currentNoTerrainZone = colTerrainZone;
             GameObject[] terrains = currentNoTerrainZone.interaction;
             foreach (GameObject terrain in terrains)
                 UpdateCollision(true, terrain);
@@ -56,15 +57,15 @@ public class ObjectFallThrough : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        currentNoTerrainZone = col.GetComponent<NoTerrainZone>();
+        NoTerrainZone colTerrainZone = col.GetComponent<NoTerrainZone>();
         if (currentNoTerrainZone != null)
         {
             GameObject[] terrains = currentNoTerrainZone.interaction;
             foreach (GameObject terrain in terrains)
                 UpdateCollision(false, terrain);
-        }
 
-        currentNoTerrainZone = null;
+            currentNoTerrainZone = null;
+        }
     }
 	
 	void AddTerrainObjectToList(GameObject terObj)

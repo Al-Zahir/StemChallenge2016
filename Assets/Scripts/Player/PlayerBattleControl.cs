@@ -64,6 +64,9 @@ public class PlayerBattleControl : MonoBehaviour {
         if (!mecInTrans(1) && mecInAnim("Equip Dequip.sword_base", 1))
             isTransitioning = false;
 
+        sword.gameObject.SetActive(playerWeaponSelector.swordAvail);
+        shield.gameObject.SetActive(playerWeaponSelector.swordAvail);
+
         playerMovement.rootMotionBattle = mecInAnyAnim(swordRootMotionAnimations, 0);
 
         if ((playerMovement.isDisabledByClimb || playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) && !isTransitioning)

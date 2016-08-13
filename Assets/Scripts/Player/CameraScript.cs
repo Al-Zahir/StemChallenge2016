@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class CameraScript : MonoBehaviour {
 
@@ -25,7 +26,8 @@ public class CameraScript : MonoBehaviour {
 
 	//Cursor Stuff
 	public Texture2D cursor;
-	private Texture2D fill;
+	private Texture2D[] fill;
+    public int circleDivisions = 20;
 	private int mouseWidth = Screen.height / 30;
 	private int mouseHeight = Screen.height / 30;
 	private Vector2 mouseOffset = Vector2.zero; // Sets the offset of the mouse from the middle of the screen
@@ -45,12 +47,44 @@ public class CameraScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
         thirdPersonCameraOriginalLocation = thirdPersonCameraLocation.localPosition;
         mouseOffset = Vector2.zero;
 
 		spine = player.FindChild ("mixamorig:Hips").FindChild("mixamorig:Spine");
+
+        fill = new Texture2D[circleDivisions + 1];
+
+
+        for (int i = 0; i < circleDivisions + 1; i++)
+        {
+            Texture2D buffer = new Texture2D(cursor.width, cursor.height);
+            buffer.SetPixels(cursor.GetPixels());
+
+            float percentageComplete = (float) i / circleDivisions;
+            float innerRadius = 180f * buffer.width / 512, outerRadius = 240f * buffer.height / 512;
+            float center = 256f * ((buffer.width + buffer.height) / 2) / 512;
+
+            for (int y = 0; y < buffer.height; y++)
+            {
+                for (int x = 0; x < buffer.width; x++)
+                {
+                    float radius = Mathf.Sqrt((y - center) * (y - center) + (x - center) * (x - center));
+                    float angle = 450 - Mathf.Atan2(y - center, x - center) * Mathf.Rad2Deg;
+                    angle %= 360;
+
+                    if (radius > innerRadius && radius < outerRadius && angle < percentageComplete * 360)
+                    {
+                        buffer.SetPixel(x, y, new Color(0f, 158f / 255f, 1.0f));
+                    }
+                }
+            }
+
+            buffer.Apply();
+
+            fill[i] = buffer;
+        }
 	}
 	
 	// Update is called once per frame
@@ -99,40 +133,16 @@ public class CameraScript : MonoBehaviour {
 			mouseWidth = (int)(Screen.height / 30 * crosshairScale);
 			mouseHeight = (int)(Screen.height / 30 * crosshairScale);
 
-			//Texture2D fill = (Texture2D)Instantiate (cursor);
-
-			if (renderCounter > 4) {
-				renderCounter = 0;
-				fill = new Texture2D (cursor.width, cursor.height);
-				fill.SetPixels (cursor.GetPixels ());
-
-				Animator anim = player.GetComponent<Animator> ();
-				if (!Mecanim.inTrans (anim, 1) && Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 2)) {
-					float percentageComplete = anim.GetCurrentAnimatorStateInfo (2).normalizedTime;
-					float innerRadius = 180f * fill.width / 512, outerRadius = 240f * fill.height / 512;
-					float center = 256f * ((fill.width + fill.height) / 2) / 512;
-
-					for (int y = 0; y < fill.height; y++) {
-						for (int x = 0; x < fill.width; x++) {
-							float radius = Mathf.Sqrt ((y - center) * (y - center) + (x - center) * (x - center));
-							float angle = 450 - Mathf.Atan2 (y - center, x - center) * Mathf.Rad2Deg;
-							angle %= 360;
-
-							if (radius > innerRadius && radius < outerRadius && angle < percentageComplete * 360) {
-								fill.SetPixel (x, y, new Color(0f, 158f/255f, 1.0f));
-							}
-						}
-					}
-
-				
-				}
-
-				fill.Apply ();
+            Texture2D cursorRender = fill[0];
+			Animator anim = player.GetComponent<Animator> ();
+			if (!Mecanim.inTrans (anim, 1) && Mecanim.inAnim (anim, "Draw Recoil.aim_overdraw", 2)) {
+				float percentageComplete = Mathf.Clamp(anim.GetCurrentAnimatorStateInfo (2).normalizedTime, 0, 1);
+                cursorRender = fill[(int)(percentageComplete * circleDivisions + 0.4f)];
 			}
 
 			// Drawn with consideration to mouseOffset and crosshair scaling
-			GUI.DrawTexture (new Rect (Screen.width / 2 - (mouseWidth / 2) + (int)(mouseWidth * mouseOffset.x / crosshairScale), 
-				Screen.height / 2 - (mouseHeight / 2) + (int)(mouseHeight * mouseOffset.y / crosshairScale), mouseWidth, mouseHeight), fill);
+			GUI.DrawTexture (new Rect (Screen.width / 2 - (mouseWidth / 2) + (int)(mouseWidth * mouseOffset.x / crosshairScale),
+                Screen.height / 2 - (mouseHeight / 2) + (int)(mouseHeight * mouseOffset.y / crosshairScale), mouseWidth, mouseHeight), cursorRender);
 			renderCounter++;
 		}
 	}

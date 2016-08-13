@@ -267,7 +267,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 		if(!isAiming){
 
-			StartCoroutine ("QuickShot");
+			//StartCoroutine ("QuickShot");
 
 		}
 
@@ -280,11 +280,12 @@ public class PlayerArcheryControl : MonoBehaviour {
                 vel = minVel;
                 
 			GameObject a = (GameObject)Instantiate (arrow,
-                playerMovement.mainCam.transform.position + playerMovement.mainCam.transform.forward * 1f,
+                playerMovement.mainCam.transform.position + playerMovement.mainCam.transform.forward * 2f,
                 Quaternion.LookRotation(playerMovement.mainCam.transform.forward * vel) * Quaternion.Euler(90, 0, 0));// * Quaternion.Euler (playerMovement.mainCam.transform.right * 90));
 			a.GetComponent<Rigidbody>().isKinematic = false;
 			a.GetComponent<Arrow> ().enabled = true;
 			a.GetComponent<Rigidbody> ().velocity = playerMovement.mainCam.transform.forward * vel;
+            a.GetComponent<AudioSource>().Play();
 		
 		}
 

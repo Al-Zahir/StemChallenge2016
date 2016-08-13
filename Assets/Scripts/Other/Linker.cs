@@ -10,7 +10,6 @@ public class Linker : MonoBehaviour {
     private Vector3 positionOffset;
     public bool linkRotation;
     public bool inverseRotation = false;
-    public bool linkPositionToRotation = false;
     public Transform rotationObject;
     private Quaternion rotationOffset;
 

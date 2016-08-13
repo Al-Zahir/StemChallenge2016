@@ -38,6 +38,11 @@ public class Child : MonoBehaviour
 
     void Update()
     {
+        if(parentTransform == null)
+        {
+            Destroy(this);
+            return;
+        }
 
         parentMatrix = Matrix4x4.TRS(parentTransform.position, parentTransform.rotation, parentTransform.lossyScale);
 

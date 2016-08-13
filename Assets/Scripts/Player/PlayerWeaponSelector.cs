@@ -7,6 +7,7 @@ public class PlayerWeaponSelector : MonoBehaviour {
 	private Image[] slots;
 	private PlayerMovement playerMovement;
 	public Transform canvas;
+    public bool swordAvail = true, bowAvail = true;
 
 	private KeyCode[] keyCodes = {KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5,
 		KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9};
@@ -38,9 +39,24 @@ public class PlayerWeaponSelector : MonoBehaviour {
 	void Update(){
 
 		for (int i = 1; i <= slots.Length; i++)
-			if (Input.GetKeyDown (keyCodes [i]) && playerMovement.isAbleToMove)
-				ChangeSelected (i);
+            if (Input.GetKeyDown(keyCodes[i]) && playerMovement.isAbleToMove)
+            {
+                bool clickingNotAllowed = !swordAvail && i == 2 ||
+                                          !bowAvail && i == 3;
 
+                if (!clickingNotAllowed)
+                    ChangeSelected(i);
+            }
+
+        if (!swordAvail)
+            slots[1].color = Color.clear;
+        else if(slots[1].color == Color.clear && swordAvail)
+            slots[1].color = new Color(0.65f, 0.65f, 0.65f, 0.75f);
+
+        if (!bowAvail)
+            slots[2].color = Color.clear;
+        else if (slots[2].color == Color.clear && bowAvail)
+            slots[2].color = new Color(0.65f, 0.65f, 0.65f, 0.75f);
 	}
 
 	public void ChangeSelected(int num){

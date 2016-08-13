@@ -38,6 +38,11 @@ public class PlayerFallingControl : MonoBehaviour {
     private int lastVelocityIndex = -1;
     public float failCheckDistance = 0.01f;
 
+    public Vector3 minVel = new Vector3(0, 2, 2);
+
+    public AudioClip[] jumpSounds;
+    public AudioClip landSound;
+
 	void Awake(){
 
 		anim = GetComponent<Animator> ();
@@ -191,10 +196,25 @@ public class PlayerFallingControl : MonoBehaviour {
             cameFromFallingOffOnAccident = true;
 
         if (!cameFromFallingOffOnAccident)
-		    rigid.velocity = transform.forward * magnitude * Mathf.Cos(angle) + transform.up * magnitude * Mathf.Sin(angle);
+        {
+            rigid.velocity = transform.forward * magnitude * Mathf.Cos(angle) + transform.up * magnitude * Mathf.Sin(angle);
+            PlayJump();
+        }
+
+        if (rigid.velocity.magnitude < minVel.magnitude)
+        {
+            rigid.velocity = transform.TransformVector(minVel);
+        }
+
         StartCoroutine(AllowTransition());
         cameFromFallingOffOnAccident = false;
 	}
+
+    public void PlayJump()
+    {
+        GetComponent<AudioSource>().clip = jumpSounds[Random.Range(0, jumpSounds.Length)];
+        GetComponent<AudioSource>().Play();
+    }
 
     private IEnumerator AllowTransition()
     {
@@ -218,6 +238,8 @@ public class PlayerFallingControl : MonoBehaviour {
 	public void EndFall(){
 
 		anim.SetBool ("Falling", false);
+        GetComponent<AudioSource>().clip = landSound;
+        GetComponent<AudioSource>().Play();
 
         float yVel = rigid.velocity.y;
         foreach (Vector3 velocity in lastVelocities)

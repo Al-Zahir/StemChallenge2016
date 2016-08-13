@@ -7,6 +7,8 @@ public class BossDrone : MonoBehaviour {
     public bool debug = false;
     public bool active = false;
     public Transform player;
+    public Transform leftSpawner, rightSpawner;
+    public GameObject explosionPrefab;
     //private NavMeshAgent agent;
     private Vector3 lastDir = Vector3.forward;
     public float closestDistance = 2f;
@@ -80,7 +82,10 @@ public class BossDrone : MonoBehaviour {
 
             if (!grounded)
             {
-                GameObject instantiated = (GameObject)Instantiate(dronePrefabs[randID], transform.position + transform.forward * droneStartDistance, Quaternion.LookRotation(transform.forward));
+                Vector3 pos = Random.Range(0, 1f) > 0.5 ? leftSpawner.position : rightSpawner.position;
+                // transform.position + transform.forward * droneStartDistance
+                GameObject instantiated = (GameObject)Instantiate(dronePrefabs[randID], pos, Quaternion.LookRotation(transform.forward));
+                ((GameObject) Instantiate(explosionPrefab, pos, Quaternion.identity)).SetActive(true);
                 if (instantiated.GetComponent<ShockDrone>() != null)
                     instantiated.GetComponent<ShockDrone>().overrideSeePlayer = true;
                 else if (instantiated.GetComponent<MineDrone>() != null)

@@ -83,7 +83,7 @@ public class Rotator : MonoBehaviour {
             OnStarFadeOut();
 	}
 
-    private void OnSunrise()
+    public void OnSunrise()
     {
         sunLight.intensity = originalIntensity;
         moonLight.intensity = 0;
@@ -100,7 +100,7 @@ public class Rotator : MonoBehaviour {
         Shader.SetGlobalFloat("_BillboardCurrentColor", dayBillboardColor);
     }
 
-    private void OnSunset()
+    public void OnSunset()
     {
         sunLight.intensity = 0;
         moonLight.intensity = moonLightIntensity;

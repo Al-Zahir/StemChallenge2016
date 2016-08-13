@@ -38,6 +38,8 @@ public class PlayerFallingControl : MonoBehaviour {
     private int lastVelocityIndex = -1;
     public float failCheckDistance = 0.01f;
 
+    public Vector3 minVel = new Vector3(0, 2, 2);
+
 	void Awake(){
 
 		anim = GetComponent<Animator> ();
@@ -192,6 +194,12 @@ public class PlayerFallingControl : MonoBehaviour {
 
         if (!cameFromFallingOffOnAccident)
 		    rigid.velocity = transform.forward * magnitude * Mathf.Cos(angle) + transform.up * magnitude * Mathf.Sin(angle);
+
+        if (rigid.velocity.magnitude < minVel.magnitude)
+        {
+            rigid.velocity = transform.TransformVector(minVel);
+        }
+
         StartCoroutine(AllowTransition());
         cameFromFallingOffOnAccident = false;
 	}

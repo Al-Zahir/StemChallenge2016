@@ -110,7 +110,10 @@ public class WolfAI : MonoBehaviour {
         if (spottedPlayerDelayed)
             lastPlayerTime = Time.time;
         else if (Time.time > lastPlayerTime + noPlayerDeathTime)
-            waterLevel = -1;
+        {
+            dead = true;
+            Destroy(gameObject);
+        }
     }
 
 	// Update is called once per frame

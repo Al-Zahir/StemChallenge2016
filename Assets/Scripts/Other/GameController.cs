@@ -4,8 +4,8 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-    public bool inStart = true;
-    public Transform startRespawn, gameRespawn, playerRespawn;
+    public bool inStart = true, inEnd = false;
+    public Transform startRespawn, endRespawn, gameRespawn, playerRespawn;
     public Rotator dayNight;
     private float originalRotSpeed;
     public int numCellsOnPlayer = 0;
@@ -15,11 +15,11 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         originalRotSpeed = dayNight.increment;
-        if (inStart)
+        if (inStart || inEnd)
         {
             GetComponent<WolfSpawner>().enabled = false;
             dayNight.increment = 0;
-            playerRespawn.position = startRespawn.position;
+            playerRespawn.position = inStart ? startRespawn.position : endRespawn.position;
         }
         else
         {
@@ -37,6 +37,25 @@ public class GameController : MonoBehaviour {
         dayNight.increment = originalRotSpeed;
         playerRespawn.position = gameRespawn.position;
         StartCoroutine(Fly());
+    }
+
+    public void StartEndTemple()
+    {
+        inEnd = true;
+        GetComponent<WolfSpawner>().enabled = false;
+        dayNight.OnSunrise();
+        dayNight.increment = 0;
+        dayNight.transform.rotation = Quaternion.EulerAngles(40, 0, 0);
+        playerRespawn.position = endRespawn.position;
+    }
+
+    public void FinishedEndTemple()
+    {
+        inEnd = false;
+        GetComponent<WolfSpawner>().enabled = true;
+        dayNight.increment = originalRotSpeed;
+        playerRespawn.position = gameRespawn.position;
+        Debug.Log("Finished end");
     }
 
     private IEnumerator Fly()

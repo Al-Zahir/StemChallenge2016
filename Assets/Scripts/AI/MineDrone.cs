@@ -52,7 +52,7 @@ public class MineDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead) return;
+        if (dead || !GetComponent<NavMeshAgent>().enabled) return;
         if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer && !overrideSeePlayer)
             transform.rotation = startRot;
 
@@ -95,6 +95,12 @@ public class MineDrone : MonoBehaviour
     {
         while (!dead)
         {
+            if(!GetComponent<NavMeshAgent>().enabled)
+            {
+                yield return new WaitForSeconds(0.5f);
+                continue;
+            }
+
             Vector3 adjPlayer = player.position;
             adjPlayer.y = transform.position.y;
             Vector3 adjAgentPos = transform.position;

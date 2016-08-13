@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     public float hitLength = 0.2f;
     public float healthRegenRate = 5f;
 
+    public AudioClip[] hurtSounds;
+
     public Transform playerSpawn;
 
     private IEnumerator currentLoseHealth;
@@ -79,6 +81,9 @@ public class PlayerHealth : MonoBehaviour
 
         currentLoseHealth = LoseHealth();
         StartCoroutine(currentLoseHealth);
+
+        GetComponent<AudioSource>().clip = hurtSounds[Random.Range(0, hurtSounds.Length)];
+        GetComponent<AudioSource>().Play();
     }
 
     private IEnumerator LoseHealth()

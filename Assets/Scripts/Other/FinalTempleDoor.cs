@@ -8,6 +8,8 @@ public class FinalTempleDoor : MonoBehaviour {
     public float lowerAmount = 10f;
     private Vector3 closedPos, openPos;
     public bool allowOpen = false;
+    public bool triggerEnd = false;
+    private Collider collider;
 
     void Start()
     {
@@ -25,6 +27,12 @@ public class FinalTempleDoor : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
 
+        if (!open && triggerEnd && transform.InverseTransformVector(collider.transform.position - transform.position).z < 0)
+        {
+            GameObject.Find("GameController").GetComponent<GameController>().StartEndTemple();
+            allowOpen = false;
+        }
+
         currentAction = null;
     }
 
@@ -33,6 +41,7 @@ public class FinalTempleDoor : MonoBehaviour {
         if(col.tag == "PlayerBody" && allowOpen)
         {
             //Debug.Log("ENTER:"+col.name);
+            collider = col;
             if (currentAction != null)
                 StopCoroutine(currentAction);
 

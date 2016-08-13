@@ -46,6 +46,8 @@ public class ShockDrone : MonoBehaviour
 
     public bool brainDead = false;
 
+    private ParticleSystem smokeSystem;
+
     // Use this for initialization
     void Start()
     {
@@ -57,6 +59,8 @@ public class ShockDrone : MonoBehaviour
         if (player == null)
             player = GameObject.Find("Player").transform;
 
+        smokeSystem = transform.Find("Smoke").GetComponent<ParticleSystem>();
+
         StartCoroutine(FindPlayer());
         StartCoroutine(ZapPlayer());
     }
@@ -64,7 +68,14 @@ public class ShockDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead || brainDead) return;
+        if (dead || brainDead || !GetComponent<NavMeshAgent>().enabled)
+        {
+            if (shockers[0].emission.enabled && !brainDead)
+                SetShockers(false);
+            if (smokeSystem.enableEmission)
+                smokeSystem.enableEmission = false;
+            return;
+        }
 
         if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer && !overrideSeePlayer)
             transform.rotation = startRot;
@@ -73,7 +84,8 @@ public class ShockDrone : MonoBehaviour
         {
             agent.SetDestination(startPos);
             agent.speed = moveSpeed;
-            SetShockers(false);
+            if (shockers[0].emission.enabled)
+                SetShockers(false);
             return;
         }
 
@@ -126,6 +138,12 @@ public class ShockDrone : MonoBehaviour
     {
         while (!dead && !brainDead)
         {
+            if (!GetComponent<NavMeshAgent>().enabled)
+            {
+                yield return new WaitForSeconds(0.5f);
+                continue;
+            }
+
             Vector3 adjPlayer = player.position;
             adjPlayer.y = transform.position.y;
             Vector3 adjAgentPos = transform.position;
@@ -160,6 +178,12 @@ public class ShockDrone : MonoBehaviour
     {
         while(!dead && !brainDead)
         {
+            if (!GetComponent<NavMeshAgent>().enabled)
+            {
+                yield return new WaitForSeconds(1f);
+                continue;
+            }
+
             Vector3 noYPos = shockers[0].transform.position;
             noYPos.y = player.transform.position.y;
             if (shockers[0].emission.enabled && Vector3.Distance(noYPos, player.position) < closestDistance)

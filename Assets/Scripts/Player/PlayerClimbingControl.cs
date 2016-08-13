@@ -142,16 +142,20 @@ public class PlayerClimbingControl : MonoBehaviour
     {
         RaycastHit tempHit;
         float closestZ = 100000f;
-        for (float y = 0; y < 0.5; y += 0.01f)
+        float bestY = 1000000f;
+        for (float y = -0.3f; y < 0.5; y += 0.01f)
         {
             Physics.Raycast(transform.position + transform.up * (0.9f + y), transform.forward, out tempHit, 1.0f);
             Vector3 localHit = transform.InverseTransformPoint(tempHit.point);
-            DrawRay(transform.position + transform.up * (0.9f + y), transform.forward, Color.red);
-            if (localHit.z < closestZ && localHit.z > 0.01f && tempHit.transform != null && tempHit.transform.tag == "Can Climb")
+            if ((localHit.z < closestZ || Mathf.Abs(localHit.z - closestZ) < 0.1f && Mathf.Abs(localHit.y - 0.8f) < bestY) && localHit.z > 0.01f && tempHit.transform != null && tempHit.transform.tag == "Can Climb")
             {
                 closestZ = localHit.z;
                 hit = tempHit;
+                bestY = Mathf.Abs(localHit.y - 0.8f);
+                DrawRay(transform.position + transform.up * (0.9f + y), transform.forward, Color.green);
             }
+            else
+                DrawRay(transform.position + transform.up * (0.9f + y), transform.forward, Color.red);
         }
     }
 
@@ -232,7 +236,7 @@ public class PlayerClimbingControl : MonoBehaviour
                 jumping = false;
                 climbStartTimer = 0;
                 jumpTimer = 0;
-                smoothingTime = originalSmoothingTime;
+                //smoothingTime = originalSmoothingTime;
             }
         }
 
@@ -241,13 +245,13 @@ public class PlayerClimbingControl : MonoBehaviour
             anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_hop_right")))
         {
             // React to sharp local Z change
-            Vector3 localDelta = transform.InverseTransformVector(hit.point - lastPos);
+            Vector3 localDelta = transform.InverseTransformVector(hit.point - lastPos) / Time.deltaTime;
             MoreInfo info = hit.transform != null ? hit.transform.GetComponent<MoreInfo>() : null;
             bool lagging = false;
-            if (info == null)
-                lagging = Mathf.Abs(localDelta.z) > 0.005f;
+            /* (info == null)
+                lagging = Mathf.Abs(localDelta.z) > 0.5f;
             else
-                lagging = info.climbStickZ && Mathf.Abs(localDelta.z) > 0.005f || info.climbStickY && (Mathf.Abs(localDelta.y) > 0.001f && (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")
+                lagging = info.climbStickZ && Mathf.Abs(localDelta.z) > 0.5f || info.climbStickY && (Mathf.Abs(localDelta.y) > 0.001f && (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")
                 || anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_shimmy")
                 || anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.braced_hang_shimmy_1"))
                 && (anim.GetAnimatorTransitionInfo(0).fullPathHash == 0 || anim.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer.Climbing.braced_hang_idle")));
@@ -268,7 +272,7 @@ public class PlayerClimbingControl : MonoBehaviour
             {
                 smoothMult = 1;
                 playerIK.overrideIK = false;
-            }
+            }*/
         }
 
         bodyNoiseTimer += Time.deltaTime;

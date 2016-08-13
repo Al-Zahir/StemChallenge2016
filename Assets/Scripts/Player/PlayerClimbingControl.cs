@@ -236,7 +236,7 @@ public class PlayerClimbingControl : MonoBehaviour
                 jumping = false;
                 climbStartTimer = 0;
                 jumpTimer = 0;
-                //smoothingTime = originalSmoothingTime;
+                smoothingTime = originalSmoothingTime;
             }
         }
 

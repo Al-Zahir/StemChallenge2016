@@ -308,6 +308,7 @@ public class PlayerClimbingControl : MonoBehaviour
                     {
                         playerIK.ResetHandSpacingWait(0.3f);
                         anim.SetTrigger("ClimbUp");
+                        GetComponent<PlayerFallingControl>().PlayJump();
                         lag = 0;
                         smoothMult = 1;
                         Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
@@ -336,6 +337,7 @@ public class PlayerClimbingControl : MonoBehaviour
                     {
                         playerIK.ResetHandSpacingWait(0.3f);
                         anim.SetTrigger("ClimbDown");
+                        GetComponent<PlayerFallingControl>().PlayJump();
                         lag = 0;
                         smoothMult = 1;
                         Vector3 targetPos = hit.point - transform.up + hit.normal * col.radius;
@@ -371,6 +373,7 @@ public class PlayerClimbingControl : MonoBehaviour
         if (jumpRequested && Mathf.Abs(h) < 0.05f && Input.GetAxis("Vertical") == 0 && playerIK.hanging != 2)
         {
             anim.SetTrigger("ClimbJumpBack");
+            GetComponent<PlayerFallingControl>().PlayJump();
             playerIK.ResetHandSpacingWait(0.3f);
             rigid.velocity = Vector3.zero;
             playerIK.IKGlobalWait(false, climbIKEnableTime);
@@ -408,6 +411,7 @@ public class PlayerClimbingControl : MonoBehaviour
                         {
                             playerIK.ResetHandSpacingWait(0.3f);
                             anim.SetTrigger(sign > 0 ? "ClimbJumpRight" : "ClimbJumpLeft");
+                            GetComponent<PlayerFallingControl>().PlayJump();
                             lag = 0;
                             smoothMult = 1;
                             Vector3 targetPos = detection.point - transform.up + detection.normal * col.radius;

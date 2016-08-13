@@ -14,7 +14,6 @@ public class Arrow : MonoBehaviour {
 	void Awake(){
 
         rigidbody = transform.GetComponent<Rigidbody>();
-        GetComponent<AudioSource>().Play();
 
 	}
 	//im tlalkoling lok reastart the call here
@@ -23,7 +22,6 @@ public class Arrow : MonoBehaviour {
 		float angle = (Mathf.Asin (distance * -Physics.gravity.y / Mathf.Pow (initialVelocity, 2)) * Mathf.Rad2Deg) / 2.0f;
 
 		rigidbody.velocity = initialVelocity * new Vector3 (0, Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad));
-        //Debug.Log (rigidbody.velocity);
 	
 	}
 

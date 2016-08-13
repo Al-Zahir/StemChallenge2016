@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class DroneDisabler : MonoBehaviour {
 
     public GameObject[] drones;
+    public bool disableEntirely = false;
 
 	// Use this for initialization
     void Start()
@@ -52,9 +53,12 @@ public class DroneDisabler : MonoBehaviour {
     public void SetDrones(bool active)
     {
         foreach (GameObject g in drones)
-            if (g.GetComponent<NavMeshAgent>() != null)
+            if (g != null && g.GetComponent<NavMeshAgent>() != null)
             {
-                g.GetComponent<NavMeshAgent>().enabled = active;
+                if (disableEntirely)
+                    g.SetActive(active);
+                else
+                    g.GetComponent<NavMeshAgent>().enabled = active;
             }
     }
 }

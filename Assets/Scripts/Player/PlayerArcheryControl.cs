@@ -285,6 +285,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 			a.GetComponent<Rigidbody>().isKinematic = false;
 			a.GetComponent<Arrow> ().enabled = true;
 			a.GetComponent<Rigidbody> ().velocity = playerMovement.mainCam.transform.forward * vel;
+            a.GetComponent<AudioSource>().Play();
 		
 		}
 

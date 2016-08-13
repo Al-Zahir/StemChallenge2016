@@ -10,17 +10,21 @@ public class FinalTempleDoor : MonoBehaviour {
     public bool allowOpen = false;
     public bool triggerEnd = false;
     private Collider collider;
+    private GameController gameController;
 
     void Start()
     {
         closedPos = transform.parent.position;
         openPos = closedPos - lowerAmount * transform.up;
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
 
     public IEnumerator OpenClose(bool open)
     {
         float start = Time.time;
         Vector3 startPos = transform.parent.position;
+        gameController.GetComponent<AudioSource>().clip = gameController.doorSounds[Random.Range(0, gameController.doorSounds.Length)];
+        gameController.GetComponent<AudioSource>().Play();
         while(Time.time < start + openCloseTime)
         {
             transform.parent.position = Vector3.Lerp(startPos, open ? openPos : closedPos, Mathf.SmoothStep(0, 1, (Time.time - start) / openCloseTime));

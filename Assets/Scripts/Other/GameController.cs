@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
     public int numCellsOnPlayer = 0;
     public Text fuelText;
     private GameObject player;
+    public AudioClip[] doorSounds;
 
 	// Use this for initialization
 	void Start () {

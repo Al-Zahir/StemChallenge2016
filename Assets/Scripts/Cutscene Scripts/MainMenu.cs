@@ -17,6 +17,11 @@ public class MainMenu : MonoBehaviour {
 	public float smoothTime = 0.1f;
 
 	public bool flyIn = false;
+	private bool isLoaded = false;
+
+	public ScreenFadeInOut fader;
+
+	public AudioSource audio;
 
 	void Awake(){
 
@@ -50,7 +55,10 @@ public class MainMenu : MonoBehaviour {
 		
 			transform.Translate (transform.forward * 2 * Time.deltaTime);
 
-			if (transform.position.z > 10)
+			if(transform.position.z >= 0)
+				audio.volume = 0.5f - 0.05f * transform.position.z;
+
+			if (transform.position.z > 10 && !isLoaded)
 				FlyInComplete ();
 		}
 
@@ -58,14 +66,17 @@ public class MainMenu : MonoBehaviour {
 
 	public void StartGame(){
 
-		canvas.gameObject.SetActive (false);
+		foreach (Text t in text)
+			t.gameObject.SetActive (false);
+		//canvas.gameObject.SetActive (false);
 		flyIn = true;
 
 	}
 
 	public void FlyInComplete(){
-
-		Application.LoadLevelAsync (Application.loadedLevel + 1);
+		
+		fader.StartCoroutine (fader.EndScene(Application.loadedLevel + 1));
+		isLoaded = true;
 
 	}
 

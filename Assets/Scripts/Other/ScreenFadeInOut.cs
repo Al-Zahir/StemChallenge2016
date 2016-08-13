@@ -64,5 +64,18 @@ public class ScreenFadeInOut : MonoBehaviour {
 		}
 
 	}
+
+	public IEnumerator EndScene(int level){
+
+		image.enabled = true;
+
+		while (image.color.a < 0.95f) {
+			FadeToBlack ();
+			yield return new WaitForEndOfFrame ();
+		}
+
+		Application.LoadLevelAsync (level);
+
+	}
 	
 }

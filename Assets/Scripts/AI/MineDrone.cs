@@ -49,6 +49,12 @@ public class MineDrone : MonoBehaviour
         StartCoroutine(FindPlayer());
     }
 
+    void OnEnable()
+    {
+        if (player == null) return;
+        StartCoroutine(FindPlayer());
+    }
+
     // Update is called once per frame
     void Update()
     {

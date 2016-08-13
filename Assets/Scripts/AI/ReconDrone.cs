@@ -46,6 +46,12 @@ public class ReconDrone : MonoBehaviour {
         StartCoroutine(NoticePlayer());
 	}
 	
+    void OnEnable()
+    {
+        if (player == null) return;
+        StartCoroutine(NoticePlayer());
+    }
+
     private IEnumerator NoticePlayer()
     {
         while (!dead)

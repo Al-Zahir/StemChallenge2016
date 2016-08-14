@@ -55,7 +55,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 
 		anim.SetBool ("FireBowReadOnly", anim.GetBool("FireBow"));
 
-        anim.SetBool("LeftMouseDown", Input.GetKey(KeyCode.Z));
+        anim.SetBool("LeftMouseDown", Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0));
 
         if (playerMovement.isDisabledByGround && playerWeaponSelector.slotNumber == 3)
         {
@@ -86,11 +86,11 @@ public class PlayerArcheryControl : MonoBehaviour {
 			else if (!Input.GetMouseButton (1) && (isAiming || holdingArrow))
 				Aim (false);
 
-			if (Input.GetKey(KeyCode.Z) && !Mecanim.inTrans(anim, 2) && Mecanim.inAnim(anim, "Draw Recoil.New State 0", 2) &&
+			if ((Input.GetKey(KeyCode.Z)|| Input.GetMouseButton(0)) && !Mecanim.inTrans(anim, 2) && Mecanim.inAnim(anim, "Draw Recoil.New State 0", 2) &&
                 !Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2) && !Mecanim.soonInAnim(anim, "Draw Recoil.aim_overdraw", 2))
 				MorePower ();
 
-            if (canFire && Input.GetKeyUp(KeyCode.Z) && (Mecanim.inAnim(anim, "Draw Recoil.New State", 2) || Mecanim.inAnim(anim, "Draw Recoil.New State 0", 2) || Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2)))
+            if (canFire && (Input.GetKeyUp(KeyCode.Z)|| Input.GetMouseButtonUp(0)) && (Mecanim.inAnim(anim, "Draw Recoil.New State", 2) || Mecanim.inAnim(anim, "Draw Recoil.New State 0", 2) || Mecanim.inAnim(anim, "Draw Recoil.aim_overdraw", 2)))
 				Fire ();
 
 			if (Mecanim.inAnim (anim, "Draw Recoil.New State 0", 2) ||

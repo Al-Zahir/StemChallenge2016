@@ -225,6 +225,9 @@ public class PlayerFallingControl : MonoBehaviour {
     private IEnumerator FixAccidentVel()
     {
         yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+        yield return new WaitForFixedUpdate();
+        Debug.Log("ho");
         rigid.velocity = accidentVelocity;
     }
 

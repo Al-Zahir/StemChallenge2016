@@ -65,13 +65,6 @@ public class ShockDrone : MonoBehaviour
         StartCoroutine(ZapPlayer());
     }
 
-    void OnEnable()
-    {
-        if (player == null) return;
-        StartCoroutine(FindPlayer());
-        StartCoroutine(ZapPlayer());
-    }
-
     // Update is called once per frame
     void Update()
     {

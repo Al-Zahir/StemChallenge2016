@@ -29,6 +29,18 @@ public class DroneVortex : MonoBehaviour {
 
         GenVortex();
     }
+
+    public void BlowUp()
+    {
+        transform.Find("ExplosionBlue").gameObject.SetActive(true);
+        transform.Find("ExplosionBlue").parent = null;
+        foreach (Transform t in GetComponentsInChildren<Transform>())
+        {
+            t.parent = null;
+            t.gameObject.AddComponent<Rigidbody>();
+            t.GetComponent<Rigidbody>().velocity = Random.onUnitSphere * 4;
+        }
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {

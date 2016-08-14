@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool isDisabledByBattle; //never true
 	public bool isDisabledByArchery; //true while aiming
 	public bool isDisabledByPushing; //true while pushing
+    public bool isDisabledByCutscene;
 
     public bool isHoldingBow;
 
@@ -262,7 +263,8 @@ public class PlayerMovement : MonoBehaviour {
 					!isDisabledByClimb && 
 					!isDisabledByBattle && 
 					!isDisabledByArchery && 
-					!isDisabledByPushing;
+					!isDisabledByPushing &&
+                    !isDisabledByCutscene;
 
 		if(isAbleToMove != flag)
 			rigid.velocity = new Vector3 (0, rigid.velocity.y, 0);

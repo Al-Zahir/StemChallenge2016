@@ -70,9 +70,12 @@ public class PlayerHealth : MonoBehaviour
         healthColorManager.SetColor(new Color(healthColor.r, healthColor.g, healthColor.b, (100f - health) / 110), 1);
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool force = false)
     {
         //Debug.Log(amount);
+        if (playerMovement.isDisabledByCutscene && !force)
+            return;
+
         health -= amount;
         UpdateHealth(true);
 

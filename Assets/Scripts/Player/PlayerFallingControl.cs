@@ -224,7 +224,8 @@ public class PlayerFallingControl : MonoBehaviour {
 
     private IEnumerator FixAccidentVel()
     {
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(0.1f);
+
         rigid.velocity = accidentVelocity;
     }
 
@@ -238,8 +239,11 @@ public class PlayerFallingControl : MonoBehaviour {
 	public void EndFall(){
 
 		anim.SetBool ("Falling", false);
-        GetComponent<AudioSource>().clip = landSound;
-        GetComponent<AudioSource>().Play();
+        if (!playerMovement.isDisabledByCutscene)
+        {
+            GetComponent<AudioSource>().clip = landSound;
+            GetComponent<AudioSource>().Play();
+        }
 
         float yVel = rigid.velocity.y;
         foreach (Vector3 velocity in lastVelocities)

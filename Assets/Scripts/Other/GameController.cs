@@ -7,7 +7,7 @@ using System.Linq;
 
 public class GameController : MonoBehaviour {
 
-    public bool inStart = true, inEnd = false;
+    public bool inStart = true, inEnd = false, playCrashScene = true;
     public Transform startRespawn, endRespawn, gameRespawn, playerRespawn;
     public Rotator dayNight;
     private float originalRotSpeed;
@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour {
     public Transform vortexPos;
     public Text overlayText, credits;
     public float creditsWaitTime = 8;
+    public AudioClip scream;
+
+    public GameObject playerRagdoll, endSceneWolf;
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +48,9 @@ public class GameController : MonoBehaviour {
         player = GameObject.Find("Player");
 
         fuelCells = GameObject.FindObjectsOfType<FuelCellAbsorb>().OrderBy(x => int.Parse(x.name)).ToArray();
+
+        if (inStart && playCrashScene)
+            StartCoroutine(CrashScene());
 	}
 
     public void Update()
@@ -115,10 +121,26 @@ public class GameController : MonoBehaviour {
         //Debug.Log("Finished end");
     }
 
+    private IEnumerator CrashScene()
+    {
+        float volume = music.volume;
+        music.volume = 0;
+        player.GetComponent<PlayerMovement>().isDisabledByCutscene = true;
+        Camera.main.GetComponent<CameraScript>().enabled = false;
+        yield return new WaitForSeconds(1);
+        AudioSource.PlayClipAtPoint(scream, Camera.main.transform.position, 0.02f);
+        yield return new WaitForSeconds(1);
+        playerRagdoll.SetActive(true);
+        playerRagdoll.transform.Find("mixamorig:Hips").GetComponent<Rigidbody>().velocity = playerRagdoll.transform.up * 100;
+        yield return new WaitForSeconds(2);
+        music.volume = volume;
+        Camera.main.GetComponent<CameraScript>().enabled = true;
+        player.GetComponent<PlayerMovement>().isDisabledByCutscene = false;
+        Destroy(playerRagdoll);
+    }
+
     private IEnumerator Fly()
     {
-        music.GetComponent<PlayList>().CancelInvoke();
-        music.GetComponent<PlayList>().Invoke("PlayNextSong", 52.3f);
         float volume = music.volume;
         music.volume = 0.5f;
         music.clip = cameraPanMusic;
@@ -131,21 +153,22 @@ public class GameController : MonoBehaviour {
         first.rotation = Camera.main.transform.rotation;
         Camera.main.GetComponent<SplineController>().enabled = true;
         Camera.main.GetComponent<SplineInterpolator>().enabled = true;
-        yield return new WaitForSeconds(10);
+        Camera.main.GetComponent<SplineController>().Start();
+        Camera.main.GetComponent<SplineController>().FollowSpline();
+        yield return new WaitForSeconds(52);
         Camera.main.GetComponent<CameraScript>().enabled = true;
         Camera.main.GetComponent<SplineController>().enabled = false;
         Camera.main.GetComponent<SplineInterpolator>().enabled = false;
         player.GetComponent<PlayerMovement>().isDisabledByCutscene = false;
         inStart = false;
         music.volume = volume;
+        music.Stop();
     }
 
     private IEnumerator Fly2()
     {
-        music.GetComponent<PlayList>().CancelInvoke();
-        //music.GetComponent<PlayList>().Invoke("PlayNextSong", 52.3f);
         float volume = music.volume;
-        music.volume = 0.6f;
+        music.volume = 0.5f;
         music.clip = cameraPanMusic;
         music.Play();
         music.time = 4 * 60 + 11;
@@ -167,14 +190,23 @@ public class GameController : MonoBehaviour {
         yield return new WaitForSeconds(2);
         overlayText.text = "4 days of rebuilding later...";
         overlayText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
+        overlayText.gameObject.SetActive(false);
+        player.GetComponent<PlayerHealth>().sceneColorManager.SetColor(Color.clear);
+        Camera.main.transform.position = endSceneWolf.transform.position + endSceneWolf.transform.right * -3f + Vector3.up * 2f;
+        Camera.main.transform.LookAt(endSceneWolf.transform);
+        endSceneWolf.SetActive(true);
+        yield return new WaitForSeconds(4);
+        player.GetComponent<PlayerHealth>().sceneColorManager.SetColor(Color.black);
+        yield return new WaitForSeconds(2);
         Camera.main.GetComponent<SplineController>().SplineRoot = finalCameraPan;
         Camera.main.GetComponent<SplineController>().Duration = 24;
         Camera.main.GetComponent<SplineController>().enabled = true;
         Camera.main.GetComponent<SplineInterpolator>().enabled = true;
+        Camera.main.GetComponent<SplineController>().Start();
+        Camera.main.GetComponent<SplineController>().FollowSpline();
         finalWasp.SetActive(true);
         yield return new WaitForSeconds(1);
-        overlayText.gameObject.SetActive(false);
         player.GetComponent<PlayerHealth>().sceneColorManager.SetColor(Color.clear);
         yield return new WaitForSeconds(11);
         finalWasp.GetComponent<SplineController>().FollowSpline();

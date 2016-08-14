@@ -57,7 +57,7 @@ public class PlayerArcheryControl : MonoBehaviour {
 
         anim.SetBool("LeftMouseDown", Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0));
 
-        if (playerMovement.isDisabledByGround && playerWeaponSelector.slotNumber == 3)
+        if ((playerMovement.isDisabledByGround || playerMovement.isDisabledByCutscene) && playerWeaponSelector.slotNumber == 3)
         {
 			playerWeaponSelector.ChangeSelected (1);
             Dequip(); 

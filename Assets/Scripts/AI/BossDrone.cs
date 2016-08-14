@@ -44,6 +44,8 @@ public class BossDrone : MonoBehaviour {
     private Quaternion targetRot;
     public float rotSpeed = 2;
 
+    private GameController gameController;
+
 	// Use this for initialization
 	void Start () {
         //agent = GetComponent<NavMeshAgent>();
@@ -53,6 +55,8 @@ public class BossDrone : MonoBehaviour {
 
         if (player == null)
             player = GameObject.Find("Player").transform;
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         eyeClosedPos = eyeCover.localPosition;
 
@@ -85,7 +89,9 @@ public class BossDrone : MonoBehaviour {
                 Vector3 pos = Random.Range(0, 1f) > 0.5 ? leftSpawner.position : rightSpawner.position;
                 // transform.position + transform.forward * droneStartDistance
                 GameObject instantiated = (GameObject)Instantiate(dronePrefabs[randID], pos, Quaternion.LookRotation(transform.forward));
-                ((GameObject) Instantiate(explosionPrefab, pos, Quaternion.identity)).SetActive(true);
+                GameObject explosion = (GameObject)Instantiate(explosionPrefab, pos, Quaternion.identity);
+                explosion.SetActive(true);
+                Destroy(explosion, 10);
                 if (instantiated.GetComponent<ShockDrone>() != null)
                     instantiated.GetComponent<ShockDrone>().overrideSeePlayer = true;
                 else if (instantiated.GetComponent<MineDrone>() != null)
@@ -175,5 +181,6 @@ public class BossDrone : MonoBehaviour {
         */
         Destroy(gameObject, removeTime);
         Destroy(this);
+        gameController.FinishedEndTemple();
     }
 }

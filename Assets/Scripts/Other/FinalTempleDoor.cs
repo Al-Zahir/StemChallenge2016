@@ -9,6 +9,8 @@ public class FinalTempleDoor : MonoBehaviour {
     private Vector3 closedPos, openPos;
     public bool allowOpen = false;
     public bool triggerEnd = false;
+    public bool triggerBoss = false;
+    public BossDrone boss;
     private Collider collider;
     private GameController gameController;
 
@@ -36,6 +38,9 @@ public class FinalTempleDoor : MonoBehaviour {
             GameObject.Find("GameController").GetComponent<GameController>().StartEndTemple();
             allowOpen = false;
         }
+
+        if (triggerBoss)
+            boss.active = transform.InverseTransformVector(collider.transform.position - transform.position).z < 0;
 
         currentAction = null;
     }

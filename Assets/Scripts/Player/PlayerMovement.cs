@@ -112,7 +112,8 @@ public class PlayerMovement : MonoBehaviour {
 			
 			rigid.velocity = transform.forward * 1.58f + transform.up * rigid.velocity.y;
 
-			if (Input.GetKey (KeyCode.LeftShift) && !isHoldingBow) {
+            if (Input.GetKey(KeyCode.LeftShift))
+            { // && !isHoldingBow
 				anim.SetFloat ("SprintTrigger", 1.0f, speedDampTime, Time.deltaTime);
 
 				rigid.velocity = transform.forward * 4.765f + transform.up * rigid.velocity.y;

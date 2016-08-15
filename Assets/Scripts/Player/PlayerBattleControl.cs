@@ -71,6 +71,15 @@ public class PlayerBattleControl : MonoBehaviour {
 
         playerMovement.rootMotionBattle = mecInAnyAnim(swordRootMotionAnimations, 0);
 
+        if(!isInBattle)
+        {
+            // last minute changes here 8/14 player was getting stuck real bad this seems to work
+            if (anim.GetBool("Blocking"))
+                anim.SetBool("Blocking", false);
+            if (anim.GetBool("isInBattle"))
+                anim.SetBool("isInBattle", false);
+        }
+
         if ((playerMovement.isDisabledByClimb || playerMovement.isDisabledByArchery || playerMovement.isHoldingBow) && !isTransitioning)
         {
             if (isInBattle || sword.parent == swordArmedPosition || shield.parent == shieldArmedPosition)

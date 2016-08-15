@@ -190,7 +190,7 @@ public class PlayerClimbingControl : MonoBehaviour
             UpdateRot();
 
         if (isClimbing
-            && v == 0
+            //&& v == 0
             && !(anim.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Climbing.idle_to_braced_hang")
             || anim.GetAnimatorTransitionInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Locomotion -> Base Layer.Climbing.idle_to_braced_hang")))
             ClimbLeftRight(h);
@@ -370,7 +370,7 @@ public class PlayerClimbingControl : MonoBehaviour
         sign = (h > 0) ? 1f : -1f;
         hit = sign < 0 ? playerIK.leftShimHit : playerIK.rightShimHit;
 
-        if (jumpRequested && Mathf.Abs(h) < 0.05f && Input.GetAxis("Vertical") == 0 && playerIK.hanging != 2)
+        if (jumpRequested && Mathf.Abs(h) < 0.05f && Input.GetAxis("Vertical") >= 0 && playerIK.hanging != 2)
         {
             anim.SetTrigger("ClimbJumpBack");
             GetComponent<PlayerFallingControl>().PlayJump();

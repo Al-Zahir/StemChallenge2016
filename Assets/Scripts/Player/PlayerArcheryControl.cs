@@ -75,8 +75,14 @@ public class PlayerArcheryControl : MonoBehaviour {
 				Dequip ();
 		
 		}*/
-	
-		if (isHoldingBow) {
+
+        if (isHoldingBow)
+        {
+            // last minute changes here 8/14 player was getting stuck real bad this seems to work
+            if (anim.GetBool("Blocking"))
+                anim.SetBool("Blocking", false);
+            if (anim.GetBool("isInBattle"))
+                anim.SetBool("isInBattle", false);
 
             if (isAiming)
                 UpdateAimingMovement();

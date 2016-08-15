@@ -9,7 +9,7 @@ public class IceUnlocker : MonoBehaviour {
     // Use this for initialization
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "IceBlock" && !opened)
+        if ((col.tag == "IceBlock" || col.tag == "PlayerBody") && !opened)
         {
             StartCoroutine(targetDoor.OpenClose(true));
             targetDoor.allowOpen = true;
@@ -20,7 +20,7 @@ public class IceUnlocker : MonoBehaviour {
     // Use this for initialization
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "IceBlock" && opened)
+        if ((col.tag == "IceBlock" || col.tag == "PlayerBody") && opened)
         {
             StartCoroutine(targetDoor.OpenClose(false));
             targetDoor.allowOpen = false;

@@ -127,7 +127,7 @@ public class GameController : MonoBehaviour {
         music.volume = 0;
         player.GetComponent<PlayerMovement>().isDisabledByCutscene = true;
         Camera.main.GetComponent<CameraScript>().enabled = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         AudioSource.PlayClipAtPoint(scream, Camera.main.transform.position, 0.02f);
         yield return new WaitForSeconds(1);
         playerRagdoll.SetActive(true);

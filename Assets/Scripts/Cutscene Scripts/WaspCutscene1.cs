@@ -48,7 +48,7 @@ public class WaspCutscene1 : MonoBehaviour {
 
 			clipSpeed = 5;
 
-			hologramPlanet.Rotate(transform.up * 0.25f, Space.World);
+			hologramPlanet.Rotate(transform.up * 0.25f * 60 * Time.deltaTime, Space.World);
 
 			transform.BroadcastMessage ("Move", SendMessageOptions.DontRequireReceiver);
 

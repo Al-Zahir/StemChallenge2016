@@ -7,6 +7,8 @@ public class BossDrone : MonoBehaviour {
     public bool debug = false;
     public bool active = false;
     public Transform player;
+    public Transform leftSpawner, rightSpawner;
+    public GameObject explosionPrefab;
     //private NavMeshAgent agent;
     private Vector3 lastDir = Vector3.forward;
     public float closestDistance = 2f;
@@ -42,6 +44,8 @@ public class BossDrone : MonoBehaviour {
     private Quaternion targetRot;
     public float rotSpeed = 2;
 
+    private GameController gameController;
+
 	// Use this for initialization
 	void Start () {
         //agent = GetComponent<NavMeshAgent>();
@@ -51,6 +55,8 @@ public class BossDrone : MonoBehaviour {
 
         if (player == null)
             player = GameObject.Find("Player").transform;
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
 
         eyeClosedPos = eyeCover.localPosition;
 
@@ -80,7 +86,12 @@ public class BossDrone : MonoBehaviour {
 
             if (!grounded)
             {
-                GameObject instantiated = (GameObject)Instantiate(dronePrefabs[randID], transform.position + transform.forward * droneStartDistance, Quaternion.LookRotation(transform.forward));
+                Vector3 pos = Random.Range(0, 1f) > 0.5 ? leftSpawner.position : rightSpawner.position;
+                // transform.position + transform.forward * droneStartDistance
+                GameObject instantiated = (GameObject)Instantiate(dronePrefabs[randID], pos, Quaternion.LookRotation(transform.forward));
+                GameObject explosion = (GameObject)Instantiate(explosionPrefab, pos, Quaternion.identity);
+                explosion.SetActive(true);
+                Destroy(explosion, 10);
                 if (instantiated.GetComponent<ShockDrone>() != null)
                     instantiated.GetComponent<ShockDrone>().overrideSeePlayer = true;
                 else if (instantiated.GetComponent<MineDrone>() != null)
@@ -170,5 +181,6 @@ public class BossDrone : MonoBehaviour {
         */
         Destroy(gameObject, removeTime);
         Destroy(this);
+        gameController.FinishedEndTemple();
     }
 }

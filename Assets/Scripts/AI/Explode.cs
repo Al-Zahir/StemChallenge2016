@@ -4,7 +4,9 @@ using System.Collections;
 public class Explode : MonoBehaviour {
 
     private GameObject explosion, explosionBlue;
-    public GameObject[] disableParts, extraParts;
+    public GameObject[] disableParts, extraParts, enableParts;
+    public bool triggerOnActivate = false, destroySelf = false, inCutscene = false;
+    public float destroySelfDelay = 1;
 
     private bool changeColor;
 
@@ -17,10 +19,22 @@ public class Explode : MonoBehaviour {
         temp = transform.FindChild("ExplosionBlue");
         if (temp != null)
             explosionBlue = temp.gameObject;
+
+        if (triggerOnActivate)
+        {
+            if (destroySelf)
+            {
+                Destroy(gameObject, destroySelfDelay);
+                Invoke("explodeDefault", destroySelfDelay - 0.2f);
+            }
+        }
 	}
 	
-	public void explode(float timeToFallApart, bool changeColor, bool showExplosion, bool blue)
+	public void explode(float timeToFallApart, bool changeColor, bool showExplosion, bool blue, bool overrideCutscene = false)
     {
+        if (GameObject.Find("Player").GetComponent<PlayerMovement>().isDisabledByCutscene && !overrideCutscene && !inCutscene)
+            return;
+
         if (explosion != null && !blue)
         {
             explosion.SetActive(showExplosion);
@@ -36,6 +50,11 @@ public class Explode : MonoBehaviour {
 
         StartCoroutine(FallApart(timeToFallApart, changeColor));
         SendMessage("Explosion", SendMessageOptions.DontRequireReceiver);
+    }
+
+    public void explodeDefault()
+    {
+        explode(0, false, true, true);
     }
 
     private IEnumerator FallApart(float timeToFallApart, bool changeColor)
@@ -58,6 +77,9 @@ public class Explode : MonoBehaviour {
 
         foreach (GameObject g in disableParts)
             g.SetActive(false);
+
+        foreach (GameObject g in enableParts)
+            g.SetActive(true);
 
         Destroy(this);
     }

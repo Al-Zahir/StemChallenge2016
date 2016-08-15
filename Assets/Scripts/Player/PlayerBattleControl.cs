@@ -64,6 +64,8 @@ public class PlayerBattleControl : MonoBehaviour {
         if (!mecInTrans(1) && mecInAnim("Equip Dequip.sword_base", 1))
             isTransitioning = false;
 
+        anim.SetBool("ContinueAttackReadOnly", anim.GetBool("ContinueAttack"));
+
         sword.gameObject.SetActive(playerWeaponSelector.swordAvail);
         shield.gameObject.SetActive(playerWeaponSelector.swordAvail);
 
@@ -127,9 +129,6 @@ public class PlayerBattleControl : MonoBehaviour {
 
             if (Input.GetMouseButton(0) && !mecInTrans(0) && mecInAnyAnim(swordRootMotionAnimations, 0))
                 anim.SetTrigger("ContinueAttack");
-            
-            anim.SetBool("ContinueAttackReadOnly", anim.GetBool("ContinueAttack"));
-
 
             if (Input.GetMouseButton(1) && !goingToSwing && notInAnyAttack)
                 anim.SetBool("Blocking", true);

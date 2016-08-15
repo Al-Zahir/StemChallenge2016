@@ -47,7 +47,7 @@ public class SplineController : MonoBehaviour
 	}
 
 
-	void Start()
+	public void Start()
 	{
 		mSplineInterp = GetComponent(typeof(SplineInterpolator)) as SplineInterpolator;
 
@@ -130,8 +130,8 @@ public class SplineController : MonoBehaviour
 	/// <summary>
 	/// Starts the interpolation
 	/// </summary>
-	void FollowSpline()
-	{
+	public void FollowSpline()
+    {
 		if (mTransforms.Length > 0)
 		{
 			SetupSplineInterpolator(mSplineInterp, mTransforms);

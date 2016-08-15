@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     public float hitLength = 0.2f;
     public float healthRegenRate = 5f;
 
+    public AudioClip[] hurtSounds;
+
     public Transform playerSpawn;
 
     private IEnumerator currentLoseHealth;
@@ -68,9 +70,12 @@ public class PlayerHealth : MonoBehaviour
         healthColorManager.SetColor(new Color(healthColor.r, healthColor.g, healthColor.b, (100f - health) / 110), 1);
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool force = false)
     {
         //Debug.Log(amount);
+        if (playerMovement.isDisabledByCutscene && !force)
+            return;
+
         health -= amount;
         UpdateHealth(true);
 
@@ -79,6 +84,9 @@ public class PlayerHealth : MonoBehaviour
 
         currentLoseHealth = LoseHealth();
         StartCoroutine(currentLoseHealth);
+
+        GetComponent<AudioSource>().clip = hurtSounds[Random.Range(0, hurtSounds.Length)];
+        GetComponent<AudioSource>().Play();
     }
 
     private IEnumerator LoseHealth()

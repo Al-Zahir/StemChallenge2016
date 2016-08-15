@@ -22,16 +22,19 @@ public class StartTempleDoorLast : MonoBehaviour {
     {
         float start = Time.time;
         Vector3 startPos = transform.parent.position;
+        gameController.GetComponent<AudioSource>().clip = gameController.doorSounds[Random.Range(0, gameController.doorSounds.Length)];
+        gameController.GetComponent<AudioSource>().Play();
+
+        if (!open && transform.InverseTransformVector(collider.transform.position - transform.position).z > 0)
+        {
+            gameController.FinishedStartTemple();
+            allowOpen = false;
+        }
+
         while(Time.time < start + openCloseTime)
         {
             transform.parent.position = Vector3.Lerp(startPos, open ? openPos : closedPos, Mathf.SmoothStep(0, 1, (Time.time - start) / openCloseTime));
             yield return new WaitForFixedUpdate();
-        }
-
-        if(!open && transform.InverseTransformVector(collider.transform.position - transform.position).z > 0)
-        {
-            gameController.FinishedStartTemple();
-            allowOpen = false;
         }
         currentAction = null;
     }

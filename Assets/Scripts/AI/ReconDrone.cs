@@ -46,11 +46,17 @@ public class ReconDrone : MonoBehaviour {
         StartCoroutine(NoticePlayer());
 	}
 	
+    void OnEnable()
+    {
+        if (player == null) return;
+        StartCoroutine(NoticePlayer());
+    }
+
     private IEnumerator NoticePlayer()
     {
         while (!dead)
         {
-            if (canNoticePlayer)
+            if (canNoticePlayer && GetComponent<NavMeshAgent>().enabled)
             {
                 Vector3 adjPlayer = player.position;
                 adjPlayer.y = transform.position.y;
@@ -91,7 +97,7 @@ public class ReconDrone : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (dead) return;
+        if (dead || !GetComponent<NavMeshAgent>().enabled) return;
 
         if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !noticedPlayer && !hitNoticedPlayer && !overrideSeePlayer)
             transform.rotation = startRot;

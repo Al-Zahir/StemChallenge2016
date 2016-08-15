@@ -370,7 +370,7 @@ public class PlayerClimbingControl : MonoBehaviour
         sign = (h > 0) ? 1f : -1f;
         hit = sign < 0 ? playerIK.leftShimHit : playerIK.rightShimHit;
 
-        if (jumpRequested && Mathf.Abs(h) < 0.05f && playerIK.hanging != 2)
+        if (jumpRequested && Mathf.Abs(h) < 0.05f && Input.GetAxis("Vertical") >= 0 && playerIK.hanging != 2)
         {
             anim.SetTrigger("ClimbJumpBack");
             GetComponent<PlayerFallingControl>().PlayJump();

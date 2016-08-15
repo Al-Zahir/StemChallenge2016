@@ -29,7 +29,7 @@ public class FinalPuzzlePlate : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "PlayerBody")
+		if (col.tag == "IceBlock" || col.tag == "PlayerBody")
         {
             if (rightAction != null)
                 StopCoroutine(rightAction);
@@ -42,7 +42,7 @@ public class FinalPuzzlePlate : MonoBehaviour {
 
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "PlayerBody" && !endPuzzle)
+		if (col.tag == "IceBlock" || col.tag == "PlayerBody")
         {
             if (rightAction != null)
                 StopCoroutine(rightAction);
@@ -51,6 +51,9 @@ public class FinalPuzzlePlate : MonoBehaviour {
             loweredRight = false;
             StartCoroutine(rightAction);
             StartCoroutine(LowerBlock(leftBlock, true));
+			endPuzzle = false;
+			door.allowOpen = false;
+			StartCoroutine (door.OpenClose (false));
         }
     }
 

@@ -46,12 +46,16 @@ public class BossDrone : MonoBehaviour {
 
     private GameController gameController;
 
+	private List<GameObject> spawnedDrones;
+
 	// Use this for initialization
 	void Start () {
         //agent = GetComponent<NavMeshAgent>();
         startPos = transform.position;
         targetPos = startPos;
         targetRot = transform.rotation;
+
+		spawnedDrones = new List<GameObject> ();
 
         if (player == null)
             player = GameObject.Find("Player").transform;
@@ -67,7 +71,7 @@ public class BossDrone : MonoBehaviour {
     {
         while(!dead)
         {
-            if (grounded || !active)
+			if (grounded || !active || spawnedDrones.Count == dronePrefabs.Length)
             {
                 yield return new WaitForSeconds(timeBetweenSpawns);
                 continue;
@@ -84,6 +88,15 @@ public class BossDrone : MonoBehaviour {
 
             int randID = Random.Range(0, dronePrefabs.Length);
 
+			while (AlreadySpawned (randID)) {
+			
+				if (randID == dronePrefabs.Length - 1)
+					randID = 0;
+				else
+					randID++;
+			
+			}
+
             if (!grounded)
             {
                 Vector3 pos = Random.Range(0, 1f) > 0.5 ? leftSpawner.position : rightSpawner.position;
@@ -92,6 +105,9 @@ public class BossDrone : MonoBehaviour {
                 GameObject explosion = (GameObject)Instantiate(explosionPrefab, pos, Quaternion.identity);
                 explosion.SetActive(true);
                 Destroy(explosion, 10);
+
+				spawnedDrones.Add (instantiated);
+
                 if (instantiated.GetComponent<ShockDrone>() != null)
                     instantiated.GetComponent<ShockDrone>().overrideSeePlayer = true;
                 else if (instantiated.GetComponent<MineDrone>() != null)
@@ -183,4 +199,37 @@ public class BossDrone : MonoBehaviour {
         Destroy(this);
         gameController.FinishedEndTemple();
     }
+
+	public void DestroyAll(){
+
+		foreach (GameObject g in spawnedDrones)
+			Destroy (g);
+
+	}
+
+	public bool AlreadySpawned(int randID){
+
+		foreach (GameObject g in spawnedDrones) {
+		
+			if (randID == 0) {
+				if (g.GetComponent<MineDrone> ()) {
+					return true;
+				}
+			} else if (randID == 1) {
+				if (g.GetComponent<ReconDrone> ()) {
+					return true;
+				}
+			} else if (randID == 2) {
+				if (g.GetComponent<ShockDrone> ()) {
+					return true;
+				}
+			}
+			
+		
+		}
+
+		return false;
+	
+	}
 }
+

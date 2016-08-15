@@ -4,7 +4,7 @@ using System;
 
 public class DroneHealth : MonoBehaviour {
 
-    public float health = 100;
+    public float health = 50;
     public float hitLoss = 30;
 
     public string[] hurtObjectNames;

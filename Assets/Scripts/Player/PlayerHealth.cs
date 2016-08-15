@@ -25,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator currentLoseHealth;
 
+	public BossDrone boss;
+
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -53,6 +55,8 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.enabled = false;
         anim.SetTrigger("Death");
         sceneColorManager.SetColor(Color.black);
+		boss.active = false;
+		boss.DestroyAll ();
         yield return new WaitForSeconds(resetAfterDeathTime);
         playerMovement.transform.position = playerSpawn.position;
         health = 100;

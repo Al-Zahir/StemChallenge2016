@@ -13,12 +13,7 @@ public class DroneVortex : MonoBehaviour {
 
     private Transform[] rings;
 
-	// Use this for initialization
     void Start()
-    {
-	}
-
-    void OnValidate()
     {
         if (!Application.isPlaying)
             return;

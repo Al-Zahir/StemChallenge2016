@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour {
 
     public void Update()
     {
-        bool found = true;
+        /*bool found = true;
 
         if(fuelCells[currentCellPtr] == null)
         {
@@ -70,12 +70,25 @@ public class GameController : MonoBehaviour {
                     break;
                 }
             }
+        }*/
+
+        bool found = false;
+        float closestDistance = -1;
+        for(int i=0; i<fuelCells.Length; i++)
+        {
+            if(fuelCells[i] != null && (closestDistance == -1 || Vector3.Distance(fuelCells[i].transform.position, player.transform.position) < closestDistance))
+            {
+                found = true;
+                currentCellPtr = i;
+                closestDistance = Vector3.Distance(fuelCells[i].transform.position, player.transform.position);
+            }
         }
 
         Vector3 pointLoc;
 
         if (!found || finalTempleTaker.numCells + numCellsOnPlayer >= 8)
         {
+            //Here change image to temple image
             pointLoc = finalTempleTaker.transform.position;
         }
         else

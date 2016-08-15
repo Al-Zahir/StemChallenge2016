@@ -5,11 +5,16 @@ public class RobotAttackCutscene : MonoBehaviour {
 
 	public Transform camera;
 
-	public void OnFinishedMovingDrones(){
+	public void StartCamera(){
 
 		camera.GetComponent<Animation> ().Play();
 
 	}
 
+	public void OnFinished(){
+
+		Application.LoadLevelAsync (Application.loadedLevel + 1);
+
+	}
 
 }

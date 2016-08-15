@@ -91,7 +91,11 @@ public class WaspCutscene1 : MonoBehaviour {
 
 	}
 
+	public void FinishDialog1(){
 
+		Application.LoadLevelAsync (Application.loadedLevel + 1);
+
+	}
 
 
 }

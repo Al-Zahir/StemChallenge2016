@@ -37,8 +37,8 @@ public class MainMenu : MonoBehaviour {
 
 	void Update(){
 
-		foreach(Text t in text)
-			t.color = new Color(t.color.r, t.color.g, t.color.b, Mathf.Lerp(startAlpha, targetAlpha, (Time.time - startTime)));
+		//foreach(Text t in text)
+		text[0].color = new Color(text[0].color.r, text[0].color.g, text[0].color.b, Mathf.Lerp(startAlpha, targetAlpha, (Time.time - startTime)));
 
 		if (text[0].color.a == maxAlpha) {
 			targetAlpha = minAlpha;

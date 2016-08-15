@@ -13,7 +13,7 @@ public class LoadingScript : MonoBehaviour {
 	void Start () {
 
 		numDotsF = 0.0f;
-		loadingText.text = "loading";
+		loadingText.text = "Loading";
 		StartCoroutine (LoadNewScene());
 
 	}
@@ -30,7 +30,7 @@ public class LoadingScript : MonoBehaviour {
 		for(int i = 0; i < numDots; i++)
 			dots += ".";
 
-		loadingText.text = "loading" + dots;
+		loadingText.text = "Loading" + dots;
 
 		numDotsF += Time.deltaTime;
 

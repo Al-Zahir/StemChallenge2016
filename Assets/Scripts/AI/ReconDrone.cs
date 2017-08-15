@@ -6,7 +6,7 @@ public class ReconDrone : MonoBehaviour {
 
     public bool debug = false;
     public Transform player;
-    private NavMeshAgent agent;
+    private UnityEngine.AI.NavMeshAgent agent;
     private Vector3 lastDir = Vector3.forward;
     public float closestDistance = 2f;
     public float moveSpeed = 3f;
@@ -27,7 +27,7 @@ public class ReconDrone : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         startPos = transform.position;
         startRot = transform.rotation;
 
@@ -56,7 +56,7 @@ public class ReconDrone : MonoBehaviour {
     {
         while (!dead)
         {
-            if (canNoticePlayer && GetComponent<NavMeshAgent>().enabled)
+            if (canNoticePlayer && GetComponent<UnityEngine.AI.NavMeshAgent>().enabled)
             {
                 Vector3 adjPlayer = player.position;
                 adjPlayer.y = transform.position.y;
@@ -97,7 +97,7 @@ public class ReconDrone : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        if (dead || !GetComponent<NavMeshAgent>().enabled) return;
+        if (dead || !GetComponent<UnityEngine.AI.NavMeshAgent>().enabled) return;
 
         if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !noticedPlayer && !hitNoticedPlayer && !overrideSeePlayer)
             transform.rotation = startRot;
@@ -188,7 +188,7 @@ public class ReconDrone : MonoBehaviour {
     void Explosion()
     {
         dead = true;
-        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
         // Send a lost message for non drone objects
         foreach (GameObject drone in nearbyDrones)
                 if (drone != null && !drone.name.ToLower().Contains("recon"))

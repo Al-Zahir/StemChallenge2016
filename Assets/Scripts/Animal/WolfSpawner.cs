@@ -33,8 +33,8 @@ public class WolfSpawner : MonoBehaviour {
             if(i >= spawned.Count || spawned[i] == null)
             {
                 Vector3 randPos = transform.position + new Vector3(Random.Range(-randSpawnSquare, randSpawnSquare), 0, Random.Range(-randSpawnSquare, randSpawnSquare));
-                NavMeshHit myNavHit;
-                if (NavMesh.SamplePosition(randPos, out myNavHit, 100, -1))
+                UnityEngine.AI.NavMeshHit myNavHit;
+                if (UnityEngine.AI.NavMesh.SamplePosition(randPos, out myNavHit, 100, -1))
                 {
                     GameObject spawn = (GameObject)Instantiate(wolfPrefab, myNavHit.position, Quaternion.identity);
                     spawn.transform.parent = wolfParent;

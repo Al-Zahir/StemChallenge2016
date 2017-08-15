@@ -5,7 +5,7 @@ public class WolfAI : MonoBehaviour {
 
     public bool debug = true;
 	private Animator anim;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
     private WolfBase control;
 
 	public GameObject[] waterSpots;
@@ -49,7 +49,7 @@ public class WolfAI : MonoBehaviour {
 	void Start () {
 
         anim = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         control = GetComponent<WolfBase>();
 
 		waterSpots = GameObject.FindGameObjectsWithTag ("Water");
@@ -379,16 +379,16 @@ public class WolfAI : MonoBehaviour {
 
     public bool CanSee(Transform t)
     {
-        NavMeshHit hit;
+        UnityEngine.AI.NavMeshHit hit;
 
-        return !NavMesh.Raycast(transform.position + 2 * transform.up, t.position + 2 * transform.up, out hit, NavMesh.AllAreas)
+        return !UnityEngine.AI.NavMesh.Raycast(transform.position + 2 * transform.up, t.position + 2 * transform.up, out hit, UnityEngine.AI.NavMesh.AllAreas)
             && Vector3.Angle(transform.forward, t.position - transform.position) < 80;
     }
 
     void Explosion()
     {
         dead = true;
-        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
         Destroy(gameObject, removeTime);
         Destroy(control);
         Destroy(this);

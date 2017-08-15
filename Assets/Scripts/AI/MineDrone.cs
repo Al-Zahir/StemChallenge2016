@@ -6,7 +6,7 @@ public class MineDrone : MonoBehaviour
     public bool debug = false;
     public Transform player;
     public Transform cannon, engine;
-    private NavMeshAgent agent;
+    private UnityEngine.AI.NavMeshAgent agent;
     private Vector3 lastDir = Vector3.forward;
     public float closestDistance = 2f;
     public float moveSpeed = 3f;
@@ -38,7 +38,7 @@ public class MineDrone : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         originalEngineEuler = engine.localRotation.eulerAngles;
         startPos = transform.position;
         startRot = transform.rotation;
@@ -58,7 +58,7 @@ public class MineDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead || !GetComponent<NavMeshAgent>().enabled) return;
+        if (dead || !GetComponent<UnityEngine.AI.NavMeshAgent>().enabled) return;
         if (Vector3.Distance(Vector3.Scale(startPos, new Vector3(1, 0, 1)), Vector3.Scale(transform.position, new Vector3(1, 0, 1))) < 0.1f && !chasePlayer && !overrideSeePlayer)
             transform.rotation = startRot;
 
@@ -101,7 +101,7 @@ public class MineDrone : MonoBehaviour
     {
         while (!dead)
         {
-            if(!GetComponent<NavMeshAgent>().enabled)
+            if(!GetComponent<UnityEngine.AI.NavMeshAgent>().enabled)
             {
                 yield return new WaitForSeconds(0.5f);
                 continue;
@@ -167,7 +167,7 @@ public class MineDrone : MonoBehaviour
     void Explosion()
     {
         dead = true;
-        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
         Destroy(gameObject, removeTime);
         Destroy(this);
     }

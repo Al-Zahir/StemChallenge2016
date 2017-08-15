@@ -7,7 +7,7 @@ public class EnemySight : MonoBehaviour {
 	public bool playerInSight;
 	public Vector3 personalLastSighting;
 
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private SphereCollider col;
 	private LastPlayerSighting lastPlayerSighting;
 	public GameObject player;
@@ -18,7 +18,7 @@ public class EnemySight : MonoBehaviour {
 
 	void Awake(){
 
-		agent = GetComponent<NavMeshAgent> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		col = GetComponent<SphereCollider> ();
 		lastPlayerSighting = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<LastPlayerSighting> ();
 		player = GameObject.FindGameObjectWithTag ("Player").gameObject;
@@ -98,7 +98,7 @@ public class EnemySight : MonoBehaviour {
 
 	float CalculatePathLength(Vector3 targetPosition){
 
-		NavMeshPath path = new NavMeshPath ();
+		UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath ();
 
 		if (agent.enabled) 
 			agent.CalculatePath (targetPosition, path);

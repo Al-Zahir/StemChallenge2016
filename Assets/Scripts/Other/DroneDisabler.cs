@@ -53,12 +53,12 @@ public class DroneDisabler : MonoBehaviour {
     public void SetDrones(bool active)
     {
         foreach (GameObject g in drones)
-            if (g != null && g.GetComponent<NavMeshAgent>() != null)
+            if (g != null && g.GetComponent<UnityEngine.AI.NavMeshAgent>() != null)
             {
                 if (disableEntirely)
                     g.SetActive(active);
                 else
-                    g.GetComponent<NavMeshAgent>().enabled = active;
+                    g.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = active;
             }
     }
 }

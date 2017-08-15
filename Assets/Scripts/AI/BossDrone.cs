@@ -184,7 +184,7 @@ public class BossDrone : MonoBehaviour {
     void Explosion()
     {
         dead = true;
-        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
         // Send a lost message for non drone objects
         /*foreach (GameObject drone in nearbyDrones)
                 if (drone != null && !drone.name.ToLower().Contains("recon"))

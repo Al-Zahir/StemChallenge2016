@@ -6,7 +6,7 @@ public class ShockDrone : MonoBehaviour
     public bool debug = false;
     public Transform player;
     public Transform engine;
-    private NavMeshAgent agent;
+    private UnityEngine.AI.NavMeshAgent agent;
     private Vector3 lastDir = Vector3.forward;
     public float closestDistance = 2f;
     public float moveSpeed = 3f;
@@ -51,7 +51,7 @@ public class ShockDrone : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         originalEngineEuler = engine.localRotation.eulerAngles;
         startPos = transform.position;
         startRot = transform.rotation;
@@ -75,7 +75,7 @@ public class ShockDrone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dead || brainDead || !GetComponent<NavMeshAgent>().enabled)
+        if (dead || brainDead || !GetComponent<UnityEngine.AI.NavMeshAgent>().enabled)
         {
             if (shockers[0].emission.enabled && !brainDead)
                 SetShockers(false);
@@ -145,7 +145,7 @@ public class ShockDrone : MonoBehaviour
     {
         while (!dead && !brainDead)
         {
-            if (!GetComponent<NavMeshAgent>().enabled)
+            if (!GetComponent<UnityEngine.AI.NavMeshAgent>().enabled)
             {
                 yield return new WaitForSeconds(0.5f);
                 continue;
@@ -185,7 +185,7 @@ public class ShockDrone : MonoBehaviour
     {
         while(!dead && !brainDead)
         {
-            if (!GetComponent<NavMeshAgent>().enabled)
+            if (!GetComponent<UnityEngine.AI.NavMeshAgent>().enabled)
             {
                 yield return new WaitForSeconds(1f);
                 continue;
@@ -240,7 +240,7 @@ public class ShockDrone : MonoBehaviour
     void Explosion()
     {
         dead = true;
-        Destroy(GetComponent<NavMeshAgent>());
+        Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
         Destroy(gameObject, removeTime);
         Destroy(this);
     }

@@ -9,7 +9,7 @@ public class EnemyAnimation : MonoBehaviour {
 	private EnemyAI enemyAI;
 	private EnemyBattle enemyBattle;
 	private EnemySight enemySight;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private Animator anim;
 	private HashIDs hash;
 	private AnimatorSetup animSetup;
@@ -20,7 +20,7 @@ public class EnemyAnimation : MonoBehaviour {
 		enemyAI = GetComponent<EnemyAI> ();
 		enemyBattle = GetComponent<EnemyBattle> ();
 		enemySight = GetComponent<EnemySight> ();
-		agent = GetComponent<NavMeshAgent> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		anim = GetComponent<Animator> ();
 		hash = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<HashIDs> ();
 

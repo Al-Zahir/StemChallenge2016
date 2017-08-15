@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
 //Shader for low-poly vehicles. Made by ArsKvsh and TheROBONIK from Rune Studios. 
 Shader "Rune Studios/Rune's Vehicle Shader" {
 Properties {
@@ -55,8 +58,8 @@ Pass {
         VertexOutput vert (VertexInput a) {
                 VertexOutput b;
                 b.uv0 = a.texcoord0;
-                b.normalDir = mul(float4(a.normal,0), _World2Object).xyz;
-                b.posWorld = mul(_Object2World, a.vertex);
+                b.normalDir = mul(float4(a.normal,0), unity_WorldToObject).xyz;
+                b.posWorld = mul(unity_ObjectToWorld, a.vertex);
                 b.pos = mul(UNITY_MATRIX_MVP, a.vertex);
                 TRANSFER_VERTEX_TO_FRAGMENT(b)
                 return b;

@@ -34,6 +34,13 @@ ModelImporter:
     100052: transform1
     100054: transform2
     100056: //RootNode
+    100058: bolt
+    100060: CamLight
+    100062: default_default
+    100064: mag
+    100066: rail_blocks
+    100068: scope
+    100070: trigger
     400000: group
     400002: group1
     400004: group2
@@ -63,6 +70,13 @@ ModelImporter:
     400052: transform1
     400054: transform2
     400056: //RootNode
+    400058: bolt
+    400060: CamLight
+    400062: default_default
+    400064: mag
+    400066: rail_blocks
+    400068: scope
+    400070: trigger
     2300000: pasted__pasted__pasted__pSphere1
     2300002: pasted__pasted__pSphere1
     2300004: pasted__pasted__pSphere1 1
@@ -72,6 +86,12 @@ ModelImporter:
     2300012: pasted__pSphere1 1
     2300014: pasted__pSphere1 2
     2300016: pSphere1
+    2300018: bolt
+    2300020: default_default
+    2300022: mag
+    2300024: rail_blocks
+    2300026: scope
+    2300028: trigger
     3300000: pasted__pasted__pasted__pSphere1
     3300002: pasted__pasted__pSphere1
     3300004: pasted__pasted__pSphere1 1
@@ -81,6 +101,12 @@ ModelImporter:
     3300012: pasted__pSphere1 1
     3300014: pasted__pSphere1 2
     3300016: pSphere1
+    3300018: bolt
+    3300020: default_default
+    3300022: mag
+    3300024: rail_blocks
+    3300026: scope
+    3300028: trigger
     4300000: pSphere1
     4300002: pasted__pSphere1
     4300004: pasted__pSphere1
@@ -90,6 +116,12 @@ ModelImporter:
     4300012: pasted__pasted__pSphere1
     4300014: pasted__pasted__pasted__pSphere1
     4300016: pasted__pSphere1
+    4300018: default_default
+    4300020: scope
+    4300022: trigger
+    4300024: mag
+    4300026: bolt
+    4300028: rail_blocks
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -98,7 +130,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -137,6 +169,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -147,7 +180,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

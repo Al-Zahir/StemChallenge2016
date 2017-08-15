@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour {
 	private EnemySight enemySight;
 	private EnemyBattle enemyBattle;
 	//private EnemyShooting enemyShooting;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private Transform player;
 	private PlayerHealth playerHealth;
 	private LastPlayerSighting lastPlayerSighting;
@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour {
 		enemySight = GetComponent<EnemySight> ();
 		enemyBattle = GetComponent<EnemyBattle> ();
 		//enemyShooting = GetComponent<EnemyShooting> ();
-		agent = GetComponent<NavMeshAgent> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
 		playerHealth = player.GetComponent<PlayerHealth> ();
 		lastPlayerSighting = GameObject.FindGameObjectWithTag (Tags.gameController).GetComponent<LastPlayerSighting> ();

@@ -5,7 +5,7 @@ public class WolfBase : MonoBehaviour
 {
     public bool debug = true;
     public Animator anim { get; private set; }
-    public NavMeshAgent agent { get; private set; }
+    public UnityEngine.AI.NavMeshAgent agent { get; private set; }
 
     public float orientationCastRadius = 0.5f;
     public float rotSpeed = 0.05f;
@@ -29,7 +29,7 @@ public class WolfBase : MonoBehaviour
     {
         lastDirection = Vector3.Scale(transform.forward, new Vector3(1, 0, 1));
         anim = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         mouthCloseRotation = mouth.localRotation;
     }
 

@@ -6,11 +6,11 @@ public class NavMeshAccelDecel : MonoBehaviour {
     public float acceleration = 4f;
     public float deceleration = 60f;
     public float closeEnoughMeters = 2f;
-    private NavMeshAgent navMeshAgent;
+    private UnityEngine.AI.NavMeshAgent navMeshAgent;
 
     void Start()
     {
-        navMeshAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
+        navMeshAgent = gameObject.GetComponentInChildren<UnityEngine.AI.NavMeshAgent>();
     }
 
     void Update()

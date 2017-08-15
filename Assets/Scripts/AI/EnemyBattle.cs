@@ -7,7 +7,7 @@ public class EnemyBattle : MonoBehaviour {
 	public float minimumDamage = 45f;
 
 	private Animator anim;
-	private NavMeshAgent agent;
+	private UnityEngine.AI.NavMeshAgent agent;
 	private SphereCollider col;
 	private Transform player;
 	private PlayerMovement playerMovement;
@@ -23,7 +23,7 @@ public class EnemyBattle : MonoBehaviour {
 	void Awake(){
 
 		anim = GetComponent<Animator> ();
-		agent = GetComponent<NavMeshAgent> ();
+		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 		col = GetComponent<SphereCollider> ();
 		player = GameObject.FindGameObjectWithTag (Tags.player).transform;
 		playerMovement = player.gameObject.GetComponent<PlayerMovement> ();

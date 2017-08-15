@@ -3,7 +3,7 @@ guid: 9671b2fa4ff904fd196ee5c42e328de7
 timeCreated: 1455088053
 licenseType: Pro
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
     100002: bolt
@@ -27,18 +27,21 @@ ModelImporter:
     2300006: rail_blocks
     2300008: scope
     2300010: trigger
+    2300012: //RootNode
     3300000: bolt
     3300002: default_default
     3300004: mag
     3300006: rail_blocks
     3300008: scope
     3300010: trigger
+    3300012: //RootNode
     4300000: default_default
     4300002: scope
     4300004: trigger
     4300006: mag
     4300008: bolt
     4300010: rail_blocks
+    4300012: pCube1
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -47,6 +50,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -54,16 +58,16 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .0399999991
+    globalScale: 0.04
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -80,24 +84,29 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
